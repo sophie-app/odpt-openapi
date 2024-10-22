@@ -13,7 +13,6 @@
     "lint:prettier": "pnpm run:prettier . --check",
     "lint:redocly": "redocly lint",
     "typecheck": "pnpm build:tsp --noEmit",
-    "preinstall": "pnpm /^setup:.*/",
     "run:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --cache"
   },
   "peerDependencies": {

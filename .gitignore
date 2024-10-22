@@ -1,9 +1,8 @@
 # MacOS
 .DS_Store
 
-# Default TypeSpec output
-tsp-output/
-dist/
+# Doc output
+dist/doc
 
 # Dependency directories
 node_modules/

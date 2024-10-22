@@ -2,6 +2,20 @@
   "name": "odpt-openapi",
   "version": "0.1.0",
   "type": "module",
+  "scripts": {
+    "dev": "pnpm /^dev:.*/",
+    "dev:tsp": "pnpm build:tsp --watch",
+    "dev:docs": "redocly preview-docs",
+    "build": "pnpm build:tsp && pnpm build:docs",
+    "build:tsp": "tsp compile ./src --output-dir ./dist",
+    "build:docs": "redocly build-docs -o ./dist/doc/index.html",
+    "lint": "pnpm /^lint:.*/",
+    "lint:prettier": "pnpm run:prettier . --check",
+    "lint:redocly": "redocly lint",
+    "typecheck": "pnpm build:tsp --noEmit",
+    "preinstall": "pnpm /^setup:.*/",
+    "run:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --cache"
+  },
   "peerDependencies": {
     "@typespec/compiler": "0.61.0",
     "@typespec/http": "0.61.0",
@@ -9,6 +23,7 @@
     "@typespec/rest": "0.61.0"
   },
   "devDependencies": {
+    "@redocly/cli": "^1.25.8",
     "@typespec/compiler": "0.61.0",
     "@typespec/http": "0.61.0",
     "@typespec/openapi3": "0.61.0",

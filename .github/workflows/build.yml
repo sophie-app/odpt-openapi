@@ -19,6 +19,8 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: install dependencies
+        run: pnpm install
       - name: build
         run: pnpm build:tsp
       - name: commit

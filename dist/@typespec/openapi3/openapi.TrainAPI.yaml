@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: ODPT Train API
+  description: 電車に関連するデータを提供するAPI
+  version: 0.0.0
+tags: []
+paths: {}
+components: {}
+servers:
+  - url: https://api.odpt.org/api/v4
+    description: API サーバー
+    variables: {}

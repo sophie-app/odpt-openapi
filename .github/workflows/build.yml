@@ -1,0 +1,43 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: install dependencies
+        run: pnpm install
+      - name: build
+        run: pnpm build:tsp
+      - name: commit
+        env:
+          GIT_AUTHOR_NAME: actions-user
+          GIT_AUTHOR_EMAIL: action@github.com
+          GIT_COMMITTER_NAME: actions-user
+          GIT_COMMITTER_EMAIL: action@github.com
+        run: |
+          git add ./dist
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "update openapi"
+            git push origin main
+          fi
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true

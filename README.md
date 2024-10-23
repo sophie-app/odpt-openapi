@@ -17,8 +17,10 @@ pnpm i
 
 2. Start Typespec watcher and documentation server from openapi
 
+selectedAPIName is the name of `openapi.${selectedAPIName}.yaml`
+
 ```bash
-pnpm dev
+NAME=${selectedAPIName} pnpm dev
 ```
 
 ### Scripts

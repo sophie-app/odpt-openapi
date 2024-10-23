@@ -1,6 +1,0 @@
-extends:
-  - recommended
-
-apis:
-  odpt-openapi:
-    root: ./dist/@typespec/openapi3/openapi.yaml

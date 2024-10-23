@@ -1,0 +1,911 @@
+openapi: 3.0.0
+info:
+  title: ODPT Airplane API
+  description: 航空機に関連するデータを提供するAPI
+  version: 0.0.0
+tags: []
+paths:
+  /api/v4/odpt:Airport:
+    get:
+      operationId: AirportOperations_getAirports
+      summary: 空港情報の取得
+      description: 空港の情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airport'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /api/v4/odpt:AirportTerminal:
+    get:
+      operationId: AirportTerminalOperations_getAirportTerminals
+      summary: 空港ターミナル情報の取得
+      description: 空港のターミナルの情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:airport
+          in: query
+          required: false
+          description: 空港を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AirportTerminal'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /api/v4/odpt:FlightInformationArrival:
+    get:
+      operationId: FlightInformationArrivalOperations_getFlightInformationArrivals
+      summary: フライト到着情報の取得
+      description: フライト到着情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 空港事業者または航空事業者を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:airline
+          in: query
+          required: false
+          description: エアラインの運行会社を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:flightStatus
+          in: query
+          required: false
+          description: フライト状況を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:arrivalAirport
+          in: query
+          required: false
+          description: 到着空港を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:arrivalAirportTerminal
+          in: query
+          required: false
+          description: 到着空港ターミナルを示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:arrivalGate
+          in: query
+          required: false
+          description: 到着空港ゲート番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:originAirport
+          in: query
+          required: false
+          description: 出発地の空港を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightInformationArrival'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /api/v4/odpt:FlightInformationDeparture:
+    get:
+      operationId: FlightInformationDepartureOperations_getFlightInformationDepartures
+      summary: フライト出発情報の取得
+      description: フライト出発情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 空港事業者または航空事業者を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:airline
+          in: query
+          required: false
+          description: エアラインの運行会社を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:flightStatus
+          in: query
+          required: false
+          description: フライト状況を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:departureAirport
+          in: query
+          required: false
+          description: 出発空港を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:departureAirportTerminal
+          in: query
+          required: false
+          description: 出発空港ターミナルを示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:departureGate
+          in: query
+          required: false
+          description: 出発空港ゲート番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:destinationAirport
+          in: query
+          required: false
+          description: 目的地の空港を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightInformationDeparture'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /api/v4/odpt:FlightSchedule:
+    get:
+      operationId: FlightScheduleOperations_getFlightSchedules
+      summary: フライト時刻表の取得
+      description: フライト時刻表を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 空港事業者または航空事業者を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: 運行日を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:originAirport
+          in: query
+          required: false
+          description: 出発地の空港を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:destinationAirport
+          in: query
+          required: false
+          description: 目的地の空港を示すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightSchedule'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /api/v4/odpt:FlightStatus:
+    get:
+      operationId: FlightStatusOperations_getFlightStatuses
+      summary: フライト状況定義の取得
+      description: フライト状況の定義を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightStatus'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+security:
+  - ApiKeyAuth: []
+components:
+  schemas:
+    Airport:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+      properties:
+        '@context':
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/URN'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:Airport
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: 空港名（日本語）
+        odpt:airportTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 空港名（多言語対応）
+        odpt:airportTerminal:
+          type: array
+          items:
+            $ref: '#/components/schemas/URL'
+          description: 空港のターミナルを表す ID のリスト
+        geo:long:
+          type: number
+          format: decimal
+          description: 代表点の経度
+        geo:lat:
+          type: number
+          format: decimal
+          description: 代表点の緯度
+        ug:region:
+          type: object
+          additionalProperties: {}
+          description: GeoJSON形式による地物情報
+      description: 空港の情報
+    AirportTerminal:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - odpt:airport
+      properties:
+        '@context':
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/URN'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:AirportTerminal
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: 空港ターミナル名（日本語）
+        odpt:airportTerminalTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 空港ターミナル名（多言語対応）
+        odpt:airport:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 空港を示すID
+        geo:long:
+          type: number
+          format: decimal
+          description: 代表点の経度
+        geo:lat:
+          type: number
+          format: decimal
+          description: 代表点の緯度
+        ug:region:
+          type: object
+          additionalProperties: {}
+          description: GeoJSON形式による地物情報
+      description: 空港のターミナルの情報
+    ConsumerKey:
+      type: string
+      description: アクセストークン
+    DateTime:
+      type: string
+      description: ISO8601 日付時刻形式
+    FlightInformationArrival:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:flightNumber
+        - odpt:arrivalAirport
+      properties:
+        '@context':
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/URN'
+          description: 固有識別子(ucode又はuuid)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightInformationArrival
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 固有識別子
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: フライト到着情報を提供する事業者を示すID
+        odpt:airline:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: エアラインの運行会社を表すID
+        odpt:flightNumber:
+          type: array
+          items:
+            type: string
+          description: フライト番号のリスト
+        odpt:flightStatus:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: フライト状況を表すID
+        odpt:flightInformationSummary:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の要約（多言語対応）
+        odpt:flightInformationText:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の詳細（多言語対応）
+        odpt:scheduledArrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 定刻の到着時刻
+        odpt:estimatedArrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 変更後到着時刻
+        odpt:actualArrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 実際の到着時刻
+        odpt:arrivalAirport:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 到着空港を示すID
+        odpt:arrivalAirportTerminal:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 到着空港のターミナルを表すID
+        odpt:arrivalGate:
+          type: string
+          description: 到着空港のゲート番号
+        odpt:baggageClaim:
+          type: string
+          description: 到着空港の預け手荷物受取所
+        odpt:originAirport:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 出発地の空港を示すID
+        odpt:viaAirport:
+          type: array
+          items:
+            $ref: '#/components/schemas/URL'
+          description: 経由地の空港を表すIDのリスト
+        odpt:aircraftType:
+          type: string
+          description: 航空機の機種
+      description: フライト到着情報
+    FlightInformationDeparture:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:flightNumber
+        - odpt:departureAirport
+      properties:
+        '@context':
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/URN'
+          description: 固有識別子(ucode又はuuid)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightInformationDeparture
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 固有識別子
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: フライト出発情報を提供する事業者を示すID
+        odpt:airline:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: エアラインの運行会社を表すID
+        odpt:flightNumber:
+          type: array
+          items:
+            type: string
+          description: フライト番号のリスト
+        odpt:flightStatus:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: フライト状況を表すID
+        odpt:flightInformationSummary:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の要約（多言語対応）
+        odpt:flightInformationText:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の詳細（多言語対応）
+        odpt:scheduledDepartureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 定刻の出発時刻
+        odpt:estimatedDepartureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 変更後出発時刻
+        odpt:actualDepartureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 実際の出発時刻
+        odpt:departureAirport:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 出発空港を示すID
+        odpt:departureAirportTerminal:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 出発空港のターミナルを示すID
+        odpt:departureGate:
+          type: string
+          description: 出発空港のゲート番号
+        odpt:checkInCounter:
+          type: array
+          items:
+            type: string
+          description: 出発空港のチェックインカウンターのリスト
+        odpt:destinationAirport:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 目的地の空港を示すID
+        odpt:viaAirport:
+          type: array
+          items:
+            $ref: '#/components/schemas/URL'
+          description: 経由地の空港を表すIDのリスト
+        odpt:aircraftType:
+          type: string
+          description: 航空機の機種
+      description: フライト出発情報
+    FlightSchedule:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - odpt:operator
+        - odpt:calendar
+        - odpt:originAirport
+        - odpt:destinationAirport
+      properties:
+        '@context':
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/URN'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightSchedule
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 固有識別子
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: フライト時刻表を提供する事業者を示すID
+        odpt:calendar:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: カレンダー情報を示すID
+        odpt:originAirport:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 出発地の空港のID
+        odpt:destinationAirport:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 目的地の空港のID
+        odpt:flightScheduleObject:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlightScheduleObject'
+          description: 時刻表オブジェクト
+      description: フライト時刻表
+    FlightScheduleObject:
+      type: object
+      required:
+        - odpt:airline
+        - odpt:flightNumber
+        - odpt:originTime
+        - odpt:destinationTime
+      properties:
+        odpt:airline:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: エアラインの運行会社のID
+        odpt:flightNumber:
+          type: array
+          items:
+            type: string
+          description: フライト番号のリスト
+        odpt:originTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 出発予定時刻
+        odpt:originDayDifference:
+          type: integer
+          format: int32
+          description: 出発日とカレンダー情報の日数差
+        odpt:destinationTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 到着予定時刻
+        odpt:destinationDayDifference:
+          type: integer
+          format: int32
+          description: 到着日とカレンダー情報の日数差
+        odpt:viaAirport:
+          type: array
+          items:
+            $ref: '#/components/schemas/URL'
+          description: 経由地の空港を表すIDのリスト
+        odpt:aircraftType:
+          type: string
+          description: 航空機の機種
+        odpt:isValidFrom:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ適用開始日時
+        odpt:isValidTo:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ適用終了日時
+        odpt:note:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 注釈情報（多言語対応）
+      description: フライトスケジュールオブジェクト
+    FlightStatus:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+      properties:
+        '@context':
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/URN'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightStatus
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/URL'
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: フライト状況（日本語）
+        odpt:flightStatusTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: フライト状況（多言語対応）
+      description: フライト状況
+    MultilingualTitle:
+      type: object
+      required:
+        - ja
+        - en
+      properties:
+        ja:
+          type: string
+        en:
+          type: string
+      description: 多言語対応のタイトル
+    Time:
+      type: string
+      description: ISO8601 時刻形式
+    URL:
+      type: string
+      description: 固有識別子の別名
+    URN:
+      type: string
+      description: 固有識別子
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: acl:consumerKey
+servers:
+  - url: https://api.odpt.org/api/v4
+    description: API サーバー
+    variables: {}

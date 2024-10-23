@@ -5,7 +5,14 @@ info:
   version: 0.0.0
 tags: []
 paths: {}
-components: {}
+security:
+  - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: acl:consumerKey
 servers:
   - url: https://api.odpt.org/api/v4
     description: API サーバー

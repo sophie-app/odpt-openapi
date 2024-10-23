@@ -8,6 +8,7 @@ import "../common/error.tsp";
 })
 @server("https://api.odpt.org/api/v4", "API サーバー")
 @doc("電車に関連するデータを提供するAPI")
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
 namespace TrainAPI;
 
 using TypeSpec.Http;

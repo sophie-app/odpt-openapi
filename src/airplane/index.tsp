@@ -8,6 +8,7 @@ import "../common/error.tsp";
 })
 @server("https://api.odpt.org/api/v4", "API サーバー")
 @doc("航空機に関連するデータを提供するAPI")
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
 namespace AirplaneAPI;
 
 using TypeSpec.Http;
@@ -320,6 +321,7 @@ model FlightStatus {
 }
 @route("/api/v4/odpt:Airport")
 interface AirportOperations {
+  @summary("空港情報の取得")
   @doc("空港の情報を取得する")
   @get
   getAirports(
@@ -331,6 +333,7 @@ interface AirportOperations {
 
 @route("/api/v4/odpt:AirportTerminal")
 interface AirportTerminalOperations {
+  @summary("空港ターミナル情報の取得")
   @doc("空港のターミナルの情報を取得する")
   @get
   getAirportTerminals(
@@ -343,6 +346,7 @@ interface AirportTerminalOperations {
 
 @route("/api/v4/odpt:FlightInformationArrival")
 interface FlightInformationArrivalOperations {
+  @summary("フライト到着情報の取得")
   @doc("フライト到着情報を取得する")
   @get
   getFlightInformationArrivals(
@@ -360,6 +364,7 @@ interface FlightInformationArrivalOperations {
 
 @route("/api/v4/odpt:FlightInformationDeparture")
 interface FlightInformationDepartureOperations {
+  @summary("フライト出発情報の取得")
   @doc("フライト出発情報を取得する")
   @get
   getFlightInformationDepartures(
@@ -377,6 +382,7 @@ interface FlightInformationDepartureOperations {
 
 @route("/api/v4/odpt:FlightSchedule")
 interface FlightScheduleOperations {
+  @summary("フライト時刻表の取得")
   @doc("フライト時刻表を取得する")
   @get
   getFlightSchedules(
@@ -392,6 +398,7 @@ interface FlightScheduleOperations {
 
 @route("/api/v4/odpt:FlightStatus")
 interface FlightStatusOperations {
+  @summary("フライト状況定義の取得")
   @doc("フライト状況の定義を取得する")
   @get
   getFlightStatuses(

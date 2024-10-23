@@ -8,6 +8,7 @@ paths:
   /api/v4/odpt:Airport:
     get:
       operationId: AirportOperations_getAirports
+      summary: 空港情報の取得
       description: 空港の情報を取得する
       parameters:
         - name: acl:consumerKey
@@ -55,6 +56,7 @@ paths:
   /api/v4/odpt:AirportTerminal:
     get:
       operationId: AirportTerminalOperations_getAirportTerminals
+      summary: 空港ターミナル情報の取得
       description: 空港のターミナルの情報を取得する
       parameters:
         - name: acl:consumerKey
@@ -109,6 +111,7 @@ paths:
   /api/v4/odpt:FlightInformationArrival:
     get:
       operationId: FlightInformationArrivalOperations_getFlightInformationArrivals
+      summary: フライト到着情報の取得
       description: フライト到着情報を取得する
       parameters:
         - name: acl:consumerKey
@@ -198,6 +201,7 @@ paths:
   /api/v4/odpt:FlightInformationDeparture:
     get:
       operationId: FlightInformationDepartureOperations_getFlightInformationDepartures
+      summary: フライト出発情報の取得
       description: フライト出発情報を取得する
       parameters:
         - name: acl:consumerKey
@@ -287,6 +291,7 @@ paths:
   /api/v4/odpt:FlightSchedule:
     get:
       operationId: FlightScheduleOperations_getFlightSchedules
+      summary: フライト時刻表の取得
       description: フライト時刻表を取得する
       parameters:
         - name: acl:consumerKey
@@ -362,6 +367,7 @@ paths:
   /api/v4/odpt:FlightStatus:
     get:
       operationId: FlightStatusOperations_getFlightStatuses
+      summary: フライト状況定義の取得
       description: フライト状況の定義を取得する
       parameters:
         - name: acl:consumerKey
@@ -406,6 +412,8 @@ paths:
           description: サーバー内部エラー
         '503':
           description: サービス利用不可
+security:
+  - ApiKeyAuth: []
 components:
   schemas:
     Airport:
@@ -892,6 +900,11 @@ components:
     URN:
       type: string
       description: 固有識別子
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: acl:consumerKey
 servers:
   - url: https://api.odpt.org/api/v4
     description: API サーバー

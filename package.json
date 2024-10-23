@@ -11,7 +11,7 @@
     "build:docs": "redocly build-docs -o ./dist/doc/index.html",
     "lint": "pnpm /^lint:.*/",
     "lint:prettier": "pnpm run:prettier . --check",
-    "lint:redocly": "redocly lint",
+    "lint:redocly": "redocly lint ./dist/@typespec/openapi3/openapi.*.yaml",
     "typecheck": "pnpm build:tsp --noEmit",
     "run:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --cache"
   },

@@ -322,7 +322,6 @@ model FlightStatus {
 @route("/odpt:Airport")
 interface AirportOperations {
   @summary("空港情報の取得")
-  @doc("空港の情報を取得する")
   @get
   getAirports(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
@@ -334,7 +333,6 @@ interface AirportOperations {
 @route("/odpt:AirportTerminal")
 interface AirportTerminalOperations {
   @summary("空港ターミナル情報の取得")
-  @doc("空港のターミナルの情報を取得する")
   @get
   getAirportTerminals(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
@@ -347,7 +345,6 @@ interface AirportTerminalOperations {
 @route("/odpt:FlightInformationArrival")
 interface FlightInformationArrivalOperations {
   @summary("フライト到着情報の取得")
-  @doc("フライト到着情報を取得する")
   @get
   getFlightInformationArrivals(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
@@ -365,7 +362,6 @@ interface FlightInformationArrivalOperations {
 @route("/odpt:FlightInformationDeparture")
 interface FlightInformationDepartureOperations {
   @summary("フライト出発情報の取得")
-  @doc("フライト出発情報を取得する")
   @get
   getFlightInformationDepartures(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
@@ -383,7 +379,6 @@ interface FlightInformationDepartureOperations {
 @route("/odpt:FlightSchedule")
 interface FlightScheduleOperations {
   @summary("フライト時刻表の取得")
-  @doc("フライト時刻表を取得する")
   @get
   getFlightSchedules(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
@@ -399,7 +394,6 @@ interface FlightScheduleOperations {
 @route("/odpt:FlightStatus")
 interface FlightStatusOperations {
   @summary("フライト状況定義の取得")
-  @doc("フライト状況の定義を取得する")
   @get
   getFlightStatuses(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,

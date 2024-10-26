@@ -9,7 +9,6 @@ paths:
     get:
       operationId: AirportOperations_getAirports
       summary: 空港情報の取得
-      description: 空港の情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -58,7 +57,6 @@ paths:
     get:
       operationId: AirportTerminalOperations_getAirportTerminals
       summary: 空港ターミナル情報の取得
-      description: 空港のターミナルの情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -115,7 +113,6 @@ paths:
     get:
       operationId: FlightInformationArrivalOperations_getFlightInformationArrivals
       summary: フライト到着情報の取得
-      description: フライト到着情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -212,7 +209,6 @@ paths:
     get:
       operationId: FlightInformationDepartureOperations_getFlightInformationDepartures
       summary: フライト出発情報の取得
-      description: フライト出発情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -309,7 +305,6 @@ paths:
     get:
       operationId: FlightScheduleOperations_getFlightSchedules
       summary: フライト時刻表の取得
-      description: フライト時刻表を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -390,7 +385,6 @@ paths:
     get:
       operationId: FlightStatusOperations_getFlightStatuses
       summary: フライト状況定義の取得
-      description: フライト状況の定義を取得する
       parameters:
         - name: acl:consumerKey
           in: query

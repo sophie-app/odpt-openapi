@@ -4,11 +4,680 @@ info:
   description: 鉄道に関連するデータを提供するAPI
   version: 0.0.0
 tags: []
-paths: {}
+paths:
+  /odpt:PassengerSurvey:
+    get:
+      operationId: PassengerSurveyOperations_getPassengerSurveys
+      summary: 駅の乗降人員数を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:station
+          in: query
+          required: false
+          description: 駅を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 路線を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PassengerSurvey'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:RailDirection:
+    get:
+      operationId: RailDirectionOperations_getRailDirections
+      summary: 進行方向の定義を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RailDirection'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Railway:
+    get:
+      operationId: RailwayOperations_getRailways
+      summary: 路線情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: dc:title
+          in: query
+          required: false
+          description: 路線名
+          schema:
+            type: string
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:lineCode
+          in: query
+          required: false
+          description: 路線コード、路線シンボル表記
+          schema:
+            type: string
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Railway'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:RailwayFare:
+    get:
+      operationId: RailwayFareOperations_getRailwayFares
+      summary: 2駅間の運賃を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:fromStation
+          in: query
+          required: false
+          description: 出発駅のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:toStation
+          in: query
+          required: false
+          description: 到着駅のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RailwayFare'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Station:
+    get:
+      operationId: StationOperations_getStations
+      summary: 駅情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: dc:title
+          in: query
+          required: false
+          description: 駅名
+          schema:
+            type: string
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 駅が存在する路線ID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:stationCode
+          in: query
+          required: false
+          description: 駅ナンバリング
+          schema:
+            type: string
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Station'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:StationTimetable:
+    get:
+      operationId: StationTimetableOperations_getStationTimetables
+      summary: 駅時刻表を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:station
+          in: query
+          required: false
+          description: 駅を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 路線を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:railDirection
+          in: query
+          required: false
+          description: 進行方向を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: 実施日を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: dc:date
+          in: query
+          required: false
+          description: 特定日付の時刻表を取得
+          schema:
+            $ref: '#/components/schemas/DateTime'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StationTimetable'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Train:
+    get:
+      operationId: TrainOperations_getTrains
+      summary: 列車情報(列車の位置情報)を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 列車情報を配信する事業者のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 当該列車が運行している路線のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Train'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:TrainInformation:
+    get:
+      operationId: TrainInformationOperations_getTrainInformation
+      summary: 列車運行情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 運行情報を配信する事業者のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 運行情報が発生した路線のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainInformation'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:TrainTimetable:
+    get:
+      operationId: TrainTimetableOperations_getTrainTimetables
+      summary: 列車時刻表を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: 固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: 固有識別子別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:trainNumber
+          in: query
+          required: false
+          description: 列車番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 路線のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 運行事業者のID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:trainType
+          in: query
+          required: false
+          description: 列車種別ID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:train
+          in: query
+          required: false
+          description: 該当する列車ID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: 特定のカレンダー情報ID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainTimetable'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:TrainType:
+    get:
+      operationId: TrainTypeOperations_getTrainTypes
+      summary: 列車種別の定義を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/URN'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/URL'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainType'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
 security:
   - ApiKeyAuth: []
 components:
   schemas:
+    ConsumerKey:
+      type: string
+      description: アクセストークン
     Date:
       type: string
       description: ISO8601 日付形式

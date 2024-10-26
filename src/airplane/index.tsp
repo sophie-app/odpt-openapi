@@ -319,7 +319,7 @@ model FlightStatus {
   @doc("フライト状況（多言語対応）")
   `odpt:flightStatusTitle`?: MultilingualTitle;
 }
-@route("/api/v4/odpt:Airport")
+@route("/odpt:Airport")
 interface AirportOperations {
   @summary("空港情報の取得")
   @doc("空港の情報を取得する")
@@ -331,7 +331,7 @@ interface AirportOperations {
   ): Airport[] | Common.Error;
 }
 
-@route("/api/v4/odpt:AirportTerminal")
+@route("/odpt:AirportTerminal")
 interface AirportTerminalOperations {
   @summary("空港ターミナル情報の取得")
   @doc("空港のターミナルの情報を取得する")
@@ -344,7 +344,7 @@ interface AirportTerminalOperations {
   ): AirportTerminal[] | Common.Error;
 }
 
-@route("/api/v4/odpt:FlightInformationArrival")
+@route("/odpt:FlightInformationArrival")
 interface FlightInformationArrivalOperations {
   @summary("フライト到着情報の取得")
   @doc("フライト到着情報を取得する")
@@ -362,7 +362,7 @@ interface FlightInformationArrivalOperations {
   ): FlightInformationArrival[] | Common.Error;
 }
 
-@route("/api/v4/odpt:FlightInformationDeparture")
+@route("/odpt:FlightInformationDeparture")
 interface FlightInformationDepartureOperations {
   @summary("フライト出発情報の取得")
   @doc("フライト出発情報を取得する")
@@ -380,7 +380,7 @@ interface FlightInformationDepartureOperations {
   ): FlightInformationDeparture[] | Common.Error;
 }
 
-@route("/api/v4/odpt:FlightSchedule")
+@route("/odpt:FlightSchedule")
 interface FlightScheduleOperations {
   @summary("フライト時刻表の取得")
   @doc("フライト時刻表を取得する")
@@ -396,7 +396,7 @@ interface FlightScheduleOperations {
   ): FlightSchedule[] | Common.Error;
 }
 
-@route("/api/v4/odpt:FlightStatus")
+@route("/odpt:FlightStatus")
 interface FlightStatusOperations {
   @summary("フライト状況定義の取得")
   @doc("フライト状況の定義を取得する")

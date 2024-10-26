@@ -5,7 +5,7 @@ info:
   version: 0.0.0
 tags: []
 paths:
-  /api/v4/odpt:Airport:
+  /odpt:Airport:
     get:
       operationId: AirportOperations_getAirports
       summary: 空港情報の取得
@@ -53,7 +53,7 @@ paths:
           description: サーバー内部エラー
         '503':
           description: サービス利用不可
-  /api/v4/odpt:AirportTerminal:
+  /odpt:AirportTerminal:
     get:
       operationId: AirportTerminalOperations_getAirportTerminals
       summary: 空港ターミナル情報の取得
@@ -108,7 +108,7 @@ paths:
           description: サーバー内部エラー
         '503':
           description: サービス利用不可
-  /api/v4/odpt:FlightInformationArrival:
+  /odpt:FlightInformationArrival:
     get:
       operationId: FlightInformationArrivalOperations_getFlightInformationArrivals
       summary: フライト到着情報の取得
@@ -198,7 +198,7 @@ paths:
           description: サーバー内部エラー
         '503':
           description: サービス利用不可
-  /api/v4/odpt:FlightInformationDeparture:
+  /odpt:FlightInformationDeparture:
     get:
       operationId: FlightInformationDepartureOperations_getFlightInformationDepartures
       summary: フライト出発情報の取得
@@ -288,7 +288,7 @@ paths:
           description: サーバー内部エラー
         '503':
           description: サービス利用不可
-  /api/v4/odpt:FlightSchedule:
+  /odpt:FlightSchedule:
     get:
       operationId: FlightScheduleOperations_getFlightSchedules
       summary: フライト時刻表の取得
@@ -364,7 +364,7 @@ paths:
           description: サーバー内部エラー
         '503':
           description: サービス利用不可
-  /api/v4/odpt:FlightStatus:
+  /odpt:FlightStatus:
     get:
       operationId: FlightStatusOperations_getFlightStatuses
       summary: フライト状況定義の取得

@@ -612,3 +612,239 @@ model BusstopPoleTimetableObject {
   @example("string")
   `odpt:note`?: string;
 }
+
+@route("/odpt:Bus")
+interface BusOperation {
+  @summary("バス車両の運行情報")
+  @doc("バス車両の運行情報を取得する")
+  @get
+  getBuses(
+    @query
+    @doc("開発者サイトにて提供されるアクセストークン")
+    `acl:consumerKey`: ConsumerKey,
+
+    @query
+    @doc("データに付与された固有識別子")
+    `@id`?: URN,
+
+    @query
+    @doc("データに付与された固有識別子の別名")
+    `owl:sameAs`?: URL,
+
+    @query
+    @doc("バス車両の運行系統のID")
+    `odpt:busroutePattern`?: URL,
+
+    @query
+    @doc("事業者のID")
+    `odpt:operator`?: URL,
+
+    @query
+    @doc("直近に通過した、あるいは停車中のバス停のID")
+    `odpt:fromBusstopPole`?: URL,
+
+    @query
+    @doc("次に到着するバス停のID")
+    `odpt:toBusstopPole`?: URL,
+  ): Bus[] | Common.Error;
+}
+
+@route("/odpt:BusTimetable")
+interface BusTimetableOperations {
+  @summary("バスの便の時刻表")
+  @doc("バスの便の時刻表を取得する")
+  @get
+  getBusTimetables(
+    @query
+    @doc("開発者サイトにて提供されるアクセストークン")
+    `acl:consumerKey`: ConsumerKey,
+
+    @query
+    @doc("データに付与された固有識別子")
+    `@id`?: URN,
+
+    @query
+    @doc("データに付与された固有識別子の別名")
+    `owl:sameAs`?: URL,
+
+    @query
+    @doc("事業者のID")
+    `odpt:operator`: URL,
+
+    @query
+    @doc("対応する系統のID")
+    `odpt:busroutePattern`?: URL,
+
+    @query
+    @doc("バス路線名称")
+    `dc:title`?: string,
+
+    @query
+    @doc("カレンダーのID")
+    `odpt:calendar`?: URL,
+  ): BusTimetable[] | Common.Error;
+}
+
+@route("/odpt:BusroutePattern")
+interface BusroutePatternOperations {
+  @summary("運行系統情報")
+  @doc("運行系統情報を取得する")
+  @get
+  getBusroutePatterns(
+    @query
+    @doc("開発者サイトにて提供されるアクセストークン")
+    `acl:consumerKey`: ConsumerKey,
+
+    @query
+    @doc("データに付与された固有識別子")
+    `@id`?: URN,
+
+    @query
+    @doc("データに付与された固有識別子の別名")
+    `owl:sameAs`?: URL,
+
+    @query
+    @doc("路線・系統名称")
+    `dc:title`?: string,
+
+    @query
+    @doc("事業者のID")
+    `odpt:operator`?: URL,
+
+    @query
+    @doc("路線のID")
+    `odpt:busroute`?: string,
+  ): BusroutePattern[] | Common.Error;
+}
+
+@route("/odpt:BusroutePatternFare")
+interface BusroutePatternFareOperations {
+  @summary("運賃情報")
+  @doc("運賃情報を取得する")
+  @get
+  getBusroutePatternFares(
+    @query
+    @doc("開発者サイトにて提供されるアクセストークン")
+    `acl:consumerKey`: ConsumerKey,
+
+    @query
+    @doc("データに付与された固有識別子")
+    `@id`?: URN,
+
+    @query
+    @doc("データに付与された固有識別子の別名")
+    `owl:sameAs`?: URL,
+
+    @query
+    @doc("事業者のID")
+    `odpt:operator`?: URL,
+
+    @query
+    @doc("乗車バス停(標柱)のID")
+    `odpt:fromBusstopPole`?: URL,
+
+    @query
+    @doc("降車バス停(標柱)のID")
+    `odpt:toBusstopPole`?: URL,
+
+    @query
+    @doc("切符利用時の運賃")
+    `odpt:ticketFare`?: integer,
+
+    @query
+    @doc("切符利用時の子供運賃")
+    `odpt:childTicketFare`?: integer,
+
+    @query
+    @doc("ICカード利用時の運賃")
+    `odpt:icCardFare`?: integer,
+
+    @query
+    @doc("ICカード利用時の子供運賃")
+    `odpt:childIcCardFare`?: integer,
+  ): BusroutePatternFare[] | Common.Error;
+}
+
+@route("/odpt:BusstopPole")
+interface BusstopPoleOperations {
+  @summary("バス停情報")
+  @doc("バス停情報を取得する")
+  @get
+  getBusstopPoles(
+    @query
+    @doc("開発者サイトにて提供されるアクセストークン")
+    `acl:consumerKey`: ConsumerKey,
+
+    @query
+    @doc("データに付与された固有識別子")
+    `@id`?: URN,
+
+    @query
+    @doc("データに付与された固有識別子の別名")
+    `owl:sameAs`?: URL,
+
+    @query
+    @doc("バス停名")
+    `dc:title`?: string,
+
+    @query
+    @doc("標柱番号")
+    `odpt:busstopPoleNumber`?: string,
+
+    @query
+    @doc("のりば番号")
+    `odpt:platformNumber`?: string,
+
+    @query
+    @doc("標柱で発着する系統のID")
+    `odpt:busroutePattern`?: URL,
+
+    @query
+    @doc("事業者のID")
+    `odpt:operator`?: URL,
+  ): BusstopPole[] | Common.Error;
+}
+
+@route("/odpt:BusstopPoleTimetable")
+interface BusstopPoleTimetableOperations {
+  @summary("バス停(標柱)時刻表")
+  @doc("バス停(標柱)時刻表を取得する")
+  @get
+  getBusstopPoleTimetables(
+    @query
+    @doc("開発者サイトにて提供されるアクセストークン")
+    `acl:consumerKey`: ConsumerKey,
+
+    @query
+    @doc("データに付与された固有識別子")
+    `@id`?: URN,
+
+    @query
+    @doc("データに付与された固有識別子の別名")
+    `owl:sameAs`?: URL,
+
+    @query
+    @doc("バス停(標柱)のID")
+    `odpt:busstopPole`?: URL,
+
+    @query
+    @doc("方面のID")
+    `odpt:busDirection`?: string,
+
+    @query
+    @doc("路線のID")
+    `odpt:busroute`?: string,
+
+    @query
+    @doc("事業者のID")
+    `odpt:operator`?: URL,
+
+    @query
+    @doc("カレンダーのID")
+    `odpt:calendar`?: URL,
+
+    @query
+    @doc("データ生成日付")
+    `dc:date`?: Time,
+  ): BusstopPoleTimetable[] | Common.Error;
+}

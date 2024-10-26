@@ -20,7 +20,7 @@ scalar Time extends string;
 @doc("空港の情報")
 model Airport {
   @doc("JSON-LD仕様に基づく @context のURL")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   `@id`: URN;
@@ -32,7 +32,7 @@ model Airport {
   `dc:date`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("空港名（日本語）")
   `dc:title`?: string;
@@ -41,7 +41,7 @@ model Airport {
   `odpt:airportTitle`?: MultilingualTitle;
 
   @doc("空港のターミナルを表す ID のリスト")
-  `odpt:airportTerminal`?: URL[];
+  `odpt:airportTerminal`?: url[];
 
   @doc("代表点の経度")
   `geo:long`?: decimal;
@@ -56,7 +56,7 @@ model Airport {
 @doc("空港のターミナルの情報")
 model AirportTerminal {
   @doc("JSON-LD仕様に基づく @context のURL")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   `@id`: URN;
@@ -68,7 +68,7 @@ model AirportTerminal {
   `dc:date`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("空港ターミナル名（日本語）")
   `dc:title`?: string;
@@ -77,7 +77,7 @@ model AirportTerminal {
   `odpt:airportTerminalTitle`?: MultilingualTitle;
 
   @doc("空港を示すID")
-  `odpt:airport`: URL;
+  `odpt:airport`: url;
 
   @doc("代表点の経度")
   `geo:long`?: decimal;
@@ -92,7 +92,7 @@ model AirportTerminal {
 @doc("フライト到着情報")
 model FlightInformationArrival {
   @doc("JSON-LD仕様に基づく @context のURL")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode又はuuid)")
   `@id`: URN;
@@ -107,19 +107,19 @@ model FlightInformationArrival {
   `dct:valid`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("フライト到着情報を提供する事業者を示すID")
-  `odpt:operator`: URL;
+  `odpt:operator`: url;
 
   @doc("エアラインの運行会社を表すID")
-  `odpt:airline`?: URL;
+  `odpt:airline`?: url;
 
   @doc("フライト番号のリスト")
   `odpt:flightNumber`: string[];
 
   @doc("フライト状況を表すID")
-  `odpt:flightStatus`?: URL;
+  `odpt:flightStatus`?: url;
 
   @doc("運行情報の要約（多言語対応）")
   `odpt:flightInformationSummary`?: MultilingualTitle;
@@ -137,10 +137,10 @@ model FlightInformationArrival {
   `odpt:actualArrivalTime`?: Time;
 
   @doc("到着空港を示すID")
-  `odpt:arrivalAirport`: URL;
+  `odpt:arrivalAirport`: url;
 
   @doc("到着空港のターミナルを表すID")
-  `odpt:arrivalAirportTerminal`?: URL;
+  `odpt:arrivalAirportTerminal`?: url;
 
   @doc("到着空港のゲート番号")
   `odpt:arrivalGate`?: string;
@@ -149,10 +149,10 @@ model FlightInformationArrival {
   `odpt:baggageClaim`?: string;
 
   @doc("出発地の空港を示すID")
-  `odpt:originAirport`?: URL;
+  `odpt:originAirport`?: url;
 
   @doc("経由地の空港を表すIDのリスト")
-  `odpt:viaAirport`?: URL[];
+  `odpt:viaAirport`?: url[];
 
   @doc("航空機の機種")
   `odpt:aircraftType`?: string;
@@ -161,7 +161,7 @@ model FlightInformationArrival {
 @doc("フライト出発情報")
 model FlightInformationDeparture {
   @doc("JSON-LD仕様に基づく @context のURL")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode又はuuid)")
   `@id`: URN;
@@ -176,19 +176,19 @@ model FlightInformationDeparture {
   `dct:valid`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("フライト出発情報を提供する事業者を示すID")
-  `odpt:operator`: URL;
+  `odpt:operator`: url;
 
   @doc("エアラインの運行会社を表すID")
-  `odpt:airline`?: URL;
+  `odpt:airline`?: url;
 
   @doc("フライト番号のリスト")
   `odpt:flightNumber`: string[];
 
   @doc("フライト状況を表すID")
-  `odpt:flightStatus`?: URL;
+  `odpt:flightStatus`?: url;
 
   @doc("運行情報の要約（多言語対応）")
   `odpt:flightInformationSummary`?: MultilingualTitle;
@@ -206,10 +206,10 @@ model FlightInformationDeparture {
   `odpt:actualDepartureTime`?: Time;
 
   @doc("出発空港を示すID")
-  `odpt:departureAirport`: URL;
+  `odpt:departureAirport`: url;
 
   @doc("出発空港のターミナルを示すID")
-  `odpt:departureAirportTerminal`?: URL;
+  `odpt:departureAirportTerminal`?: url;
 
   @doc("出発空港のゲート番号")
   `odpt:departureGate`?: string;
@@ -218,10 +218,10 @@ model FlightInformationDeparture {
   `odpt:checkInCounter`?: string[];
 
   @doc("目的地の空港を示すID")
-  `odpt:destinationAirport`?: URL;
+  `odpt:destinationAirport`?: url;
 
   @doc("経由地の空港を表すIDのリスト")
-  `odpt:viaAirport`?: URL[];
+  `odpt:viaAirport`?: url[];
 
   @doc("航空機の機種")
   `odpt:aircraftType`?: string;
@@ -230,7 +230,7 @@ model FlightInformationDeparture {
 @doc("フライトスケジュールオブジェクト")
 model FlightScheduleObject {
   @doc("エアラインの運行会社のID")
-  `odpt:airline`: URL;
+  `odpt:airline`: url;
 
   @doc("フライト番号のリスト")
   `odpt:flightNumber`: string[];
@@ -248,7 +248,7 @@ model FlightScheduleObject {
   `odpt:destinationDayDifference`?: int32;
 
   @doc("経由地の空港を表すIDのリスト")
-  `odpt:viaAirport`?: URL[];
+  `odpt:viaAirport`?: url[];
 
   @doc("航空機の機種")
   `odpt:aircraftType`?: string;
@@ -266,7 +266,7 @@ model FlightScheduleObject {
 @doc("フライト時刻表")
 model FlightSchedule {
   @doc("JSON-LD仕様に基づく @context のURL")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   `@id`: URN;
@@ -278,19 +278,19 @@ model FlightSchedule {
   `dc:date`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("フライト時刻表を提供する事業者を示すID")
-  `odpt:operator`: URL;
+  `odpt:operator`: url;
 
   @doc("カレンダー情報を示すID")
-  `odpt:calendar`: URL;
+  `odpt:calendar`: url;
 
   @doc("出発地の空港のID")
-  `odpt:originAirport`: URL;
+  `odpt:originAirport`: url;
 
   @doc("目的地の空港のID")
-  `odpt:destinationAirport`: URL;
+  `odpt:destinationAirport`: url;
 
   @doc("時刻表オブジェクト")
   `odpt:flightScheduleObject`?: FlightScheduleObject[];
@@ -299,7 +299,7 @@ model FlightSchedule {
 @doc("フライト状況")
 model FlightStatus {
   @doc("JSON-LD仕様に基づく @context のURL")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   `@id`: URN;
@@ -311,7 +311,7 @@ model FlightStatus {
   `dc:date`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("フライト状況（日本語）")
   `dc:title`?: string;
@@ -327,7 +327,7 @@ interface AirportOperations {
   getAirports(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
   ): Airport[] | Common.Error;
 }
 
@@ -339,8 +339,8 @@ interface AirportTerminalOperations {
   getAirportTerminals(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
-    @query @doc("空港を示すID") `odpt:airport`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
+    @query @doc("空港を示すID") `odpt:airport`?: url,
   ): AirportTerminal[] | Common.Error;
 }
 
@@ -351,14 +351,14 @@ interface FlightInformationArrivalOperations {
   @get
   getFlightInformationArrivals(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
-    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: URL,
-    @query @doc("エアラインの運行会社を示すID") `odpt:airline`?: URL,
-    @query @doc("フライト状況を示すID") `odpt:flightStatus`?: URL,
-    @query @doc("到着空港を示すID") `odpt:arrivalAirport`?: URL,
-    @query @doc("到着空港ターミナルを示すID") `odpt:arrivalAirportTerminal`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
+    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: url,
+    @query @doc("エアラインの運行会社を示すID") `odpt:airline`?: url,
+    @query @doc("フライト状況を示すID") `odpt:flightStatus`?: url,
+    @query @doc("到着空港を示すID") `odpt:arrivalAirport`?: url,
+    @query @doc("到着空港ターミナルを示すID") `odpt:arrivalAirportTerminal`?: url,
     @query @doc("到着空港ゲート番号") `odpt:arrivalGate`?: string,
-    @query @doc("出発地の空港を示すID") `odpt:originAirport`?: URL,
+    @query @doc("出発地の空港を示すID") `odpt:originAirport`?: url,
   ): FlightInformationArrival[] | Common.Error;
 }
 
@@ -369,14 +369,14 @@ interface FlightInformationDepartureOperations {
   @get
   getFlightInformationDepartures(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
-    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: URL,
-    @query @doc("エアラインの運行会社を示すID") `odpt:airline`?: URL,
-    @query @doc("フライト状況を示すID") `odpt:flightStatus`?: URL,
-    @query @doc("出発空港を示すID") `odpt:departureAirport`?: URL,
-    @query @doc("出発空港ターミナルを示すID") `odpt:departureAirportTerminal`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
+    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: url,
+    @query @doc("エアラインの運行会社を示すID") `odpt:airline`?: url,
+    @query @doc("フライト状況を示すID") `odpt:flightStatus`?: url,
+    @query @doc("出発空港を示すID") `odpt:departureAirport`?: url,
+    @query @doc("出発空港ターミナルを示すID") `odpt:departureAirportTerminal`?: url,
     @query @doc("出発空港ゲート番号") `odpt:departureGate`?: string,
-    @query @doc("目的地の空港を示すID") `odpt:destinationAirport`?: URL,
+    @query @doc("目的地の空港を示すID") `odpt:destinationAirport`?: url,
   ): FlightInformationDeparture[] | Common.Error;
 }
 
@@ -388,11 +388,11 @@ interface FlightScheduleOperations {
   getFlightSchedules(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
-    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: URL,
-    @query @doc("運行日を示すID") `odpt:calendar`?: URL,
-    @query @doc("出発地の空港を示すID") `odpt:originAirport`?: URL,
-    @query @doc("目的地の空港を示すID") `odpt:destinationAirport`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
+    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: url,
+    @query @doc("運行日を示すID") `odpt:calendar`?: url,
+    @query @doc("出発地の空港を示すID") `odpt:originAirport`?: url,
+    @query @doc("目的地の空港を示すID") `odpt:destinationAirport`?: url,
   ): FlightSchedule[] | Common.Error;
 }
 
@@ -404,6 +404,6 @@ interface FlightStatusOperations {
   getFlightStatuses(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
   ): FlightStatus[] | Common.Error;
 }

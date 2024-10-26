@@ -23,6 +23,10 @@ jobs:
         run: pnpm install
       - name: build
         run: pnpm build:tsp
+      - name: setup git-url
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
       - name: commit
         env:
           GIT_AUTHOR_NAME: actions-user

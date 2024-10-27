@@ -888,6 +888,8 @@ components:
       properties:
         ja:
           type: string
+        ja-Hrkt:
+          type: string
         en:
           type: string
       description: 多言語対応のタイトル

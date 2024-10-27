@@ -777,12 +777,10 @@ components:
       properties:
         odpt:surveyYear:
           type: integer
-          format: int32
           example: 2017
           description: 調査年度
         odpt:passengerJourneys:
           type: integer
-          format: int32
           example: 12345
           description: 駅の1日あたりの平均乗降人員数(または乗車人員数)
       description: 調査年度と平均乗降人員数(または乗車人員数)の組
@@ -987,22 +985,18 @@ components:
           description: 到着駅のID
         odpt:ticketFare:
           type: integer
-          format: int32
           example: 200
           description: 切符利用時の運賃
         odpt:icCardFare:
           type: integer
-          format: int32
           example: 196
           description: ICカード利用時の運賃
         odpt:childTicketFare:
           type: integer
-          format: int32
           example: 100
           description: 切符利用時の子供運賃
         odpt:childIcCardFare:
           type: integer
-          format: int32
           example: 98
           description: ICカード利用時の子供運賃
         odpt:viaStation:
@@ -1095,12 +1089,10 @@ components:
           description: 駅コード
         geo:long:
           type: number
-          format: decimal
           example: 139.1234
           description: 代表点の経度
         geo:lat:
           type: number
-          format: decimal
           example: 35.1234
           description: 代表点の緯度
         ug:region:
@@ -1165,7 +1157,6 @@ components:
           description: 駅名（多言語対応）
         odpt:index:
           type: integer
-          format: int32
           example: 1
           description: 駅の順序を示す整数値 原則として、列車は進行方向に応じて、この値の昇順または降順に停車する。環状線などの場合は、同一の駅が複数回記載される場合がある。
       description: 駅の順序
@@ -1361,7 +1352,6 @@ components:
           description: プラットフォームの名称
         odpt:carComposition:
           type: integer
-          format: int32
           example: 8
           description: 車両数
         odpt:note:
@@ -1495,17 +1485,14 @@ components:
           description: 車両の所属会社を表すID
         odpt:index:
           type: integer
-          format: int32
           example: 1
           description: 路線内の列車順序
         odpt:delay:
           type: integer
-          format: int32
           example: 60
           description: 遅延時間（秒）
         odpt:carComposition:
           type: integer
-          format: int32
           example: 8
           description: 車両数
         odpt:note:

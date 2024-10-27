@@ -64,11 +64,11 @@ model PassengerSurvey {
 model PassengerSurveyObject {
   @doc("調査年度")
   @example(2017)
-  `odpt:surveyYear`: int32;
+  `odpt:surveyYear`: integer;
 
   @doc("駅の1日あたりの平均乗降人員数(または乗車人員数)")
   @example(12345)
-  `odpt:passengerJourneys`: int32;
+  `odpt:passengerJourneys`: integer;
 }
 
 @doc("列車の進行方向")
@@ -176,7 +176,7 @@ model StationOrder {
 
   @doc("駅の順序を示す整数値 原則として、列車は進行方向に応じて、この値の昇順または降順に停車する。環状線などの場合は、同一の駅が複数回記載される場合がある。")
   @example(1)
-  `odpt:index`: int32;
+  `odpt:index`: integer;
 }
 
 @doc("2駅間の運賃情報")
@@ -223,19 +223,19 @@ model RailwayFare {
 
   @doc("切符利用時の運賃")
   @example(200)
-  `odpt:ticketFare`: int32;
+  `odpt:ticketFare`: integer;
 
   @doc("ICカード利用時の運賃")
   @example(196)
-  `odpt:icCardFare`?: int32;
+  `odpt:icCardFare`?: integer;
 
   @doc("切符利用時の子供運賃")
   @example(100)
-  `odpt:childTicketFare`?: int32;
+  `odpt:childTicketFare`?: integer;
 
   @doc("ICカード利用時の子供運賃")
   @example(98)
-  `odpt:childIcCardFare`?: int32;
+  `odpt:childIcCardFare`?: integer;
 
   @doc("運賃計算上の経由駅を表すIDのリスト")
   @example(#["odpt.Station:TokyoMetro.Tozai.NishiFunabashi"])
@@ -298,11 +298,11 @@ model Station {
 
   @doc("代表点の経度")
   @example(139.1234)
-  `geo:long`?: decimal;
+  `geo:long`?: float;
 
   @doc("代表点の緯度")
   @example(35.1234)
-  `geo:lat`?: decimal;
+  `geo:lat`?: float;
 
   @doc("GeoJSON形式による地物情報")
   `ug:region`?: Record<unknown>;
@@ -459,7 +459,7 @@ model StationTimetableObject {
 
   @doc("車両数")
   @example(8)
-  `odpt:carComposition`?: int32;
+  `odpt:carComposition`?: integer;
 
   @doc("注釈情報")
   @example(#{ ja: "日本語での注釈情報", en: "Note in English" })
@@ -545,15 +545,15 @@ model Train {
 
   @doc("路線内の列車順序")
   @example(1)
-  `odpt:index`?: int32;
+  `odpt:index`?: integer;
 
   @doc("遅延時間（秒）")
   @example(60)
-  `odpt:delay`?: int32;
+  `odpt:delay`?: integer;
 
   @doc("車両数")
   @example(8)
-  `odpt:carComposition`?: int32;
+  `odpt:carComposition`?: integer;
 
   @doc("注釈情報")
   @example(#{ ja: "日本語での注釈情報", en: "Note in English" })

@@ -9,7 +9,6 @@ paths:
     get:
       operationId: AirportOperations_getAirports
       summary: 空港情報の取得
-      description: 空港の情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -30,7 +29,8 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
       responses:
         '200':
@@ -57,7 +57,6 @@ paths:
     get:
       operationId: AirportTerminalOperations_getAirportTerminals
       summary: 空港ターミナル情報の取得
-      description: 空港のターミナルの情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -78,14 +77,16 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:airport
           in: query
           required: false
           description: 空港を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
       responses:
         '200':
@@ -112,7 +113,6 @@ paths:
     get:
       operationId: FlightInformationArrivalOperations_getFlightInformationArrivals
       summary: フライト到着情報の取得
-      description: フライト到着情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -126,42 +126,48 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 空港事業者または航空事業者を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:airline
           in: query
           required: false
           description: エアラインの運行会社を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:flightStatus
           in: query
           required: false
           description: フライト状況を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:arrivalAirport
           in: query
           required: false
           description: 到着空港を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:arrivalAirportTerminal
           in: query
           required: false
           description: 到着空港ターミナルを示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:arrivalGate
           in: query
@@ -175,7 +181,8 @@ paths:
           required: false
           description: 出発地の空港を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
       responses:
         '200':
@@ -202,7 +209,6 @@ paths:
     get:
       operationId: FlightInformationDepartureOperations_getFlightInformationDepartures
       summary: フライト出発情報の取得
-      description: フライト出発情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -216,42 +222,48 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 空港事業者または航空事業者を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:airline
           in: query
           required: false
           description: エアラインの運行会社を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:flightStatus
           in: query
           required: false
           description: フライト状況を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:departureAirport
           in: query
           required: false
           description: 出発空港を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:departureAirportTerminal
           in: query
           required: false
           description: 出発空港ターミナルを示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:departureGate
           in: query
@@ -265,7 +277,8 @@ paths:
           required: false
           description: 目的地の空港を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
       responses:
         '200':
@@ -292,7 +305,6 @@ paths:
     get:
       operationId: FlightScheduleOperations_getFlightSchedules
       summary: フライト時刻表の取得
-      description: フライト時刻表を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -313,35 +325,40 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 空港事業者または航空事業者を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:calendar
           in: query
           required: false
           description: 運行日を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:originAirport
           in: query
           required: false
           description: 出発地の空港を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
         - name: odpt:destinationAirport
           in: query
           required: false
           description: 目的地の空港を示すID
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
       responses:
         '200':
@@ -368,7 +385,6 @@ paths:
     get:
       operationId: FlightStatusOperations_getFlightStatuses
       summary: フライト状況定義の取得
-      description: フライト状況の定義を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -389,7 +405,8 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           explode: false
       responses:
         '200':
@@ -425,8 +442,8 @@ components:
         - owl:sameAs
       properties:
         '@context':
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
@@ -442,8 +459,8 @@ components:
             - $ref: '#/components/schemas/DateTime'
           description: データ生成日時
         owl:sameAs:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 固有識別子
         dc:title:
           type: string
@@ -455,7 +472,8 @@ components:
         odpt:airportTerminal:
           type: array
           items:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           description: 空港のターミナルを表す ID のリスト
         geo:long:
           type: number
@@ -480,8 +498,8 @@ components:
         - odpt:airport
       properties:
         '@context':
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
@@ -497,8 +515,8 @@ components:
             - $ref: '#/components/schemas/DateTime'
           description: データ生成日時
         owl:sameAs:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 固有識別子
         dc:title:
           type: string
@@ -508,8 +526,8 @@ components:
             - $ref: '#/components/schemas/MultilingualTitle'
           description: 空港ターミナル名（多言語対応）
         odpt:airport:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 空港を示すID
         geo:long:
           type: number
@@ -543,8 +561,8 @@ components:
         - odpt:arrivalAirport
       properties:
         '@context':
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
@@ -564,16 +582,16 @@ components:
             - $ref: '#/components/schemas/DateTime'
           description: データ保証期限
         owl:sameAs:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 固有識別子
         odpt:operator:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: フライト到着情報を提供する事業者を示すID
         odpt:airline:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: エアラインの運行会社を表すID
         odpt:flightNumber:
           type: array
@@ -581,8 +599,8 @@ components:
             type: string
           description: フライト番号のリスト
         odpt:flightStatus:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: フライト状況を表すID
         odpt:flightInformationSummary:
           allOf:
@@ -605,12 +623,12 @@ components:
             - $ref: '#/components/schemas/Time'
           description: 実際の到着時刻
         odpt:arrivalAirport:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 到着空港を示すID
         odpt:arrivalAirportTerminal:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 到着空港のターミナルを表すID
         odpt:arrivalGate:
           type: string
@@ -619,13 +637,14 @@ components:
           type: string
           description: 到着空港の預け手荷物受取所
         odpt:originAirport:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 出発地の空港を示すID
         odpt:viaAirport:
           type: array
           items:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           description: 経由地の空港を表すIDのリスト
         odpt:aircraftType:
           type: string
@@ -644,8 +663,8 @@ components:
         - odpt:departureAirport
       properties:
         '@context':
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
@@ -665,16 +684,16 @@ components:
             - $ref: '#/components/schemas/DateTime'
           description: データ保証期限
         owl:sameAs:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 固有識別子
         odpt:operator:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: フライト出発情報を提供する事業者を示すID
         odpt:airline:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: エアラインの運行会社を表すID
         odpt:flightNumber:
           type: array
@@ -682,8 +701,8 @@ components:
             type: string
           description: フライト番号のリスト
         odpt:flightStatus:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: フライト状況を表すID
         odpt:flightInformationSummary:
           allOf:
@@ -706,12 +725,12 @@ components:
             - $ref: '#/components/schemas/Time'
           description: 実際の出発時刻
         odpt:departureAirport:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 出発空港を示すID
         odpt:departureAirportTerminal:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 出発空港のターミナルを示すID
         odpt:departureGate:
           type: string
@@ -722,13 +741,14 @@ components:
             type: string
           description: 出発空港のチェックインカウンターのリスト
         odpt:destinationAirport:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 目的地の空港を示すID
         odpt:viaAirport:
           type: array
           items:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           description: 経由地の空港を表すIDのリスト
         odpt:aircraftType:
           type: string
@@ -747,8 +767,8 @@ components:
         - odpt:destinationAirport
       properties:
         '@context':
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
@@ -764,24 +784,24 @@ components:
             - $ref: '#/components/schemas/DateTime'
           description: データ生成日時
         owl:sameAs:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 固有識別子
         odpt:operator:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: フライト時刻表を提供する事業者を示すID
         odpt:calendar:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: カレンダー情報を示すID
         odpt:originAirport:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 出発地の空港のID
         odpt:destinationAirport:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 目的地の空港のID
         odpt:flightScheduleObject:
           type: array
@@ -798,8 +818,8 @@ components:
         - odpt:destinationTime
       properties:
         odpt:airline:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: エアラインの運行会社のID
         odpt:flightNumber:
           type: array
@@ -825,7 +845,8 @@ components:
         odpt:viaAirport:
           type: array
           items:
-            $ref: '#/components/schemas/URL'
+            type: string
+            format: uri
           description: 経由地の空港を表すIDのリスト
         odpt:aircraftType:
           type: string
@@ -852,8 +873,8 @@ components:
         - owl:sameAs
       properties:
         '@context':
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
@@ -869,8 +890,8 @@ components:
             - $ref: '#/components/schemas/DateTime'
           description: データ生成日時
         owl:sameAs:
-          allOf:
-            - $ref: '#/components/schemas/URL'
+          type: string
+          format: uri
           description: 固有識別子
         dc:title:
           type: string
@@ -896,9 +917,6 @@ components:
     Time:
       type: string
       description: ISO8601 時刻形式
-    URL:
-      type: string
-      description: 固有識別子の別名
     URN:
       type: string
       description: 固有識別子

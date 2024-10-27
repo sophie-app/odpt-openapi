@@ -10,9 +10,6 @@ scalar ConsumerKey extends string;
 @doc("固有識別子")
 scalar URN extends string;
 
-@doc("固有識別子の別名")
-scalar URL extends string;
-
 @doc("ISO8601 日付時刻形式")
 scalar DateTime extends string;
 
@@ -30,7 +27,7 @@ model MultilingualTitle {
 model Calendar {
   @doc("JSON-LD仕様に基づく @context のURL")
   @key
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   `@id`: URN;
@@ -42,7 +39,7 @@ model Calendar {
   `dc:date`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("カレンダー名称（日本語）")
   `dc:title`?: string;
@@ -55,7 +52,7 @@ model Calendar {
 model Operator {
   @doc("JSON-LD仕様に基づく @context のURL")
   @key
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   `@id`: URN;
@@ -67,7 +64,7 @@ model Operator {
   `dc:date`?: DateTime;
 
   @doc("固有識別子")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: url;
 
   @doc("事業者名称（日本語）")
   `dc:title`?: string;
@@ -83,7 +80,7 @@ interface CalendarOperations {
   getCalendars(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
   ): Calendar[] | Common.Error;
 }
 
@@ -94,6 +91,6 @@ interface OperatorOperations {
   getOperators(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: URL,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
   ): Operator[] | Common.Error;
 }

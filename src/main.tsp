@@ -7,3 +7,4 @@ import "./common/class.tsp";
 
 import "./airplane/index.tsp";
 import "./train/index.tsp";
+import "./bus/index.tsp";

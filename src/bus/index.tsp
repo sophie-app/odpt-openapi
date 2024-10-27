@@ -75,11 +75,11 @@ model Bus {
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
-  `dc:date`: Time;
+  `dc:date`: DateTime;
 
   @doc("データ保証期限")
   @example("2017-01-13T15:10:00+09:00")
-  `dct:valid`: Time;
+  `dct:valid`: DateTime;
 
   @doc("更新頻度(秒)、指定された秒数以降にリクエストを行うことで、最新値が取得される。")
   @example(60)
@@ -111,7 +111,7 @@ model Bus {
 
   @doc("直近に通過したバス停を発車した時刻。odpt:fromBusstopPoleがnullならばodpt:fromBusstopPoleTimeもnullとなる")
   @example("2017-01-13T15:10:00+09:00")
-  `odpt:fromBusstopPoleTime`?: Time;
+  `odpt:fromBusstopPoleTime`?: DateTime;
 
   @doc("次に到着するバス停のID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
@@ -166,7 +166,7 @@ model BusTimetable {
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
-  `dc:date`?: Time;
+  `dc:date`?: DateTime;
 
   @doc("ダイヤ改正日")
   @example("2017-01-13")
@@ -174,7 +174,7 @@ model BusTimetable {
 
   @doc("データ保証期限")
   @example("2017-01-13T15:10:00+09:00")
-  `dct:valid`?: Time;
+  `dct:valid`?: DateTime;
 
   @doc("バス路線名称(系統名等)")
   @example("string")
@@ -269,11 +269,11 @@ model BusroutePattern {
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
-  `dc:date`: Time;
+  `dc:date`: DateTime;
 
   @doc("データの保証期限")
   @example("2017-01-13T15:10:00+09:00")
-  `dct:valid`?: Time;
+  `dct:valid`?: DateTime;
 
   @doc("バス路線名称(系統名・系統番号等)")
   @example("string")
@@ -371,7 +371,7 @@ model BusroutePatternFare {
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
-  `dc:date`: Time;
+  `dc:date`: DateTime;
 
   @doc("運賃改定日")
   @example("2017-01-13")
@@ -379,7 +379,7 @@ model BusroutePatternFare {
 
   @doc("データ保証期限")
   @example("2017-01-13T15:10:00+09:00")
-  `dct:valid`?: Time;
+  `dct:valid`?: DateTime;
 
   @doc("運行会社を表すID (odpt:Operatorのowl:sameAs)")
   @example("string")
@@ -446,11 +446,11 @@ model BusstopPole {
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
-  `dc:date`: Time;
+  `dc:date`: DateTime;
 
   @doc("データの保証期限")
   @example("2017-01-13T15:10:00+09:00")
-  `dct:valid`?: Time;
+  `dct:valid`?: DateTime;
 
   @doc("バス停名")
   @example("豊洲駅前")
@@ -513,7 +513,7 @@ model BusstopPoleTimetable {
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
-  `dc:date`: Time;
+  `dc:date`: DateTime;
 
   @doc("ダイヤ改正日")
   @example("2017-01-13")
@@ -521,7 +521,7 @@ model BusstopPoleTimetable {
 
   @doc("データ保証期限。ISO8601形式。期限が存在する場合のみ格納する。")
   @example("2017-01-13T15:10:00+09:00")
-  `dct:valid`?: Time;
+  `dct:valid`?: DateTime;
 
   @doc("バス路線名称(系統名等)")
   @example("string")
@@ -845,6 +845,6 @@ interface BusstopPoleTimetableOperations {
 
     @query
     @doc("データ生成日付")
-    `dc:date`?: Time,
+    `dc:date`?: DateTime,
   ): BusstopPoleTimetable[] | Common.Error;
 }

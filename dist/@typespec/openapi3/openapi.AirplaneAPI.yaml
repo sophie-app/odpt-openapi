@@ -29,7 +29,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt:URL'
+            $ref: '#/components/schemas/odpt-URL'
           explode: false
       responses:
         '200':
@@ -76,7 +76,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt:URL'
+            $ref: '#/components/schemas/odpt-URL'
           explode: false
         - name: odpt:airport
           in: query
@@ -124,7 +124,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt:URL'
+            $ref: '#/components/schemas/odpt-URL'
           explode: false
         - name: odpt:operator
           in: query
@@ -219,7 +219,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt:URL'
+            $ref: '#/components/schemas/odpt-URL'
           explode: false
         - name: odpt:operator
           in: query
@@ -321,7 +321,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt:URL'
+            $ref: '#/components/schemas/odpt-URL'
           explode: false
         - name: odpt:operator
           in: query
@@ -400,7 +400,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt:URL'
+            $ref: '#/components/schemas/odpt-URL'
           explode: false
       responses:
         '200':
@@ -454,7 +454,7 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt:URL'
+            - $ref: '#/components/schemas/odpt-URL'
           description: 固有識別子
         dc:title:
           type: string
@@ -510,7 +510,7 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt:URL'
+            - $ref: '#/components/schemas/odpt-URL'
           description: 固有識別子
         dc:title:
           type: string
@@ -577,7 +577,7 @@ components:
           description: データ保証期限
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt:URL'
+            - $ref: '#/components/schemas/odpt-URL'
           description: 固有識別子
         odpt:operator:
           type: string
@@ -679,7 +679,7 @@ components:
           description: データ保証期限
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt:URL'
+            - $ref: '#/components/schemas/odpt-URL'
           description: 固有識別子
         odpt:operator:
           type: string
@@ -779,7 +779,7 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt:URL'
+            - $ref: '#/components/schemas/odpt-URL'
           description: 固有識別子
         odpt:operator:
           type: string
@@ -885,7 +885,7 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt:URL'
+            - $ref: '#/components/schemas/odpt-URL'
           description: 固有識別子
         dc:title:
           type: string
@@ -914,7 +914,7 @@ components:
     URN:
       type: string
       description: 固有識別子
-    odpt:URL:
+    odpt-URL:
       type: string
       description: 固有識別子の別名 多くが`odpt.hoge:huga`形式
   securitySchemes:

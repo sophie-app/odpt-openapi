@@ -316,6 +316,10 @@ model BusroutePattern {
   @example("2")
   `odpt:direction`?: string;
 
+  @doc("GeoJSON形式による地物情報")
+  @example(#{})
+  `ug:region`?: Record<unknown>;
+
   @doc("停留所(標柱)の順序")
   @example(#[
     #{

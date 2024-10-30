@@ -55,7 +55,7 @@ enum OccupancyStatus {
 model Bus {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子")
   @example("string")
@@ -67,7 +67,7 @@ model Bus {
 
   @doc("バス運行情報の固有識別子")
   @example("string")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("バス車両番号")
   @example("string")
@@ -87,27 +87,27 @@ model Bus {
 
   @doc("運行中の系統のID (odpt:BusroutePatternのowl:sameAs)")
   @example("string")
-  `odpt:busroutePattern`: URL;
+  `odpt:busroutePattern`: `odpt.url`;
 
   @doc("運行中の便の時刻表のID (odpt:BusTimetableのowl:sameAs)")
   @example("string")
-  `odpt:busTimetable`?: URL;
+  `odpt:busTimetable`?: `odpt.url`;
 
   @doc("運行会社のID (odpt:Operatorのowl:sameAs)")
   @example("string")
-  `odpt:operator`: URL;
+  `odpt:operator`: `odpt.url`;
 
   @doc("運行中系統の始発バス停を表すID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:startingBusstopPole`?: URL;
+  `odpt:startingBusstopPole`?: `odpt.url`;
 
   @doc("運行中系統の終着バス停を表すID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:terminalBusstopPole`?: URL;
+  `odpt:terminalBusstopPole`?: `odpt.url`;
 
   @doc("直近に通過した、あるいは停車中のバス停のID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:fromBusstopPole`?: URL;
+  `odpt:fromBusstopPole`?: `odpt.url`;
 
   @doc("直近に通過したバス停を発車した時刻。odpt:fromBusstopPoleがnullならばodpt:fromBusstopPoleTimeもnullとなる")
   @example("2017-01-13T15:10:00+09:00")
@@ -115,7 +115,7 @@ model Bus {
 
   @doc("次に到着するバス停のID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:toBusstopPole`?: URL;
+  `odpt:toBusstopPole`?: `odpt.url`;
 
   @doc("Fromを0, Toを1とした際の現在位置 (割合)")
   @example(0.0)
@@ -150,7 +150,7 @@ model Bus {
 model BusTimetable {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
@@ -162,7 +162,7 @@ model BusTimetable {
 
   @doc("バス時刻表の固有識別子")
   @example("string")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
@@ -186,15 +186,15 @@ model BusTimetable {
 
   @doc("運行会社のID (odpt:Operatorのowl:sameAs)")
   @example("string")
-  `odpt:operator`: URL;
+  `odpt:operator`: `odpt.url`;
 
   @doc("対応する運行系統のID (odpt:BusroutePatternのowl:sameAs)")
   @example("string")
-  `odpt:busroutePattern`: URL;
+  `odpt:busroutePattern`: `odpt.url`;
 
   @doc("カレンダーのID (odpt:Calendarのowl:sameAs)")
   @example("string")
-  `odpt:calendar`: URL;
+  `odpt:calendar`: `odpt.url`;
 
   @doc("バス時刻表時分情報")
   @example(#[])
@@ -209,7 +209,7 @@ model BusTimetableObject {
 
   @doc("バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:busstopPole`: URL;
+  `odpt:busstopPole`: `odpt.url`;
 
   @doc("バス到着時刻")
   @example("10:00")
@@ -253,7 +253,7 @@ model BusTimetableObject {
 model BusroutePattern {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子 (ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
@@ -265,7 +265,7 @@ model BusroutePattern {
 
   @doc("バス路線情報の固有識別子")
   @example("string")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
@@ -285,11 +285,11 @@ model BusroutePattern {
 
   @doc("運営会社を表すID (odpt:Operatorのowl:sameAs)")
   @example("string")
-  `odpt:operator`: URL;
+  `odpt:operator`: `odpt.url`;
 
   @doc("系統を表すID")
   @example("string")
-  `odpt:busroute`?: URL;
+  `odpt:busroute`?: `odpt.url`;
 
   @doc("系統パターン")
   @example("string")
@@ -317,7 +317,7 @@ model BusroutePattern {
 
   @doc("バス位置情報を示すWebSiteのURL")
   @example("string")
-  `odpt:busLocationURL`?: URL;
+  `odpt:busLocationURL`?: `odpt.url`;
 }
 
 enum OpeningDoor {
@@ -332,7 +332,7 @@ enum OpeningDoor {
 model BussstopPoleOrder {
   @doc("停留所のID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:busstopPole`: URL;
+  `odpt:busstopPole`: `odpt.url`;
 
   @doc("停留所通過順。通過順の昇順の値となる")
   @example(1)
@@ -355,7 +355,7 @@ model BussstopPoleOrder {
 model BusroutePatternFare {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
@@ -367,7 +367,7 @@ model BusroutePatternFare {
 
   @doc("バス運賃の固有識別子")
   @example("string")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
@@ -383,11 +383,11 @@ model BusroutePatternFare {
 
   @doc("運行会社を表すID (odpt:Operatorのowl:sameAs)")
   @example("string")
-  `odpt:operator`: URL;
+  `odpt:operator`: `odpt.url`;
 
   @doc("乗車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)")
   @example("string")
-  `odpt:fromBusroutePattern`: URL;
+  `odpt:fromBusroutePattern`: `odpt.url`;
 
   @doc("乗車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:fromBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。")
   @example(0)
@@ -395,11 +395,11 @@ model BusroutePatternFare {
 
   @doc("乗車バス停を表すID。odpt:fromBusroutePattern, odpt:fromBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。")
   @example("string")
-  `odpt:fromBusstopPole`: URL;
+  `odpt:fromBusstopPole`: `odpt.url`;
 
   @doc("降車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)")
   @example("string")
-  `odpt:toBusroutePattern`: URL;
+  `odpt:toBusroutePattern`: `odpt.url`;
 
   @doc("降車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:toBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。")
   @example(0)
@@ -407,7 +407,7 @@ model BusroutePatternFare {
 
   @doc("降車バス停を表すID (odpt:BusstopPoleのowl:sameAs)。 odpt:toBusroutePattern, odpt:toBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。")
   @example("string")
-  `odpt:toBusstopPole`: URL;
+  `odpt:toBusstopPole`: `odpt.url`;
 
   @doc("切符利用時の運賃 (円)")
   @example(200)
@@ -430,7 +430,7 @@ model BusroutePatternFare {
 model BusstopPole {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
@@ -442,7 +442,7 @@ model BusstopPole {
 
   @doc("バス停 (標柱) の固有識別子")
   @example("string")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
@@ -474,11 +474,11 @@ model BusstopPole {
 
   @doc("入線する系統パターンのID (odpt:BusroutePatternのowl:sameAs) のリスト")
   @example(#["string"])
-  `odpt:busroutePattern`?: URL[];
+  `odpt:busroutePattern`?: `odpt.url`[];
 
   @doc("入線するバスの運営会社を表すID (odpt:Operatorのowl:sameAs) のリスト")
   @example(#["string"])
-  `odpt:operator`: URL[];
+  `odpt:operator`: `odpt.url`[];
 
   @doc("標柱番号。同一停留所の別標柱を区別するものであり、のりば番号とは一致する保証はない")
   @example("string")
@@ -490,14 +490,14 @@ model BusstopPole {
 
   @doc("バス停(標柱)時刻表のID (odpt:BusstopPoleTimetableのowl:sameAs) のリスト")
   @example(#["string"])
-  `odpt:busstopPoleTimetable`?: URL[];
+  `odpt:busstopPoleTimetable`?: `odpt.url`[];
 }
 
 @doc("バス停(標柱)時刻表 odpt:busstopPole で示されたバス停(標柱)の時刻表")
 model BusstopPoleTimetable {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
@@ -509,7 +509,7 @@ model BusstopPoleTimetable {
 
   @doc("バス停(標柱)時刻表の固有識別子")
   @example("string")
-  `owl:sameAs`: URL;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("データ生成時刻")
   @example("2017-01-13T15:10:00+09:00")
@@ -529,7 +529,7 @@ model BusstopPoleTimetable {
 
   @doc("バス停(標柱)を表すID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:busstopPole`: URL;
+  `odpt:busstopPole`: `odpt.url`;
 
   @doc("方面を表すID。array となる場合もある。")
   @example("string")
@@ -545,7 +545,7 @@ model BusstopPoleTimetable {
 
   @doc("運行する曜日・日付 (odpt:Calendarのowl:sameAs)")
   @example("string")
-  `odpt:calendar`: URL;
+  `odpt:calendar`: `odpt.url`;
 
   @doc("バス停(標柱)時刻表の時分情報")
   @example(#[
@@ -578,7 +578,7 @@ model BusstopPoleTimetableObject {
 
   @doc("行先バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)")
   @example("string")
-  `odpt:destinationBusstopPole`?: URL;
+  `odpt:destinationBusstopPole`?: `odpt.url`;
 
   @doc("行先(方向幕)情報")
   @example("string")
@@ -586,7 +586,7 @@ model BusstopPoleTimetableObject {
 
   @doc("バス路線のID (odpt:BusroutePatternのowl:sameAs)")
   @example("string")
-  `odpt:busroutePattern`?: URL;
+  `odpt:busroutePattern`?: `odpt.url`;
 
   @doc("系統パターン内の停留所(標柱)通過順。odpt:busroutePattern の示す odpt:BusroutePattern の odpt:busstopPoleOrder の odpt:index と同じ値。")
   @example(0)
@@ -629,23 +629,23 @@ interface BusOperation {
 
     @query
     @doc("データに付与された固有識別子の別名")
-    `owl:sameAs`?: URL,
+    `owl:sameAs`?: `odpt.url`,
 
     @query
     @doc("バス車両の運行系統のID")
-    `odpt:busroutePattern`?: URL,
+    `odpt:busroutePattern`?: `odpt.url`,
 
     @query
     @doc("事業者のID")
-    `odpt:operator`?: URL,
+    `odpt:operator`?: `odpt.url`,
 
     @query
     @doc("直近に通過した、あるいは停車中のバス停のID")
-    `odpt:fromBusstopPole`?: URL,
+    `odpt:fromBusstopPole`?: `odpt.url`,
 
     @query
     @doc("次に到着するバス停のID")
-    `odpt:toBusstopPole`?: URL,
+    `odpt:toBusstopPole`?: `odpt.url`,
   ): Bus[] | Common.Error;
 }
 
@@ -665,15 +665,15 @@ interface BusTimetableOperations {
 
     @query
     @doc("データに付与された固有識別子の別名")
-    `owl:sameAs`?: URL,
+    `owl:sameAs`?: `odpt.url`,
 
     @query
     @doc("事業者のID")
-    `odpt:operator`: URL,
+    `odpt:operator`: `odpt.url`,
 
     @query
     @doc("対応する系統のID")
-    `odpt:busroutePattern`?: URL,
+    `odpt:busroutePattern`?: `odpt.url`,
 
     @query
     @doc("バス路線名称")
@@ -681,7 +681,7 @@ interface BusTimetableOperations {
 
     @query
     @doc("カレンダーのID")
-    `odpt:calendar`?: URL,
+    `odpt:calendar`?: `odpt.url`,
   ): BusTimetable[] | Common.Error;
 }
 
@@ -701,7 +701,7 @@ interface BusroutePatternOperations {
 
     @query
     @doc("データに付与された固有識別子の別名")
-    `owl:sameAs`?: URL,
+    `owl:sameAs`?: `odpt.url`,
 
     @query
     @doc("路線・系統名称")
@@ -709,7 +709,7 @@ interface BusroutePatternOperations {
 
     @query
     @doc("事業者のID")
-    `odpt:operator`?: URL,
+    `odpt:operator`?: `odpt.url`,
 
     @query
     @doc("路線のID")
@@ -733,19 +733,19 @@ interface BusroutePatternFareOperations {
 
     @query
     @doc("データに付与された固有識別子の別名")
-    `owl:sameAs`?: URL,
+    `owl:sameAs`?: `odpt.url`,
 
     @query
     @doc("事業者のID")
-    `odpt:operator`?: URL,
+    `odpt:operator`?: `odpt.url`,
 
     @query
     @doc("乗車バス停(標柱)のID")
-    `odpt:fromBusstopPole`?: URL,
+    `odpt:fromBusstopPole`?: `odpt.url`,
 
     @query
     @doc("降車バス停(標柱)のID")
-    `odpt:toBusstopPole`?: URL,
+    `odpt:toBusstopPole`?: `odpt.url`,
 
     @query
     @doc("切符利用時の運賃")
@@ -781,7 +781,7 @@ interface BusstopPoleOperations {
 
     @query
     @doc("データに付与された固有識別子の別名")
-    `owl:sameAs`?: URL,
+    `owl:sameAs`?: `odpt.url`,
 
     @query
     @doc("バス停名")
@@ -797,11 +797,11 @@ interface BusstopPoleOperations {
 
     @query
     @doc("標柱で発着する系統のID")
-    `odpt:busroutePattern`?: URL,
+    `odpt:busroutePattern`?: `odpt.url`,
 
     @query
     @doc("事業者のID")
-    `odpt:operator`?: URL,
+    `odpt:operator`?: `odpt.url`,
   ): BusstopPole[] | Common.Error;
 }
 
@@ -821,11 +821,11 @@ interface BusstopPoleTimetableOperations {
 
     @query
     @doc("データに付与された固有識別子の別名")
-    `owl:sameAs`?: URL,
+    `owl:sameAs`?: `odpt.url`,
 
     @query
     @doc("バス停(標柱)のID")
-    `odpt:busstopPole`?: URL,
+    `odpt:busstopPole`?: `odpt.url`,
 
     @query
     @doc("方面のID")
@@ -837,11 +837,11 @@ interface BusstopPoleTimetableOperations {
 
     @query
     @doc("事業者のID")
-    `odpt:operator`?: URL,
+    `odpt:operator`?: `odpt.url`,
 
     @query
     @doc("カレンダーのID")
-    `odpt:calendar`?: URL,
+    `odpt:calendar`?: `odpt.url`,
 
     @query
     @doc("データ生成日付")

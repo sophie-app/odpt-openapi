@@ -640,7 +640,6 @@ model BusstopPoleTimetableObject {
 @route("/odpt:Bus")
 interface BusOperation {
   @summary("バス車両の運行情報")
-  @doc("バス車両の運行情報を取得する")
   @get
   getBuses(
     @query
@@ -676,7 +675,6 @@ interface BusOperation {
 @route("/odpt:BusTimetable")
 interface BusTimetableOperations {
   @summary("バスの便の時刻表")
-  @doc("バスの便の時刻表を取得する")
   @get
   getBusTimetables(
     @query
@@ -712,7 +710,6 @@ interface BusTimetableOperations {
 @route("/odpt:BusroutePattern")
 interface BusroutePatternOperations {
   @summary("運行系統情報")
-  @doc("運行系統情報を取得する")
   @get
   getBusroutePatterns(
     @query
@@ -744,7 +741,6 @@ interface BusroutePatternOperations {
 @route("/odpt:BusroutePatternFare")
 interface BusroutePatternFareOperations {
   @summary("運賃情報")
-  @doc("運賃情報を取得する")
   @get
   getBusroutePatternFares(
     @query
@@ -792,7 +788,6 @@ interface BusroutePatternFareOperations {
 @route("/odpt:BusstopPole")
 interface BusstopPoleOperations {
   @summary("バス停情報")
-  @doc("バス停情報を取得する")
   @get
   getBusstopPoles(
     @query
@@ -832,7 +827,6 @@ interface BusstopPoleOperations {
 @route("/odpt:BusstopPoleTimetable")
 interface BusstopPoleTimetableOperations {
   @summary("バス停(標柱)時刻表")
-  @doc("バス停(標柱)時刻表を取得する")
   @get
   getBusstopPoleTimetables(
     @query

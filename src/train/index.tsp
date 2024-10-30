@@ -37,19 +37,19 @@ model PassengerSurvey {
 
   @doc("固有識別子 odpt.PassengerSurvey:会社名.駅名 または odpt.PassengerSurvey:会社名.路線名.駅名")
   @example("odpt.PassengerSurvey:JR-East.Tokyo")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("駅を表すIDのリスト")
   @example(#["odpt.Station:JR-East.Yamanote.Tokyo", "odpt.Station:JR-East.ChuoRapid.Tokyo"])
-  `odpt:station`: `odpt-URL`[];
+  `odpt:station`: `odpt.url`[];
 
   @doc("路線を表すIDのリスト")
   @example(#["odpt.Railway:JR-East.Yamanote", "odpt.Railway:JR-East.ChuoRapid"])
-  `odpt:railway`: `odpt-URL`[];
+  `odpt:railway`: `odpt.url`[];
 
   @doc("乗降人員(降車を含む)の場合はtrue、乗車人員(降車を含まない)の場合はfalse")
   @example(true)
@@ -91,7 +91,7 @@ model RailDirection {
 
   @doc("固有識別子 odpt.RailDirection:進行方向 または odpt.RailDirection:会社名.進行方向 ")
   @example("odpt.RailDirection:Inbound")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("進行方向（日本語）")
   @example("上り")
@@ -122,7 +122,7 @@ model Railway {
 
   @doc("固有識別子 odpt.Railway:会社名.路線名")
   @example("odpt.Railway:JR-East.Yamanote")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("路線名（日本語）")
   @example("山手線")
@@ -138,7 +138,7 @@ model Railway {
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("路線コード、路線シンボル表記 e.g. 丸ノ内線=>M")
   @example("M")
@@ -153,11 +153,11 @@ model Railway {
 
   @doc("昇順の進行方向を表すID")
   @example("odpt.RailDirection:Outbound")
-  `odpt:ascendingRailDirection`?: `odpt-URL`;
+  `odpt:ascendingRailDirection`?: `odpt.url`;
 
   @doc("降順の進行方向を表すID")
   @example("odpt.RailDirection:Inbound")
-  `odpt:descendingRailDirection`?: `odpt-URL`;
+  `odpt:descendingRailDirection`?: `odpt.url`;
 
   @doc("駅の順序を表すリスト")
   @example(#[#{ `odpt:station`: "odpt.Station:JR-East.Yamanote.Tokyo", `odpt:index`: 1 }])
@@ -168,7 +168,7 @@ model Railway {
 model StationOrder {
   @doc("駅を表すID")
   @example("odpt.Station:TokyoMetro.Marunouchi.Tokyo")
-  `odpt:station`: `odpt-URL`;
+  `odpt:station`: `odpt.url`;
 
   @doc("駅名（多言語対応）")
   @example(#{ ja: "東京", en: "Tokyo" })
@@ -207,19 +207,19 @@ model RailwayFare {
 
   @doc("固有識別子 odpt.RailwayFare:出発駅の会社名.出発駅の路線名.出発駅名.到着駅の会社名.到着駅の路線名.到着駅名")
   @example("odpt.RailwayFare:TokyoMetro.Marunouchi.Tokyo.TokyoMetro.Tozai.Nakano")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:TokyoMetro")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("出発駅のID")
   @example("odpt.Station:TokyoMetro.Marunouchi.Tokyo")
-  `odpt:fromStation`: `odpt-URL`;
+  `odpt:fromStation`: `odpt.url`;
 
   @doc("到着駅のID")
   @example("odpt.Station:TokyoMetro.Tozai.Nakano")
-  `odpt:toStation`: `odpt-URL`;
+  `odpt:toStation`: `odpt.url`;
 
   @doc("切符利用時の運賃")
   @example(200)
@@ -239,11 +239,11 @@ model RailwayFare {
 
   @doc("運賃計算上の経由駅を表すIDのリスト")
   @example(#["odpt.Station:TokyoMetro.Tozai.NishiFunabashi"])
-  `odpt:viaStation`?: `odpt-URL`[];
+  `odpt:viaStation`?: `odpt.url`[];
 
   @doc("運賃計算上の経由路線を表すIDのリスト")
   @example(#["odpt.Railway:TokyoMetro.Tozai"])
-  `odpt:viaRailway`?: `odpt-URL`[];
+  `odpt:viaRailway`?: `odpt.url`[];
 
   @doc("チケット種別")
   @example("string")
@@ -274,7 +274,7 @@ model Station {
 
   @doc("固有識別子 odpt.Station:会社名.路線名.駅名")
   @example("odpt.Station:JR-East.Yamanote.Tokyo")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("駅名（日本語）")
   @example("東京")
@@ -286,11 +286,11 @@ model Station {
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("路線を表すID")
   @example("odpt.Railway:JR-East.Yamanote")
-  `odpt:railway`: `odpt-URL`;
+  `odpt:railway`: `odpt.url`;
 
   @doc("駅コード")
   @example("JY01")
@@ -313,19 +313,19 @@ model Station {
 
   @doc("乗り換え可能路線のIDのリスト")
   @example(#["odpt.Railway:JR-East.ChuoRapid", "odpt.Railway:TokyoMetro.Marunouchi"])
-  `odpt:connectingRailway`?: `odpt-URL`[];
+  `odpt:connectingRailway`?: `odpt.url`[];
 
   @doc("乗り換え可能駅のIDのリスト")
   @example(#["odpt.Station:JR-East.ChuoRapid.Tokyo", "odpt.Station:TokyoMetro.Marunouchi.Tokyo"])
-  `odpt:connectingStation`?: `odpt-URL`[];
+  `odpt:connectingStation`?: `odpt.url`[];
 
   @doc("駅時刻表を表すIDのリスト")
   @example(#["odpt.StationTimetable:JR-East.Yamanote.Tokyo.Outbound.Weekday"])
-  `odpt:stationTimetable`?: `odpt-URL`[];
+  `odpt:stationTimetable`?: `odpt.url`[];
 
   @doc("駅乗降人員数を表すIDのリスト")
   @example(#["odpt.PassengerSurvey:JR-East.Tokyo"])
-  `odpt:passengerSurvey`?: `odpt-URL`[];
+  `odpt:passengerSurvey`?: `odpt.url`[];
 }
 
 @doc("駅時刻表情報")
@@ -356,15 +356,15 @@ model StationTimetable {
 
   @doc("固有識別子 odpt.StationTimetable:会社名.路線名.駅名.方面名.曜日種別")
   @example("odpt.StationTimetable:JR-East.ChuoRapid.Tokyo.Outbound.Weekday")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("路線を表すID")
   @example("odpt.Railway:JR-East.ChuoRapid")
-  `odpt:railway`: `odpt-URL`;
+  `odpt:railway`: `odpt.url`;
 
   @doc("路線名（多言語対応）")
   @example(#{ ja: "中央線快速", en: "Chuo Rapid" })
@@ -372,7 +372,7 @@ model StationTimetable {
 
   @doc("駅を表すID")
   @example("odpt.Station:JR-East.ChuoRapid.Tokyo")
-  `odpt:station`?: `odpt-URL`;
+  `odpt:station`?: `odpt.url`;
 
   @doc("駅名（多言語対応）")
   @example(#{ ja: "東京", en: "Tokyo" })
@@ -380,11 +380,11 @@ model StationTimetable {
 
   @doc("方面を表すID")
   @example("odpt.RailDirection:Outbound")
-  `odpt:railDirection`?: `odpt-URL`;
+  `odpt:railDirection`?: `odpt.url`;
 
   @doc("運行を行う曜日・日付情報のID")
   @example("odpt.Calendar:Weekday")
-  `odpt:calendar`?: `odpt-URL`;
+  `odpt:calendar`?: `odpt.url`;
 
   @doc("出発時刻、終着（行先）駅等の組のリスト")
   @example(#[#{ `odpt:departureTime`: "06:00" }, #{ `odpt:departureTime`: "07:00" }])
@@ -407,23 +407,23 @@ model StationTimetableObject {
 
   @doc("始発駅を表すIDのリスト")
   @example(#["odpt.Station:JR-East.ChuoRapid.Tokyo"])
-  `odpt:originStation`?: `odpt-URL`[];
+  `odpt:originStation`?: `odpt.url`[];
 
   @doc("終着駅を表すIDのリスト")
   @example(#["odpt.Station:JR-East.ChuoRapid.Takao"])
-  `odpt:destinationStation`?: `odpt-URL`[];
+  `odpt:destinationStation`?: `odpt.url`[];
 
   @doc("経由駅を表すIDのリスト")
   @example(#["odpt.Station:TokyoMetro.Tozai.NishiFunabashi"])
-  `odpt:viaStation`?: `odpt-URL`[];
+  `odpt:viaStation`?: `odpt.url`[];
 
   @doc("経由路線を表すIDのリスト")
   @example(#["odpt.Railway:TokyoMetro.Tozai"])
-  `odpt:viaRailway`?: `odpt-URL`[];
+  `odpt:viaRailway`?: `odpt.url`[];
 
   @doc("到着または出発する列車ID")
   @example("odpt.Train:JR-East.Yamanote.123M")
-  `odpt:train`?: `odpt-URL`;
+  `odpt:train`?: `odpt.url`;
 
   @doc("列車番号")
   @example("123M")
@@ -431,7 +431,7 @@ model StationTimetableObject {
 
   @doc("列車種別のID")
   @example("odpt.TrainType:JR-East.Local")
-  `odpt:trainType`?: `odpt-URL`;
+  `odpt:trainType`?: `odpt.url`;
 
   @doc("編成の名称・愛称のリスト")
   @example(#[#{ ja: "むさし", en: "Musashi" }])
@@ -439,7 +439,7 @@ model StationTimetableObject {
 
   @doc("車両の所属会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:trainOwner`?: `odpt-URL`;
+  `odpt:trainOwner`?: `odpt.url`;
 
   @doc("最終電車かどうか")
   @example(true)
@@ -489,19 +489,19 @@ model Train {
 
   @doc("固有識別子 odpt.Train:会社名.路線名.列車番号")
   @example("odpt.Train:JR-East.Yamanote.123M")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("鉄道路線を表すID")
   @example("odpt.Railway:JR-East.Yamanote")
-  `odpt:railway`: `odpt-URL`;
+  `odpt:railway`: `odpt.url`;
 
   @doc("進行方向を表すID")
   @example("odpt.RailDirection:Outbound")
-  `odpt:railDirection`?: `odpt-URL`;
+  `odpt:railDirection`?: `odpt.url`;
 
   @doc("列車番号")
   @example("123M")
@@ -509,7 +509,7 @@ model Train {
 
   @doc("列車種別")
   @example("odpt.TrainType:JR-East.Local")
-  `odpt:trainType`?: `odpt-URL`;
+  `odpt:trainType`?: `odpt.url`;
 
   @doc("編成の名称・愛称のリスト")
   @example(#[#{ ja: "むさし", en: "Musashi" }])
@@ -517,31 +517,31 @@ model Train {
 
   @doc("列車が直前に出た駅、あるいは停車中の駅を表すID")
   @example("odpt.Station:JR-East.ChuoRapid.Tokyo")
-  `odpt:fromStation`?: `odpt-URL`;
+  `odpt:fromStation`?: `odpt.url`;
 
   @doc("列車が向かっている駅を表すID")
   @example("odpt.Station:JR-East.ChuoRapid.Tokyo")
-  `odpt:toStation`?: `odpt-URL`;
+  `odpt:toStation`?: `odpt.url`;
 
   @doc("列車の始発駅を表すIDのリスト")
   @example(#["odpt.Station:JR-East.ChuoRapid.Tokyo"])
-  `odpt:originStation`?: `odpt-URL`[];
+  `odpt:originStation`?: `odpt.url`[];
 
   @doc("列車の終着駅を表すIDのリスト")
   @example(#["odpt.Station:JR-East.ChuoRapid.Takao"])
-  `odpt:destinationStation`?: `odpt-URL`[];
+  `odpt:destinationStation`?: `odpt.url`[];
 
   @doc("列車の経由駅を表すIDのリスト")
   @example(#["odpt.Station:TokyoMetro.Tozai.NishiFunabashi"])
-  `odpt:viaStation`?: `odpt-URL`[];
+  `odpt:viaStation`?: `odpt.url`[];
 
   @doc("列車の経由路線を表すIDのリスト")
   @example(#["odpt.Railway:TokyoMetro.Tozai"])
-  `odpt:viaRailway`?: `odpt-URL`[];
+  `odpt:viaRailway`?: `odpt.url`[];
 
   @doc("車両の所属会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:trainOwner`?: `odpt-URL`;
+  `odpt:trainOwner`?: `odpt.url`;
 
   @doc("路線内の列車順序")
   @example(1)
@@ -584,7 +584,7 @@ model TrainInformation {
 
   @doc("固有識別子 odpt.TrainInformation:会社名.路線名 または odpt.TrainInformation:会社名")
   @example("odpt.TrainInformation:JR-East.Yamanote")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("発生時刻")
   @example("2017-01-13T15:15:00+09:00")
@@ -592,11 +592,11 @@ model TrainInformation {
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("発生路線を表すID")
   @example("odpt.Railway:JR-East.Yamanote")
-  `odpt:railway`?: `odpt-URL`;
+  `odpt:railway`?: `odpt.url`;
 
   @doc("運行情報ステータス")
   @example(#{ ja: "日本語テキスト", en: "Text in English" })
@@ -608,7 +608,7 @@ model TrainInformation {
 
   @doc("運行情報の適用される方向を表すID")
   @example("odpt.RailDirection:Outbound")
-  `odpt:railDirection`?: `odpt-URL`;
+  `odpt:railDirection`?: `odpt.url`;
 
   @doc("発生エリア")
   @example(#{ ja: "日本語テキスト", en: "Text in English" })
@@ -620,11 +620,11 @@ model TrainInformation {
 
   @doc("発生場所起点")
   @example("odpt.Station:JR-East.Yamanote.Tokyo")
-  `odpt:stationFrom`?: `odpt-URL`;
+  `odpt:stationFrom`?: `odpt.url`;
 
   @doc("発生場所終点")
   @example("odpt.Station:JR-East.Yamanote.Tokyo")
-  `odpt:stationTo`?: `odpt-URL`;
+  `odpt:stationTo`?: `odpt.url`;
 
   @doc("発生区間")
   @example(#{ ja: "日本語テキスト", en: "Text in English" })
@@ -636,7 +636,7 @@ model TrainInformation {
 
   @doc("振替路線一覧のリスト")
   @example(#["odpt.Railway:JR-East.Yamanote"])
-  `odpt:transferRailways`?: `odpt-URL`[];
+  `odpt:transferRailways`?: `odpt.url`[];
 
   @doc("復旧見込み時刻")
   @example("2017-01-13T15:15:00+09:00")
@@ -671,27 +671,27 @@ model TrainTimetable {
 
   @doc("固有識別子 odpt.TrainTimetable:会社名.路線名.列車番号.曜日種別 である。前記の命名ルールで重複が生じる場合は、末尾に .1, .2, .3, … をつけて区別")
   @example("odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("路線のID")
   @example("odpt.Railway:JR-East.Yamanote")
-  `odpt:railway`: `odpt-URL`;
+  `odpt:railway`: `odpt.url`;
 
   @doc("進行方向を表すID")
   @example("odpt.RailDirection:Outbound")
-  `odpt:railDirection`?: `odpt-URL`;
+  `odpt:railDirection`?: `odpt.url`;
 
   @doc("運行を行う曜日・日付情報のID")
   @example("odpt.Calendar:Weekday")
-  `odpt:calendar`?: `odpt-URL`;
+  `odpt:calendar`?: `odpt.url`;
 
   @doc("列車のID")
   @example("odpt.Train:JR-East.Yamanote.123M")
-  `odpt:train`?: `odpt-URL`;
+  `odpt:train`?: `odpt.url`;
 
   @doc("列車番号")
   @example("123M")
@@ -699,7 +699,7 @@ model TrainTimetable {
 
   @doc("列車種別のID")
   @example("odpt.TrainType:JR-East.Local")
-  `odpt:trainType`?: `odpt-URL`;
+  `odpt:trainType`?: `odpt.url`;
 
   @doc("編成の名称・愛称のリスト")
   @example(#[#{ ja: "むさし", en: "Musashi" }])
@@ -707,31 +707,31 @@ model TrainTimetable {
 
   @doc("車両の所属会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:trainOwner`?: `odpt-URL`;
+  `odpt:trainOwner`?: `odpt.url`;
 
   @doc("列車の始発駅を表すIDのリスト")
   @example(#["odpt.Station:JR-East.ChuoRapid.Tokyo"])
-  `odpt:originStation`?: `odpt-URL`[];
+  `odpt:originStation`?: `odpt.url`[];
 
   @doc("列車の終着駅を表すIDのリスト")
   @example(#["odpt.Station:JR-East.ChuoRapid.Takao"])
-  `odpt:destinationStation`?: `odpt-URL`[];
+  `odpt:destinationStation`?: `odpt.url`[];
 
   @doc("列車の経由駅を表すIDのリスト")
   @example(#["odpt.Station:TokyoMetro.Tozai.NishiFunabashi"])
-  `odpt:viaStation`?: `odpt-URL`[];
+  `odpt:viaStation`?: `odpt.url`[];
 
   @doc("列車の経由路線を表すIDのリスト")
   @example(#["odpt.Railway:TokyoMetro.Tozai"])
-  `odpt:viaRailway`?: `odpt-URL`[];
+  `odpt:viaRailway`?: `odpt.url`[];
 
   @doc("直前の列車時刻表を表すIDのリスト")
   @example(#["odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday"])
-  `odpt:previousTrainTimetable`?: `odpt-URL`[];
+  `odpt:previousTrainTimetable`?: `odpt.url`[];
 
   @doc("直後の列車時刻表を表すIDのリスト")
   @example(#["odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday"])
-  `odpt:nextTrainTimetable`?: `odpt-URL`[];
+  `odpt:nextTrainTimetable`?: `odpt.url`[];
 
   @doc("出発時刻と出発駅の組か、到着時刻と到着駅の組のリスト")
   @example(#[
@@ -760,7 +760,7 @@ model TrainTimetableObject {
 
   @doc("到着駅のID")
   @example("odpt.Station:JR-East.ChuoRapid.Tokyo")
-  `odpt:arrivalStation`?: `odpt-URL`;
+  `odpt:arrivalStation`?: `odpt.url`;
 
   @doc("出発時刻")
   @example("05:09")
@@ -768,7 +768,7 @@ model TrainTimetableObject {
 
   @doc("出発駅のID")
   @example("odpt.Station:JR-East.ChuoRapid.Tokyo")
-  `odpt:departureStation`?: `odpt-URL`;
+  `odpt:departureStation`?: `odpt.url`;
 
   @doc("プラットフォームの番号")
   @example("1")
@@ -803,11 +803,11 @@ model TrainType {
 
   @doc("固有識別子 odpt.TrainType:会社名.列車種別")
   @example("odpt:JR-East.Local")
-  `owl:sameAs`: `odpt-URL`;
+  `owl:sameAs`: `odpt.url`;
 
   @doc("運行会社を表すID")
   @example("odpt.Operator:JR-East")
-  `odpt:operator`: `odpt-URL`;
+  `odpt:operator`: `odpt.url`;
 
   @doc("列車種別（日本語）")
   @example("普通")
@@ -825,10 +825,10 @@ interface PassengerSurveyOperations {
   getPassengerSurveys(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
-    @query @doc("事業者を表すID") `odpt:operator`?: `odpt-URL`,
-    @query @doc("駅を表すID") `odpt:station`?: `odpt-URL`,
-    @query @doc("路線を表すID") `odpt:railway`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
+    @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
+    @query @doc("駅を表すID") `odpt:station`?: `odpt.url`,
+    @query @doc("路線を表すID") `odpt:railway`?: `odpt.url`,
   ): PassengerSurvey[] | Common.Error;
 }
 
@@ -839,7 +839,7 @@ interface RailDirectionOperations {
   getRailDirections(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
   ): RailDirection[] | Common.Error;
 }
 
@@ -850,9 +850,9 @@ interface RailwayOperations {
   getRailways(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("路線名") `dc:title`?: string,
-    @query @doc("事業者を表すID") `odpt:operator`?: `odpt-URL`,
+    @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
     @query @doc("路線コード、路線シンボル表記") `odpt:lineCode`?: string,
   ): Railway[] | Common.Error;
 }
@@ -864,10 +864,10 @@ interface RailwayFareOperations {
   getRailwayFares(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
-    @query @doc("事業者を表すID") `odpt:operator`?: `odpt-URL`,
-    @query @doc("出発駅のID") `odpt:fromStation`?: `odpt-URL`,
-    @query @doc("到着駅のID") `odpt:toStation`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
+    @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
+    @query @doc("出発駅のID") `odpt:fromStation`?: `odpt.url`,
+    @query @doc("到着駅のID") `odpt:toStation`?: `odpt.url`,
   ): RailwayFare[] | Common.Error;
 }
 
@@ -878,10 +878,10 @@ interface StationOperations {
   getStations(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("駅名") `dc:title`?: string,
-    @query @doc("事業者を表すID") `odpt:operator`?: `odpt-URL`,
-    @query @doc("駅が存在する路線ID") `odpt:railway`?: `odpt-URL`,
+    @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
+    @query @doc("駅が存在する路線ID") `odpt:railway`?: `odpt.url`,
     @query @doc("駅ナンバリング") `odpt:stationCode`?: string,
   ): Station[] | Common.Error;
 }
@@ -893,12 +893,12 @@ interface StationTimetableOperations {
   getStationTimetables(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
-    @query @doc("駅を表すID") `odpt:station`?: `odpt-URL`,
-    @query @doc("路線を表すID") `odpt:railway`?: `odpt-URL`,
-    @query @doc("事業者を表すID") `odpt:operator`?: `odpt-URL`,
-    @query @doc("進行方向を表すID") `odpt:railDirection`?: `odpt-URL`,
-    @query @doc("実施日を表すID") `odpt:calendar`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
+    @query @doc("駅を表すID") `odpt:station`?: `odpt.url`,
+    @query @doc("路線を表すID") `odpt:railway`?: `odpt.url`,
+    @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
+    @query @doc("進行方向を表すID") `odpt:railDirection`?: `odpt.url`,
+    @query @doc("実施日を表すID") `odpt:calendar`?: `odpt.url`,
     @query @doc("特定日付の時刻表を取得") `dc:date`?: DateTime,
   ): StationTimetable[] | Common.Error;
 }
@@ -909,9 +909,9 @@ interface TrainOperations {
   @get
   getTrains(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
-    @query @doc("列車情報を配信する事業者のID") `odpt:operator`?: `odpt-URL`,
-    @query @doc("当該列車が運行している路線のID") `odpt:railway`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
+    @query @doc("列車情報を配信する事業者のID") `odpt:operator`?: `odpt.url`,
+    @query @doc("当該列車が運行している路線のID") `odpt:railway`?: `odpt.url`,
   ): Train[] | Common.Error;
 }
 
@@ -921,9 +921,9 @@ interface TrainInformationOperations {
   @get
   getTrainInformation(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
-    @query @doc("運行情報を配信する事業者のID") `odpt:operator`?: `odpt-URL`,
-    @query @doc("運行情報が発生した路線のID") `odpt:railway`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
+    @query @doc("運行情報を配信する事業者のID") `odpt:operator`?: `odpt.url`,
+    @query @doc("運行情報が発生した路線のID") `odpt:railway`?: `odpt.url`,
   ): TrainInformation[] | Common.Error;
 }
 
@@ -934,13 +934,13 @@ interface TrainTimetableOperations {
   getTrainTimetables(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("固有識別子") `@id`?: URN,
-    @query @doc("固有識別子別名") `owl:sameAs`?: `odpt-URL`,
+    @query @doc("固有識別子別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("列車番号") `odpt:trainNumber`?: string,
-    @query @doc("路線のID") `odpt:railway`?: `odpt-URL`,
-    @query @doc("運行事業者のID") `odpt:operator`?: `odpt-URL`,
-    @query @doc("列車種別ID") `odpt:trainType`?: `odpt-URL`,
-    @query @doc("該当する列車ID") `odpt:train`?: `odpt-URL`,
-    @query @doc("特定のカレンダー情報ID") `odpt:calendar`?: `odpt-URL`,
+    @query @doc("路線のID") `odpt:railway`?: `odpt.url`,
+    @query @doc("運行事業者のID") `odpt:operator`?: `odpt.url`,
+    @query @doc("列車種別ID") `odpt:trainType`?: `odpt.url`,
+    @query @doc("該当する列車ID") `odpt:train`?: `odpt.url`,
+    @query @doc("特定のカレンダー情報ID") `odpt:calendar`?: `odpt.url`,
   ): TrainTimetable[] | Common.Error;
 }
 
@@ -951,7 +951,7 @@ interface TrainTypeOperations {
   getTrainTypes(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt-URL`,
-    @query @doc("事業者を表すID") `odpt:operator`?: `odpt-URL`,
+    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
+    @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
   ): TrainType[] | Common.Error;
 }

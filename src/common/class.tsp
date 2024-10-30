@@ -11,7 +11,7 @@ scalar ConsumerKey extends string;
 scalar URN extends string;
 
 @doc("固有識別子の別名 多くが`odpt.hoge:fuga`形式")
-scalar `odpt-URL` extends string;
+scalar `odpt.url` extends string;
 
 @doc("ISO8601 日付時刻形式")
 scalar DateTime extends string;

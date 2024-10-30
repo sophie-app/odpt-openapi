@@ -9,7 +9,6 @@ paths:
     get:
       operationId: BusOperation_getBuses
       summary: バス車両の運行情報
-      description: バス車両の運行情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -85,7 +84,6 @@ paths:
     get:
       operationId: BusTimetableOperations_getBusTimetables
       summary: バスの便の時刻表
-      description: バスの便の時刻表を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -161,7 +159,6 @@ paths:
     get:
       operationId: BusroutePatternOperations_getBusroutePatterns
       summary: 運行系統情報
-      description: 運行系統情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -230,7 +227,6 @@ paths:
     get:
       operationId: BusroutePatternFareOperations_getBusroutePatternFares
       summary: 運賃情報
-      description: 運賃情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -327,7 +323,6 @@ paths:
     get:
       operationId: BusstopPoleOperations_getBusstopPoles
       summary: バス停情報
-      description: バス停情報を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -410,7 +405,6 @@ paths:
     get:
       operationId: BusstopPoleTimetableOperations_getBusstopPoleTimetables
       summary: バス停(標柱)時刻表
-      description: バス停(標柱)時刻表を取得する
       parameters:
         - name: acl:consumerKey
           in: query
@@ -517,12 +511,12 @@ components:
         '@context':
           type: string
           format: uri
-          example: http://vocab.odpt.org/context_odpt.jsonld
+          example: http://vocab.odpt.org/context_odpt_Bus.jsonld
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
             - $ref: '#/components/schemas/URN'
-          example: string
+          example: urn:ucode:_00001C00000000000001000003533B23
           description: 固有識別子
         '@type':
           type: string
@@ -533,65 +527,65 @@ components:
         owl:sameAs:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Bus:YokohamaMunicipal.02101.08_1.1889
           description: バス運行情報の固有識別子
         odpt:busNumber:
           type: string
-          example: string
+          example: '1889'
           description: バス車両番号
         dc:date:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-10-28T14:17:46+09:00
           description: データ生成時刻
         dct:valid:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-10-28T14:18:22+09:00
           description: データ保証期限
         odpt:frequency:
           type: integer
-          example: 60
+          example: 30
           description: 更新頻度(秒)、指定された秒数以降にリクエストを行うことで、最新値が取得される。
         odpt:busroutePattern:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusroutePattern:YokohamaMunicipal.02101.08_1
           description: 運行中の系統のID (odpt:BusroutePatternのowl:sameAs)
         odpt:busTimetable:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusTimetable:YokohamaMunicipal.02101.08_1.08202410011021A00208
           description: 運行中の便の時刻表のID (odpt:BusTimetableのowl:sameAs)
         odpt:operator:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Operator:YokohamaMunicipal
           description: 運行会社のID (odpt:Operatorのowl:sameAs)
         odpt:startingBusstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:YokohamaMunicipal.SakuragichoStation.2014.6
           description: 運行中系統の始発バス停を表すID (odpt:BusstopPoleのowl:sameAs)
         odpt:terminalBusstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:YokohamaMunicipal.ShidenHozonKanMae.2288.2
           description: 運行中系統の終着バス停を表すID (odpt:BusstopPoleのowl:sameAs)
         odpt:fromBusstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:YokohamaMunicipal.Higashicho.5218.2
           description: 直近に通過した、あるいは停車中のバス停のID (odpt:BusstopPoleのowl:sameAs)
         odpt:fromBusstopPoleTime:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-10-28T14:18:20+09:00
           description: 直近に通過したバス停を発車した時刻。odpt:fromBusstopPoleがnullならばodpt:fromBusstopPoleTimeもnullとなる
         odpt:toBusstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:YokohamaMunicipal.NegishiStation.4600.5
           description: 次に到着するバス停のID (odpt:BusstopPoleのowl:sameAs)
         odpt:progress:
           type: number
@@ -599,11 +593,11 @@ components:
           description: Fromを0, Toを1とした際の現在位置 (割合)
         geo:long:
           type: number
-          example: 139.1234
+          example: 139.63494873046875
           description: 対象となるバスの経度 (10進表記、測地系はWGS84)
         geo:lat:
           type: number
-          example: 35.1234
+          example: 35.41614532470703
           description: 対象となるバスの緯度 (10進表記、測地系はWGS84)
         odpt:speed:
           type: number
@@ -611,7 +605,7 @@ components:
           description: 対象となるバスの速度 (km/h)
         odpt:azimuth:
           type: number
-          example: 90
+          example: 249.9993896484375
           description: 対象となるバスの進行方向方位角を示す。単位は度(°)。北が0度で、時計回り(東回り)に増加する。
         odpt:doorStatus:
           allOf:
@@ -621,9 +615,14 @@ components:
         odpt:occupancyStatus:
           allOf:
             - $ref: '#/components/schemas/OccupancyStatus'
-          example: odpt.OccupancyStatus:Empty
+          example: odpt.OccupancyStatus:ManySeatsAvailable
           description: 車両の混雑度
-      description: バス車両の運行情報
+      description: |-
+        バスの運行情報
+        `odpt:busroutePattern` が運行中の系統を示し、 `odpt:fromBusstopPole`, `odpt:toBusstopPole` で現在位置を示す。
+        接近中の判別がつかない場合は、`odpt:fromBusstopPole` は null とはならない場合がある。
+        停車中の判別がつかない場合は、`odpt:toBusstopPole` は null とはならない場合がある。
+        odpt:occupancyStatus は車両の混雑度を示す。
     BusDoorStatus:
       type: string
       enum:
@@ -645,12 +644,12 @@ components:
         '@context':
           type: string
           format: uri
-          example: http://vocab.odpt.org/context_odpt.jsonld
+          example: http://vocab.odpt.org/context_odpt_BusTimetable.jsonld
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
             - $ref: '#/components/schemas/URN'
-          example: urn:ucode:_00001C000000000000010000030FD7E5
+          example: urn:ucode:_00001C00000000000001000003A69FCCz
           description: 固有識別子(ucode)
         '@type':
           type: string
@@ -661,51 +660,59 @@ components:
         owl:sameAs:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusTimetable:OdakyuBus.Sakai91.40503.2.1400.700000677.Specific.OdakyuBus.Komae.Saturday21
           description: バス時刻表の固有識別子
         dc:date:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-09-11T15:04:38+09:00
           description: データ生成時刻
         dct:issued:
           allOf:
             - $ref: '#/components/schemas/Date'
-          example: 2017-01-13
+          example: 2024-09-11
           description: ダイヤ改正日
         dct:valid:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-09-11T15:04:38+09:00
           description: データ保証期限
         dc:title:
           type: string
-          example: string
+          example: 境９１
           description: バス路線名称(系統名等)
         odpt:kana:
           type: string
-          example: string
+          example: さかいきゅうじゅういち
           description: バス路線名称のよみがな
         odpt:operator:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Operator:OdakyuBus
           description: 運行会社のID (odpt:Operatorのowl:sameAs)
         odpt:busroutePattern:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusroutePattern:OdakyuBus.Sakai91.40503.2
           description: 対応する運行系統のID (odpt:BusroutePatternのowl:sameAs)
         odpt:calendar:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Calendar:Specific.OdakyuBus.Komae.Saturday21
           description: カレンダーのID (odpt:Calendarのowl:sameAs)
         odpt:busTimetableObject:
           type: array
           items:
             $ref: '#/components/schemas/BusTimetableObject'
-          example: []
+          example:
+            - odpt:note: 武蔵境駅南口:10140:3
+              odpt:index: 0
+              odpt:canGetOn: true
+              odpt:canGetOff: false
+              odpt:isMidnight: false
+              odpt:arrivalTime: 12:36
+              odpt:busstopPole: odpt.BusstopPole:OdakyuBus.Musashisakaiekiminamiguchi.10140.3
+              odpt:departureTime: 12:36
           description: バス時刻表時分情報
       description: バスの便の時刻表
     BusTimetableObject:
@@ -716,26 +723,26 @@ components:
       properties:
         odpt:index:
           type: integer
-          example: 1
+          example: 0
           description: 標柱通過順
         odpt:busstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:OdakyuBus.Musashisakaiekiminamiguchi.10140.3
           description: バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)
         odpt:arrivalTime:
           allOf:
             - $ref: '#/components/schemas/Time'
-          example: 10:00
+          example: 12:36
           description: バス到着時刻
         odpt:departureTime:
           allOf:
             - $ref: '#/components/schemas/Time'
-          example: 10:00
+          example: 12:36
           description: バス出発時刻
         odpt:destinationSign:
           type: string
-          example: string
+          example: ( 桜ケ丘 経由 ) 横浜駅西口 行
           description: 行先(方向幕)情報
         odpt:isNonStepBus:
           type: boolean
@@ -755,7 +762,7 @@ components:
           description: 降車可能な場合 true
         odpt:note:
           type: string
-          example: string
+          example: 蔵境駅南口:10140:3
           description: 注記
       description: バス時刻表時分情報
     BusroutePattern:
@@ -773,12 +780,12 @@ components:
         '@context':
           type: string
           format: uri
-          example: http://vocab.odpt.org/context_odpt.jsonld
+          example: http://vocab.odpt.org/context_odpt_BusroutePattern.jsonld
           description: JSON-LD仕様に基づく @context のURL
         '@id':
           allOf:
             - $ref: '#/components/schemas/URN'
-          example: urn:ucode:_00001C000000000000010000030FD7E5
+          example: urn:ucode:_00001C0000000000000100000387F25A
           description: 固有識別子 (ucode)
         '@type':
           type: string
@@ -789,7 +796,7 @@ components:
         owl:sameAs:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusroutePattern:NishiTokyoBus.Chokutsuu.500102.2
           description: バス路線情報の固有識別子
         dc:date:
           allOf:
@@ -799,55 +806,58 @@ components:
         dct:valid:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2023-03-23T13:52:02+09:00
           description: データの保証期限
         dc:title:
           type: string
-          example: string
+          example: 直通
           description: バス路線名称(系統名・系統番号等)
         odpt:kana:
           type: string
-          example: string
+          example: ちょくつう
           description: バス路線名称のよみがな
         odpt:operator:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Operator:NishiTokyoBus
           description: 運営会社を表すID (odpt:Operatorのowl:sameAs)
         odpt:busroute:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Busroute:NishiTokyoBus.Chokutsuu
           description: 系統を表すID
         odpt:pattern:
           type: string
-          example: string
+          example: '500102'
           description: 系統パターン
         odpt:direction:
           type: string
-          example: string
+          example: '2'
           description: 方向
+        ug:region:
+          type: object
+          additionalProperties: {}
+          example: {}
+          description: GeoJSON形式による地物情報
         odpt:busstopPoleOrder:
           type: array
           items:
             $ref: '#/components/schemas/BussstopPoleOrder'
           example:
-            - odpt:busstopPole: string
+            - odpt:busstopPole: odpt.BusstopPole:NishiTokyoBus.JRHachiojiStationNorthExit.390.15
               odpt:index: 1
               odpt:openingDoorsToGetOn:
                 - odpt:OpeningDoor:FrontSide
               odpt:openingDoorsToGetOff:
                 - odpt:OpeningDoor:FrontSide
-              odpt:note: string
           description: 停留所(標柱)の順序
         odpt:note:
           type: string
-          example: string
+          example: 036系統::03618.03_1
           description: 注記
         odpt:busLocationURL:
-          allOf:
-            - $ref: '#/components/schemas/odpt.url'
-          example: string
+          type: string
+          format: uri
           description: バス位置情報を示すWebSiteのURL
       description: |-
         バス路線の系統情報
@@ -879,7 +889,7 @@ components:
         '@id':
           allOf:
             - $ref: '#/components/schemas/URN'
-          example: urn:ucode:_00001C000000000000010000030FD7E5
+          example: urn:ucode:_00001C00000000000001000003A7A364
           description: 固有識別子(ucode)
         '@type':
           type: string
@@ -890,55 +900,55 @@ components:
         owl:sameAs:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusroutePatternFare:YokohamaMunicipal.34100.09_3.25.SakuragichoStation.2014.12.YokohamaMunicipal.34100.09_3.27.YokohamaStation.7812.6
           description: バス運賃の固有識別子
         dc:date:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-09-28T09:14:16+09:00
           description: データ生成時刻
         dct:issued:
           allOf:
             - $ref: '#/components/schemas/Date'
-          example: 2017-01-13
+          example: 2024-09-28
           description: 運賃改定日
         dct:valid:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-09-28T09:14:16+09:00
           description: データ保証期限
         odpt:operator:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Operator:YokohamaMunicipal
           description: 運行会社を表すID (odpt:Operatorのowl:sameAs)
         odpt:fromBusroutePattern:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusroutePattern:YokohamaMunicipal.34100.09_3
           description: 乗車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)
         odpt:fromBusstopPoleOrder:
           type: integer
-          example: 0
+          example: 25
           description: 乗車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:fromBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。
         odpt:fromBusstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:YokohamaMunicipal.SakuragichoStation.2014.12
           description: 乗車バス停を表すID。odpt:fromBusroutePattern, odpt:fromBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。
         odpt:toBusroutePattern:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusroutePattern:YokohamaMunicipal.34100.09_3
           description: 降車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)
         odpt:toBusstopPoleOrder:
           type: integer
-          example: 0
+          example: 27
           description: 降車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:toBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。
         odpt:toBusstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:YokohamaMunicipal.YokohamaStation.7812.6
           description: 降車バス停を表すID (odpt:BusstopPoleのowl:sameAs)。 odpt:toBusroutePattern, odpt:toBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。
         odpt:ticketFare:
           type: integer
@@ -966,7 +976,7 @@ components:
         odpt:busstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:NishiTokyoBus.JRHachiojiStationNorthExit.390.15
           description: 停留所のID (odpt:BusstopPoleのowl:sameAs)
         odpt:index:
           type: integer
@@ -988,7 +998,6 @@ components:
           description: 降車時に利用可能なドア
         odpt:note:
           type: string
-          example: string
           description: 注記
       description: 停留所(標柱)の順序
     BusstopPole:
@@ -1010,7 +1019,7 @@ components:
         '@id':
           allOf:
             - $ref: '#/components/schemas/URN'
-          example: urn:ucode:_00001C000000000000010000030FD7E5
+          example: urn:ucode:_00001C0000000000000100000315AB88
           description: 固有識別子(ucode)
         '@type':
           type: string
@@ -1021,33 +1030,35 @@ components:
         owl:sameAs:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:OdakyuBus.Nakazato.20305.2
           description: バス停 (標柱) の固有識別子
         dc:date:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-08-06T14:09:17+09:00
           description: データ生成時刻
         dct:valid:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-08-06T14:09:17+09:00
           description: データの保証期限
         dc:title:
           type: string
-          example: 豊洲駅前
+          example: 中里
           description: バス停名
         odpt:kana:
           type: string
-          example: とよすえきまえ
+          example: ナカザト
           description: バス停名のよみがな
         title:
           allOf:
             - $ref: '#/components/schemas/MultilingualTitle'
           example:
-            ja: 豊洲駅前
+            ja: 中里
             ja-Hrkt: とよすえきまえ
-            en: Toyosu Sta.
+            en: Nakazato
+            ko: 나카자토
+            zh-Hans: 中里
           description: バス停名(多言語対応)
         geo:long:
           type: number
@@ -1062,29 +1073,27 @@ components:
           items:
             $ref: '#/components/schemas/odpt.url'
           example:
-            - string
+            - odpt.BusroutePattern:OdakyuBus.Shimo61.20101.2
           description: 入線する系統パターンのID (odpt:BusroutePatternのowl:sameAs) のリスト
         odpt:operator:
           type: array
           items:
             $ref: '#/components/schemas/odpt.url'
           example:
-            - string
+            - odpt.Operator:OdakyuBus
           description: 入線するバスの運営会社を表すID (odpt:Operatorのowl:sameAs) のリスト
         odpt:busstopPoleNumber:
           type: string
-          example: string
+          example: '2'
           description: 標柱番号。同一停留所の別標柱を区別するものであり、のりば番号とは一致する保証はない
         odpt:platformNumber:
           type: string
-          example: string
+          example: '1'
           description: のりば番号
         odpt:busstopPoleTimetable:
           type: array
           items:
             $ref: '#/components/schemas/odpt.url'
-          example:
-            - string
           description: バス停(標柱)時刻表のID (odpt:BusstopPoleTimetableのowl:sameAs) のリスト
       description: バス停情報 odpt:BusstopPoleは、バス停(標柱)の情報
     BusstopPoleTimetable:
@@ -1109,7 +1118,7 @@ components:
         '@id':
           allOf:
             - $ref: '#/components/schemas/URN'
-          example: urn:ucode:_00001C000000000000010000030FD7E5
+          example: urn:ucode:_00001C00000000000001000003A67D78
           description: 固有識別子(ucode)
         '@type':
           type: string
@@ -1120,31 +1129,31 @@ components:
         owl:sameAs:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPoleTimetable:KeioBus.Sakura80.Sakura88Fu.Sakura84.Sakura88.Sakura83.Higashinakano.1157.1.Minamioosawaeki.Weekday
           description: バス停(標柱)時刻表の固有識別子
         dc:date:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-09-30T10:42:46+09:00
           description: データ生成時刻
         dct:issued:
           allOf:
             - $ref: '#/components/schemas/Date'
-          example: 2017-01-13
+          example: 2024-09-30
           description: ダイヤ改正日
         dct:valid:
           allOf:
             - $ref: '#/components/schemas/DateTime'
-          example: 2017-01-13T15:10:00+09:00
+          example: 2024-09-30T10:42:46+09:00
           description: データ保証期限。ISO8601形式。期限が存在する場合のみ格納する。
         dc:title:
           type: string
-          example: string
+          example: 桜８０、桜８８-ふ、桜８４、桜８８、桜８３:東中野:京王堀之内駅・相模原駅・南大沢駅・由木折返場行:平日
           description: バス路線名称(系統名等)
         odpt:busstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:KeioBus.Higashinakano.1157.1
           description: バス停(標柱)を表すID (odpt:BusstopPoleのowl:sameAs)
         odpt:busDirection:
           anyOf:
@@ -1152,7 +1161,7 @@ components:
             - type: array
               items:
                 type: string
-          example: string
+          example: odpt.BusDirection:KeioBus.Minamioosawaeki
           description: 方面を表すID。array となる場合もある。
         odpt:busroute:
           anyOf:
@@ -1160,7 +1169,12 @@ components:
             - type: array
               items:
                 type: string
-          example: string
+          example:
+            - odpt.Busroute:KeioBus.Sakura80
+            - odpt.Busroute:KeioBus.Sakura88Fu
+            - odpt.Busroute:KeioBus.Sakura84
+            - odpt.Busroute:KeioBus.Sakura88
+            - odpt.Busroute:KeioBus.Sakura83
           description: 路線を表すID。array となる場合もある。(複数路線を含む時刻表の場合等)
         odpt:operator:
           anyOf:
@@ -1168,29 +1182,24 @@ components:
             - type: array
               items:
                 type: string
-          example: string
+          example: odpt.Operator:KeioBus
           description: 運行会社を表すID (odpt:Operatorのowl:sameAs)
         odpt:calendar:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.Calendar:Weekday
           description: 運行する曜日・日付 (odpt:Calendarのowl:sameAs)
         odpt:busstopPoleTimetableObject:
           type: array
           items:
             $ref: '#/components/schemas/BusstopPoleTimetableObject'
           example:
-            - odpt:arrivalTime: 10:00
-              odpt:departureTime: 10:00
-              odpt:destinationBusstopPole: string
-              odpt:destinationSign: string
-              odpt:busroutePattern: string
-              odpt:busroutePatternOrder: 0
-              odpt:isNonStepBus: true
+            - odpt:busroutePattern: odpt.BusroutePattern:KeioBus.Sakura80.699.1
+              odpt:departureTime: 06:30
+              odpt:destinationBusstopPole: odpt.BusstopPole:KeioBus.Minamioosawaeki.1395.0
+              odpt:destinationSign: 南大沢駅
               odpt:isMidnight: true
-              odpt:canGetOn: true
-              odpt:canGetOff: true
-              odpt:note: string
+              odpt:note: 南大沢駅行
           description: バス停(標柱)時刻表の時分情報
       description: バス停(標柱)時刻表 odpt:busstopPole で示されたバス停(標柱)の時刻表
     BusstopPoleTimetableObject:
@@ -1211,16 +1220,16 @@ components:
         odpt:destinationBusstopPole:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusstopPole:KeioBus.Minamioosawaeki.1395.0
           description: 行先バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)
         odpt:destinationSign:
           type: string
-          example: string
+          example: 南大沢駅
           description: 行先(方向幕)情報
         odpt:busroutePattern:
           allOf:
             - $ref: '#/components/schemas/odpt.url'
-          example: string
+          example: odpt.BusroutePattern:KeioBus.Sakura80.699.1
           description: バス路線のID (odpt:BusroutePatternのowl:sameAs)
         odpt:busroutePatternOrder:
           type: integer
@@ -1244,7 +1253,7 @@ components:
           description: 降車可能な場合 true
         odpt:note:
           type: string
-          example: string
+          example: 南大沢駅行
           description: 注記
       description: バス停(標柱)時刻表の時分情報
     ConsumerKey:
@@ -1264,9 +1273,13 @@ components:
       properties:
         ja:
           type: string
+        en:
+          type: string
+        ko:
+          type: string
         ja-Hrkt:
           type: string
-        en:
+        zh-Hans:
           type: string
       description: 多言語対応のタイトル
     OccupancyStatus:

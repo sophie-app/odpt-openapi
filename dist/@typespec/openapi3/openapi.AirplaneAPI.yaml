@@ -903,9 +903,13 @@ components:
       properties:
         ja:
           type: string
+        en:
+          type: string
+        ko:
+          type: string
         ja-Hrkt:
           type: string
-        en:
+        zh-Hans:
           type: string
       description: 多言語対応のタイトル
     Time:

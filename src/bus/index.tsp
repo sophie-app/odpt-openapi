@@ -319,11 +319,10 @@ model BusroutePattern {
   @doc("停留所(標柱)の順序")
   @example(#[
     #{
-      `odpt:busstopPole`: "string",
+      `odpt:busstopPole`: "odpt.BusstopPole:NishiTokyoBus.JRHachiojiStationNorthExit.390.15",
       `odpt:index`: 1,
       `odpt:openingDoorsToGetOn`: #[OpeningDoor.`odpt:OpeningDoor:FrontSide`],
       `odpt:openingDoorsToGetOff`: #[OpeningDoor.`odpt:OpeningDoor:FrontSide`],
-      `odpt:note`: "string",
     }
   ])
   `odpt:busstopPoleOrder`: BussstopPoleOrder[];
@@ -363,7 +362,6 @@ model BussstopPoleOrder {
   `odpt:openingDoorsToGetOff`?: OpeningDoor[];
 
   @doc("注記")
-  @example("string")
   `odpt:note`?: string;
 }
 

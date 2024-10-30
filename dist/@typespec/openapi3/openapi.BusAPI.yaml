@@ -30,35 +30,35 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:busroutePattern
           in: query
           required: false
           description: バス車両の運行系統のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:fromBusstopPole
           in: query
           required: false
           description: 直近に通過した、あるいは停車中のバス停のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:toBusstopPole
           in: query
           required: false
           description: 次に到着するバス停のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -106,21 +106,21 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: true
           description: 事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:busroutePattern
           in: query
           required: false
           description: 対応する系統のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: dc:title
           in: query
@@ -134,7 +134,7 @@ paths:
           required: false
           description: カレンダーのID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -182,7 +182,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: dc:title
           in: query
@@ -196,7 +196,7 @@ paths:
           required: false
           description: 事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:busroute
           in: query
@@ -251,28 +251,28 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:fromBusstopPole
           in: query
           required: false
           description: 乗車バス停(標柱)のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:toBusstopPole
           in: query
           required: false
           description: 降車バス停(標柱)のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:ticketFare
           in: query
@@ -348,7 +348,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: dc:title
           in: query
@@ -376,14 +376,14 @@ paths:
           required: false
           description: 標柱で発着する系統のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -431,14 +431,14 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:busstopPole
           in: query
           required: false
           description: バス停(標柱)のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:busDirection
           in: query
@@ -459,14 +459,14 @@ paths:
           required: false
           description: 事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:calendar
           in: query
           required: false
           description: カレンダーのID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: dc:date
           in: query
@@ -532,7 +532,7 @@ components:
           description: バス運行情報のクラス名
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス運行情報の固有識別子
         odpt:busNumber:
@@ -555,32 +555,32 @@ components:
           description: 更新頻度(秒)、指定された秒数以降にリクエストを行うことで、最新値が取得される。
         odpt:busroutePattern:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行中の系統のID (odpt:BusroutePatternのowl:sameAs)
         odpt:busTimetable:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行中の便の時刻表のID (odpt:BusTimetableのowl:sameAs)
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行会社のID (odpt:Operatorのowl:sameAs)
         odpt:startingBusstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行中系統の始発バス停を表すID (odpt:BusstopPoleのowl:sameAs)
         odpt:terminalBusstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行中系統の終着バス停を表すID (odpt:BusstopPoleのowl:sameAs)
         odpt:fromBusstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 直近に通過した、あるいは停車中のバス停のID (odpt:BusstopPoleのowl:sameAs)
         odpt:fromBusstopPoleTime:
@@ -590,7 +590,7 @@ components:
           description: 直近に通過したバス停を発車した時刻。odpt:fromBusstopPoleがnullならばodpt:fromBusstopPoleTimeもnullとなる
         odpt:toBusstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 次に到着するバス停のID (odpt:BusstopPoleのowl:sameAs)
         odpt:progress:
@@ -660,7 +660,7 @@ components:
           description: バス時刻表のクラス名、"odpt:BusTimetable"が入る
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス時刻表の固有識別子
         dc:date:
@@ -688,17 +688,17 @@ components:
           description: バス路線名称のよみがな
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行会社のID (odpt:Operatorのowl:sameAs)
         odpt:busroutePattern:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 対応する運行系統のID (odpt:BusroutePatternのowl:sameAs)
         odpt:calendar:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: カレンダーのID (odpt:Calendarのowl:sameAs)
         odpt:busTimetableObject:
@@ -720,7 +720,7 @@ components:
           description: 標柱通過順
         odpt:busstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)
         odpt:arrivalTime:
@@ -788,7 +788,7 @@ components:
           description: バス路線情報のクラス名、"odpt:BusroutePattern"が入る
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス路線情報の固有識別子
         dc:date:
@@ -811,12 +811,12 @@ components:
           description: バス路線名称のよみがな
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運営会社を表すID (odpt:Operatorのowl:sameAs)
         odpt:busroute:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 系統を表すID
         odpt:pattern:
@@ -846,7 +846,7 @@ components:
           description: 注記
         odpt:busLocationURL:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス位置情報を示すWebSiteのURL
       description: |-
@@ -889,7 +889,7 @@ components:
           description: バス運賃のクラス名、"odpt:BusroutePatternFare"が入る
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス運賃の固有識別子
         dc:date:
@@ -909,12 +909,12 @@ components:
           description: データ保証期限
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行会社を表すID (odpt:Operatorのowl:sameAs)
         odpt:fromBusroutePattern:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 乗車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)
         odpt:fromBusstopPoleOrder:
@@ -923,12 +923,12 @@ components:
           description: 乗車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:fromBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。
         odpt:fromBusstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 乗車バス停を表すID。odpt:fromBusroutePattern, odpt:fromBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。
         odpt:toBusroutePattern:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 降車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)
         odpt:toBusstopPoleOrder:
@@ -937,7 +937,7 @@ components:
           description: 降車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:toBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。
         odpt:toBusstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 降車バス停を表すID (odpt:BusstopPoleのowl:sameAs)。 odpt:toBusroutePattern, odpt:toBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。
         odpt:ticketFare:
@@ -965,7 +965,7 @@ components:
       properties:
         odpt:busstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 停留所のID (odpt:BusstopPoleのowl:sameAs)
         odpt:index:
@@ -1020,7 +1020,7 @@ components:
           description: バス停 (標柱) のクラス名、"odpt:BusstopPole"が入る
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス停 (標柱) の固有識別子
         dc:date:
@@ -1060,14 +1060,14 @@ components:
         odpt:busroutePattern:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - string
           description: 入線する系統パターンのID (odpt:BusroutePatternのowl:sameAs) のリスト
         odpt:operator:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - string
           description: 入線するバスの運営会社を表すID (odpt:Operatorのowl:sameAs) のリスト
@@ -1082,7 +1082,7 @@ components:
         odpt:busstopPoleTimetable:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - string
           description: バス停(標柱)時刻表のID (odpt:BusstopPoleTimetableのowl:sameAs) のリスト
@@ -1119,7 +1119,7 @@ components:
           description: バス停(標柱)時刻表のクラス名、"odpt:BusstopPoleTimetable"が入る
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス停(標柱)時刻表の固有識別子
         dc:date:
@@ -1143,7 +1143,7 @@ components:
           description: バス路線名称(系統名等)
         odpt:busstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス停(標柱)を表すID (odpt:BusstopPoleのowl:sameAs)
         odpt:busDirection:
@@ -1172,7 +1172,7 @@ components:
           description: 運行会社を表すID (odpt:Operatorのowl:sameAs)
         odpt:calendar:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 運行する曜日・日付 (odpt:Calendarのowl:sameAs)
         odpt:busstopPoleTimetableObject:
@@ -1210,7 +1210,7 @@ components:
           description: バス出発時刻
         odpt:destinationBusstopPole:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: 行先バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)
         odpt:destinationSign:
@@ -1219,7 +1219,7 @@ components:
           description: 行先(方向幕)情報
         odpt:busroutePattern:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: string
           description: バス路線のID (odpt:BusroutePatternのowl:sameAs)
         odpt:busroutePatternOrder:
@@ -1290,9 +1290,9 @@ components:
     URN:
       type: string
       description: 固有識別子
-    odpt-URL:
+    odpt.url:
       type: string
-      description: 固有識別子の別名 多くが`odpt.hoge:huga`形式
+      description: 固有識別子の別名 多くが`odpt.hoge:fuga`形式
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

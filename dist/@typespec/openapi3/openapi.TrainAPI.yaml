@@ -29,28 +29,28 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 事業者を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:station
           in: query
           required: false
           description: 駅を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:railway
           in: query
           required: false
           description: 路線を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -97,7 +97,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -144,7 +144,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: dc:title
           in: query
@@ -158,7 +158,7 @@ paths:
           required: false
           description: 事業者を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:lineCode
           in: query
@@ -212,28 +212,28 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 事業者を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:fromStation
           in: query
           required: false
           description: 出発駅のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:toStation
           in: query
           required: false
           description: 到着駅のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -280,7 +280,7 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: dc:title
           in: query
@@ -294,14 +294,14 @@ paths:
           required: false
           description: 事業者を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:railway
           in: query
           required: false
           description: 駅が存在する路線ID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:stationCode
           in: query
@@ -355,42 +355,42 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:station
           in: query
           required: false
           description: 駅を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:railway
           in: query
           required: false
           description: 路線を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 事業者を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:railDirection
           in: query
           required: false
           description: 進行方向を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:calendar
           in: query
           required: false
           description: 実施日を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: dc:date
           in: query
@@ -437,21 +437,21 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 列車情報を配信する事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:railway
           in: query
           required: false
           description: 当該列車が運行している路線のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -491,21 +491,21 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 運行情報を配信する事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:railway
           in: query
           required: false
           description: 運行情報が発生した路線のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -552,7 +552,7 @@ paths:
           required: false
           description: 固有識別子別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:trainNumber
           in: query
@@ -566,35 +566,35 @@ paths:
           required: false
           description: 路線のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 運行事業者のID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:trainType
           in: query
           required: false
           description: 列車種別ID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:train
           in: query
           required: false
           description: 該当する列車ID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:calendar
           in: query
           required: false
           description: 特定のカレンダー情報ID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -641,14 +641,14 @@ paths:
           required: false
           description: データに付与された固有識別子の別名
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
         - name: odpt:operator
           in: query
           required: false
           description: 事業者を表すID
           schema:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           explode: false
       responses:
         '200':
@@ -734,18 +734,18 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.PassengerSurvey:JR-East.Tokyo
           description: 固有識別子 odpt.PassengerSurvey:会社名.駅名 または odpt.PassengerSurvey:会社名.路線名.駅名
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         odpt:station:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.Yamanote.Tokyo
             - odpt.Station:JR-East.ChuoRapid.Tokyo
@@ -753,7 +753,7 @@ components:
         odpt:railway:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Railway:JR-East.Yamanote
             - odpt.Railway:JR-East.ChuoRapid
@@ -817,7 +817,7 @@ components:
           description: 進行方向情報の生成時刻
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailDirection:Inbound
           description: '固有識別子 odpt.RailDirection:進行方向 または odpt.RailDirection:会社名.進行方向 '
         dc:title:
@@ -867,7 +867,7 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Railway:JR-East.Yamanote
           description: 固有識別子 odpt.Railway:会社名.路線名
         dc:title:
@@ -887,7 +887,7 @@ components:
           description: 路線名のよみがな（ひらがな表記）
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         odpt:lineCode:
@@ -904,12 +904,12 @@ components:
           description: GeoJSON形式による地物情報
         odpt:ascendingRailDirection:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailDirection:Outbound
           description: 昇順の進行方向を表すID
         odpt:descendingRailDirection:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailDirection:Inbound
           description: 降順の進行方向を表すID
         odpt:stationOrder:
@@ -967,22 +967,22 @@ components:
           description: データの保証期限
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailwayFare:TokyoMetro.Marunouchi.Tokyo.TokyoMetro.Tozai.Nakano
           description: 固有識別子 odpt.RailwayFare:出発駅の会社名.出発駅の路線名.出発駅名.到着駅の会社名.到着駅の路線名.到着駅名
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:TokyoMetro
           description: 運行会社を表すID
         odpt:fromStation:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:TokyoMetro.Marunouchi.Tokyo
           description: 出発駅のID
         odpt:toStation:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:TokyoMetro.Tozai.Nakano
           description: 到着駅のID
         odpt:ticketFare:
@@ -1004,14 +1004,14 @@ components:
         odpt:viaStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
           description: 運賃計算上の経由駅を表すIDのリスト
         odpt:viaRailway:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Railway:TokyoMetro.Tozai
           description: 運賃計算上の経由路線を表すIDのリスト
@@ -1061,7 +1061,7 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.Yamanote.Tokyo
           description: 固有識別子 odpt.Station:会社名.路線名.駅名
         dc:title:
@@ -1077,12 +1077,12 @@ components:
           description: 駅名（多言語対応）
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         odpt:railway:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Railway:JR-East.Yamanote
           description: 路線を表すID
         odpt:stationCode:
@@ -1111,7 +1111,7 @@ components:
         odpt:connectingRailway:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Railway:JR-East.ChuoRapid
             - odpt.Railway:TokyoMetro.Marunouchi
@@ -1119,7 +1119,7 @@ components:
         odpt:connectingStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.ChuoRapid.Tokyo
             - odpt.Station:TokyoMetro.Marunouchi.Tokyo
@@ -1127,14 +1127,14 @@ components:
         odpt:stationTimetable:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.StationTimetable:JR-East.Yamanote.Tokyo.Outbound.Weekday
           description: 駅時刻表を表すIDのリスト
         odpt:passengerSurvey:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.PassengerSurvey:JR-East.Tokyo
           description: 駅乗降人員数を表すIDのリスト
@@ -1147,7 +1147,7 @@ components:
       properties:
         odpt:station:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:TokyoMetro.Marunouchi.Tokyo
           description: 駅を表すID
         odpt:stationTitle:
@@ -1207,17 +1207,17 @@ components:
           description: データの保証期限
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.StationTimetable:JR-East.ChuoRapid.Tokyo.Outbound.Weekday
           description: 固有識別子 odpt.StationTimetable:会社名.路線名.駅名.方面名.曜日種別
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         odpt:railway:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Railway:JR-East.ChuoRapid
           description: 路線を表すID
         odpt:railwayTitle:
@@ -1229,7 +1229,7 @@ components:
           description: 路線名（多言語対応）
         odpt:station:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 駅を表すID
         odpt:stationTitle:
@@ -1241,12 +1241,12 @@ components:
           description: 駅名（多言語対応）
         odpt:railDirection:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailDirection:Outbound
           description: 方面を表すID
         odpt:calendar:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Calendar:Weekday
           description: 運行を行う曜日・日付情報のID
         odpt:stationTimetableObject:
@@ -1281,34 +1281,34 @@ components:
         odpt:originStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 始発駅を表すIDのリスト
         odpt:destinationStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.ChuoRapid.Takao
           description: 終着駅を表すIDのリスト
         odpt:viaStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
           description: 経由駅を表すIDのリスト
         odpt:viaRailway:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Railway:TokyoMetro.Tozai
           description: 経由路線を表すIDのリスト
         odpt:train:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Train:JR-East.Yamanote.123M
           description: 到着または出発する列車ID
         odpt:trainNumber:
@@ -1317,7 +1317,7 @@ components:
           description: 列車番号
         odpt:trainType:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.TrainType:JR-East.Local
           description: 列車種別のID
         odpt:trainName:
@@ -1330,7 +1330,7 @@ components:
           description: 編成の名称・愛称のリスト
         odpt:trainOwner:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 車両の所属会社を表すID
         odpt:isLast:
@@ -1407,22 +1407,22 @@ components:
           description: データ保証期限
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Train:JR-East.Yamanote.123M
           description: 固有識別子 odpt.Train:会社名.路線名.列車番号
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         odpt:railway:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Railway:JR-East.Yamanote
           description: 鉄道路線を表すID
         odpt:railDirection:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailDirection:Outbound
           description: 進行方向を表すID
         odpt:trainNumber:
@@ -1431,7 +1431,7 @@ components:
           description: 列車番号
         odpt:trainType:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.TrainType:JR-East.Local
           description: 列車種別
         odpt:trainName:
@@ -1444,45 +1444,45 @@ components:
           description: 編成の名称・愛称のリスト
         odpt:fromStation:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 列車が直前に出た駅、あるいは停車中の駅を表すID
         odpt:toStation:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 列車が向かっている駅を表すID
         odpt:originStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 列車の始発駅を表すIDのリスト
         odpt:destinationStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.ChuoRapid.Takao
           description: 列車の終着駅を表すIDのリスト
         odpt:viaStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
           description: 列車の経由駅を表すIDのリスト
         odpt:viaRailway:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Railway:TokyoMetro.Tozai
           description: 列車の経由路線を表すIDのリスト
         odpt:trainOwner:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 車両の所属会社を表すID
         odpt:index:
@@ -1545,7 +1545,7 @@ components:
           description: データ保証期限
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.TrainInformation:JR-East.Yamanote
           description: 固有識別子 odpt.TrainInformation:会社名.路線名 または odpt.TrainInformation:会社名
         odpt:timeOfOrigin:
@@ -1555,12 +1555,12 @@ components:
           description: 発生時刻
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         odpt:railway:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Railway:JR-East.Yamanote
           description: 発生路線を表すID
         odpt:trainInformationStatus:
@@ -1579,7 +1579,7 @@ components:
           description: 運行情報テキスト
         odpt:railDirection:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailDirection:Outbound
           description: 運行情報の適用される方向を表すID
         odpt:trainInformationArea:
@@ -1598,12 +1598,12 @@ components:
           description: 鉄道種類
         odpt:stationFrom:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.Yamanote.Tokyo
           description: 発生場所起点
         odpt:stationTo:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.Yamanote.Tokyo
           description: 発生場所終点
         odpt:trainInformationRange:
@@ -1623,7 +1623,7 @@ components:
         odpt:transferRailways:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Railway:JR-East.Yamanote
           description: 振替路線一覧のリスト
@@ -1679,32 +1679,32 @@ components:
           description: データの保証期限
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday
           description: 固有識別子 odpt.TrainTimetable:会社名.路線名.列車番号.曜日種別 である。前記の命名ルールで重複が生じる場合は、末尾に .1, .2, .3, … をつけて区別
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         odpt:railway:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Railway:JR-East.Yamanote
           description: 路線のID
         odpt:railDirection:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.RailDirection:Outbound
           description: 進行方向を表すID
         odpt:calendar:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Calendar:Weekday
           description: 運行を行う曜日・日付情報のID
         odpt:train:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Train:JR-East.Yamanote.123M
           description: 列車のID
         odpt:trainNumber:
@@ -1713,7 +1713,7 @@ components:
           description: 列車番号
         odpt:trainType:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.TrainType:JR-East.Local
           description: 列車種別のID
         odpt:trainName:
@@ -1726,48 +1726,48 @@ components:
           description: 編成の名称・愛称のリスト
         odpt:trainOwner:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 車両の所属会社を表すID
         odpt:originStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 列車の始発駅を表すIDのリスト
         odpt:destinationStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:JR-East.ChuoRapid.Takao
           description: 列車の終着駅を表すIDのリスト
         odpt:viaStation:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
           description: 列車の経由駅を表すIDのリスト
         odpt:viaRailway:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.Railway:TokyoMetro.Tozai
           description: 列車の経由路線を表すIDのリスト
         odpt:previousTrainTimetable:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday
           description: 直前の列車時刻表を表すIDのリスト
         odpt:nextTrainTimetable:
           type: array
           items:
-            $ref: '#/components/schemas/odpt-URL'
+            $ref: '#/components/schemas/odpt.url'
           example:
             - odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday
           description: 直後の列車時刻表を表すIDのリスト
@@ -1803,7 +1803,7 @@ components:
           description: 到着時刻
         odpt:arrivalStation:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 到着駅のID
         odpt:departureTime:
@@ -1813,7 +1813,7 @@ components:
           description: 出発時刻
         odpt:departureStation:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Station:JR-East.ChuoRapid.Tokyo
           description: 出発駅のID
         odpt:platformNumber:
@@ -1867,12 +1867,12 @@ components:
           description: データ生成日時
         owl:sameAs:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt:JR-East.Local
           description: 固有識別子 odpt.TrainType:会社名.列車種別
         odpt:operator:
           allOf:
-            - $ref: '#/components/schemas/odpt-URL'
+            - $ref: '#/components/schemas/odpt.url'
           example: odpt.Operator:JR-East
           description: 運行会社を表すID
         dc:title:
@@ -1890,9 +1890,9 @@ components:
     URN:
       type: string
       description: 固有識別子
-    odpt-URL:
+    odpt.url:
       type: string
-      description: 固有識別子の別名 多くが`odpt.hoge:huga`形式
+      description: 固有識別子の別名 多くが`odpt.hoge:fuga`形式
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

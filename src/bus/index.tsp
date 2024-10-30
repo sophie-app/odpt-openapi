@@ -51,14 +51,20 @@ enum OccupancyStatus {
   `odpt.OccupancyStatus:NotAcceptingPassengers`,
 }
 
-@doc("バス車両の運行情報")
+@doc("""
+  バスの運行情報
+  `odpt:busroutePattern` が運行中の系統を示し、 `odpt:fromBusstopPole`, `odpt:toBusstopPole` で現在位置を示す。
+  接近中の判別がつかない場合は、`odpt:fromBusstopPole` は null とはならない場合がある。
+  停車中の判別がつかない場合は、`odpt:toBusstopPole` は null とはならない場合がある。
+  odpt:occupancyStatus は車両の混雑度を示す。
+  """)
 model Bus {
   @doc("JSON-LD仕様に基づく @context のURL")
-  @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  @example("http://vocab.odpt.org/context_odpt_Bus.jsonld")
+  `@context`: url;
 
   @doc("固有識別子")
-  @example("string")
+  @example("urn:ucode:_00001C00000000000001000003533B23")
   `@id`: URN;
 
   @doc("バス運行情報のクラス名")
@@ -66,55 +72,55 @@ model Bus {
   `@type`: "odpt:Bus";
 
   @doc("バス運行情報の固有識別子")
-  @example("string")
+  @example("odpt.Bus:YokohamaMunicipal.02101.08_1.1889")
   `owl:sameAs`: URL;
 
   @doc("バス車両番号")
-  @example("string")
+  @example("1889")
   `odpt:busNumber`: string;
 
   @doc("データ生成時刻")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-10-28T14:17:46+09:00")
   `dc:date`: DateTime;
 
   @doc("データ保証期限")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-10-28T14:18:22+09:00")
   `dct:valid`: DateTime;
 
   @doc("更新頻度(秒)、指定された秒数以降にリクエストを行うことで、最新値が取得される。")
-  @example(60)
+  @example(30)
   `odpt:frequency`: integer;
 
   @doc("運行中の系統のID (odpt:BusroutePatternのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusroutePattern:YokohamaMunicipal.02101.08_1")
   `odpt:busroutePattern`: URL;
 
   @doc("運行中の便の時刻表のID (odpt:BusTimetableのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusTimetable:YokohamaMunicipal.02101.08_1.08202410011021A00208")
   `odpt:busTimetable`?: URL;
 
   @doc("運行会社のID (odpt:Operatorのowl:sameAs)")
-  @example("string")
+  @example("odpt.Operator:YokohamaMunicipal")
   `odpt:operator`: URL;
 
   @doc("運行中系統の始発バス停を表すID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:YokohamaMunicipal.SakuragichoStation.2014.6")
   `odpt:startingBusstopPole`?: URL;
 
   @doc("運行中系統の終着バス停を表すID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:YokohamaMunicipal.ShidenHozonKanMae.2288.2")
   `odpt:terminalBusstopPole`?: URL;
 
   @doc("直近に通過した、あるいは停車中のバス停のID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:YokohamaMunicipal.Higashicho.5218.2")
   `odpt:fromBusstopPole`?: URL;
 
   @doc("直近に通過したバス停を発車した時刻。odpt:fromBusstopPoleがnullならばodpt:fromBusstopPoleTimeもnullとなる")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-10-28T14:18:20+09:00")
   `odpt:fromBusstopPoleTime`?: DateTime;
 
   @doc("次に到着するバス停のID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:YokohamaMunicipal.NegishiStation.4600.5")
   `odpt:toBusstopPole`?: URL;
 
   @doc("Fromを0, Toを1とした際の現在位置 (割合)")
@@ -122,11 +128,11 @@ model Bus {
   `odpt:progress`?: float;
 
   @doc("対象となるバスの経度 (10進表記、測地系はWGS84)")
-  @example(139.1234)
+  @example(139.63494873046875)
   `geo:long`?: float;
 
   @doc("対象となるバスの緯度 (10進表記、測地系はWGS84)")
-  @example(35.1234)
+  @example(35.41614532470703)
   `geo:lat`?: float;
 
   @doc("対象となるバスの速度 (km/h)")
@@ -134,7 +140,7 @@ model Bus {
   `odpt:speed`?: float;
 
   @doc("対象となるバスの進行方向方位角を示す。単位は度(°)。北が0度で、時計回り(東回り)に増加する。")
-  @example(90.0)
+  @example(249.9993896484375)
   `odpt:azimuth`?: float;
 
   @doc("対象となるバスの扉の開閉状態")
@@ -142,18 +148,18 @@ model Bus {
   `odpt:doorStatus`?: BusDoorStatus;
 
   @doc("車両の混雑度")
-  @example(OccupancyStatus.`odpt.OccupancyStatus:Empty`)
+  @example(OccupancyStatus.`odpt.OccupancyStatus:ManySeatsAvailable`)
   `odpt:occupancyStatus`?: OccupancyStatus;
 }
 
 @doc("バスの便の時刻表")
 model BusTimetable {
   @doc("JSON-LD仕様に基づく @context のURL")
-  @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  @example("http://vocab.odpt.org/context_odpt_BusTimetable.jsonld")
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
-  @example("urn:ucode:_00001C000000000000010000030FD7E5")
+  @example("urn:ucode:_00001C00000000000001000003A69FCCz")
   `@id`: URN;
 
   @doc("バス時刻表のクラス名、\"odpt:BusTimetable\"が入る")
@@ -161,66 +167,77 @@ model BusTimetable {
   `@type`: "odpt:BusTimetable";
 
   @doc("バス時刻表の固有識別子")
-  @example("string")
+  @example("odpt.BusTimetable:OdakyuBus.Sakai91.40503.2.1400.700000677.Specific.OdakyuBus.Komae.Saturday21")
   `owl:sameAs`: URL;
 
   @doc("データ生成時刻")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-09-11T15:04:38+09:00")
   `dc:date`?: DateTime;
 
   @doc("ダイヤ改正日")
-  @example("2017-01-13")
+  @example("2024-09-11")
   `dct:issued`?: Date;
 
   @doc("データ保証期限")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-09-11T15:04:38+09:00")
   `dct:valid`?: DateTime;
 
   @doc("バス路線名称(系統名等)")
-  @example("string")
+  @example("境９１")
   `dc:title`?: string;
 
   @doc("バス路線名称のよみがな")
-  @example("string")
+  @example("さかいきゅうじゅういち")
   `odpt:kana`?: string;
 
   @doc("運行会社のID (odpt:Operatorのowl:sameAs)")
-  @example("string")
+  @example("odpt.Operator:OdakyuBus")
   `odpt:operator`: URL;
 
   @doc("対応する運行系統のID (odpt:BusroutePatternのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusroutePattern:OdakyuBus.Sakai91.40503.2")
   `odpt:busroutePattern`: URL;
 
   @doc("カレンダーのID (odpt:Calendarのowl:sameAs)")
-  @example("string")
+  @example("odpt.Calendar:Specific.OdakyuBus.Komae.Saturday21")
   `odpt:calendar`: URL;
 
   @doc("バス時刻表時分情報")
-  @example(#[])
+  @example(#[
+    #{
+      `odpt:note`: "武蔵境駅南口:10140:3",
+      `odpt:index`: 0,
+      `odpt:canGetOn`: true,
+      `odpt:canGetOff`: false,
+      `odpt:isMidnight`: false,
+      `odpt:arrivalTime`: "12:36",
+      `odpt:busstopPole`: "odpt.BusstopPole:OdakyuBus.Musashisakaiekiminamiguchi.10140.3",
+      `odpt:departureTime`: "12:36",
+    }
+  ])
   `odpt:busTimetableObject`: BusTimetableObject[];
 }
 
 @doc("バス時刻表時分情報")
 model BusTimetableObject {
   @doc("標柱通過順")
-  @example(1)
+  @example(0)
   `odpt:index`: integer;
 
   @doc("バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:OdakyuBus.Musashisakaiekiminamiguchi.10140.3")
   `odpt:busstopPole`: URL;
 
   @doc("バス到着時刻")
-  @example("10:00")
+  @example("12:36")
   `odpt:arrivalTime`?: Time;
 
   @doc("バス出発時刻")
-  @example("10:00")
+  @example("12:36")
   `odpt:departureTime`?: Time;
 
   @doc("行先(方向幕)情報")
-  @example("string")
+  @example("( 桜ケ丘 経由 ) 横浜駅西口 行")
   `odpt:destinationSign`?: string;
 
   @doc("ノンステップバスの場合 true")
@@ -240,7 +257,7 @@ model BusTimetableObject {
   `odpt:canGetOff`?: boolean;
 
   @doc("注記")
-  @example("string")
+  @example("蔵境駅南口:10140:3")
   `odpt:note`?: string;
 }
 
@@ -252,11 +269,11 @@ model BusTimetableObject {
   """)
 model BusroutePattern {
   @doc("JSON-LD仕様に基づく @context のURL")
-  @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  @example("http://vocab.odpt.org/context_odpt_BusroutePattern.jsonld")
+  `@context`: url;
 
   @doc("固有識別子 (ucode)")
-  @example("urn:ucode:_00001C000000000000010000030FD7E5")
+  @example("urn:ucode:_00001C0000000000000100000387F25A")
   `@id`: URN;
 
   @doc("バス路線情報のクラス名、\"odpt:BusroutePattern\"が入る")
@@ -264,7 +281,7 @@ model BusroutePattern {
   `@type`: "odpt:BusroutePattern";
 
   @doc("バス路線情報の固有識別子")
-  @example("string")
+  @example("odpt.BusroutePattern:NishiTokyoBus.Chokutsuu.500102.2")
   `owl:sameAs`: URL;
 
   @doc("データ生成時刻")
@@ -272,31 +289,31 @@ model BusroutePattern {
   `dc:date`: DateTime;
 
   @doc("データの保証期限")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2023-03-23T13:52:02+09:00")
   `dct:valid`?: DateTime;
 
   @doc("バス路線名称(系統名・系統番号等)")
-  @example("string")
+  @example("直通")
   `dc:title`: string;
 
   @doc("バス路線名称のよみがな")
-  @example("string")
+  @example("ちょくつう")
   `odpt:kana`?: string;
 
   @doc("運営会社を表すID (odpt:Operatorのowl:sameAs)")
-  @example("string")
+  @example("odpt.Operator:NishiTokyoBus")
   `odpt:operator`: URL;
 
   @doc("系統を表すID")
-  @example("string")
+  @example("odpt.Busroute:NishiTokyoBus.Chokutsuu")
   `odpt:busroute`?: URL;
 
   @doc("系統パターン")
-  @example("string")
+  @example("500102")
   `odpt:pattern`?: string;
 
   @doc("方向")
-  @example("string")
+  @example("2")
   `odpt:direction`?: string;
 
   @doc("停留所(標柱)の順序")
@@ -312,12 +329,11 @@ model BusroutePattern {
   `odpt:busstopPoleOrder`: BussstopPoleOrder[];
 
   @doc("注記")
-  @example("string")
+  @example("036系統::03618.03_1")
   `odpt:note`?: string;
 
   @doc("バス位置情報を示すWebSiteのURL")
-  @example("string")
-  `odpt:busLocationURL`?: URL;
+  `odpt:busLocationURL`?: url;
 }
 
 enum OpeningDoor {
@@ -331,7 +347,7 @@ enum OpeningDoor {
 @doc("停留所(標柱)の順序")
 model BussstopPoleOrder {
   @doc("停留所のID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:NishiTokyoBus.JRHachiojiStationNorthExit.390.15")
   `odpt:busstopPole`: URL;
 
   @doc("停留所通過順。通過順の昇順の値となる")
@@ -355,10 +371,10 @@ model BussstopPoleOrder {
 model BusroutePatternFare {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
-  @example("urn:ucode:_00001C000000000000010000030FD7E5")
+  @example("urn:ucode:_00001C00000000000001000003A7A364")
   `@id`: URN;
 
   @doc("バス運賃のクラス名、\"odpt:BusroutePatternFare\"が入る")
@@ -366,47 +382,47 @@ model BusroutePatternFare {
   `@type`: "odpt:BusroutePatternFare";
 
   @doc("バス運賃の固有識別子")
-  @example("string")
+  @example("odpt.BusroutePatternFare:YokohamaMunicipal.34100.09_3.25.SakuragichoStation.2014.12.YokohamaMunicipal.34100.09_3.27.YokohamaStation.7812.6")
   `owl:sameAs`: URL;
 
   @doc("データ生成時刻")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-09-28T09:14:16+09:00")
   `dc:date`: DateTime;
 
   @doc("運賃改定日")
-  @example("2017-01-13")
+  @example("2024-09-28")
   `dct:issued`?: Date;
 
   @doc("データ保証期限")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-09-28T09:14:16+09:00")
   `dct:valid`?: DateTime;
 
   @doc("運行会社を表すID (odpt:Operatorのowl:sameAs)")
-  @example("string")
+  @example("odpt.Operator:YokohamaMunicipal")
   `odpt:operator`: URL;
 
   @doc("乗車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusroutePattern:YokohamaMunicipal.34100.09_3")
   `odpt:fromBusroutePattern`: URL;
 
   @doc("乗車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:fromBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。")
-  @example(0)
+  @example(25)
   `odpt:fromBusstopPoleOrder`: integer;
 
   @doc("乗車バス停を表すID。odpt:fromBusroutePattern, odpt:fromBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。")
-  @example("string")
+  @example("odpt.BusstopPole:YokohamaMunicipal.SakuragichoStation.2014.12")
   `odpt:fromBusstopPole`: URL;
 
   @doc("降車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusroutePattern:YokohamaMunicipal.34100.09_3")
   `odpt:toBusroutePattern`: URL;
 
   @doc("降車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:toBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。")
-  @example(0)
+  @example(27)
   `odpt:toBusstopPoleOrder`: integer;
 
   @doc("降車バス停を表すID (odpt:BusstopPoleのowl:sameAs)。 odpt:toBusroutePattern, odpt:toBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。")
-  @example("string")
+  @example("odpt.BusstopPole:YokohamaMunicipal.YokohamaStation.7812.6")
   `odpt:toBusstopPole`: URL;
 
   @doc("切符利用時の運賃 (円)")
@@ -430,10 +446,10 @@ model BusroutePatternFare {
 model BusstopPole {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
-  `@context`: URL;
+  `@context`: url;
 
   @doc("固有識別子(ucode)")
-  @example("urn:ucode:_00001C000000000000010000030FD7E5")
+  @example("urn:ucode:_00001C0000000000000100000315AB88")
   `@id`: URN;
 
   @doc("バス停 (標柱) のクラス名、\"odpt:BusstopPole\"が入る")
@@ -441,27 +457,33 @@ model BusstopPole {
   `@type`: "odpt:BusstopPole";
 
   @doc("バス停 (標柱) の固有識別子")
-  @example("string")
+  @example("odpt.BusstopPole:OdakyuBus.Nakazato.20305.2")
   `owl:sameAs`: URL;
 
   @doc("データ生成時刻")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-08-06T14:09:17+09:00")
   `dc:date`: DateTime;
 
   @doc("データの保証期限")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-08-06T14:09:17+09:00")
   `dct:valid`?: DateTime;
 
   @doc("バス停名")
-  @example("豊洲駅前")
+  @example("中里")
   `dc:title`: string;
 
   @doc("バス停名のよみがな")
-  @example("とよすえきまえ")
+  @example("ナカザト")
   `odpt:kana`?: string;
 
   @doc("バス停名(多言語対応)")
-  @example(#{ ja: "豊洲駅前", `ja-Hrkt`: "とよすえきまえ", en: "Toyosu Sta." })
+  @example(#{
+    ja: "中里",
+    `ja-Hrkt`: "とよすえきまえ",
+    en: "Nakazato",
+    ko: "나카자토",
+    `zh-Hans`: "中里",
+  })
   title?: MultilingualTitle;
 
   @doc("標柱の経度(WGS84)")
@@ -473,23 +495,22 @@ model BusstopPole {
   `geo:lat`?: float;
 
   @doc("入線する系統パターンのID (odpt:BusroutePatternのowl:sameAs) のリスト")
-  @example(#["string"])
+  @example(#["odpt.BusroutePattern:OdakyuBus.Shimo61.20101.2"])
   `odpt:busroutePattern`?: URL[];
 
   @doc("入線するバスの運営会社を表すID (odpt:Operatorのowl:sameAs) のリスト")
-  @example(#["string"])
+  @example(#["odpt.Operator:OdakyuBus"])
   `odpt:operator`: URL[];
 
   @doc("標柱番号。同一停留所の別標柱を区別するものであり、のりば番号とは一致する保証はない")
-  @example("string")
+  @example("2")
   `odpt:busstopPoleNumber`?: string;
 
   @doc("のりば番号")
-  @example("string")
+  @example("1")
   `odpt:platformNumber`?: string;
 
   @doc("バス停(標柱)時刻表のID (odpt:BusstopPoleTimetableのowl:sameAs) のリスト")
-  @example(#["string"])
   `odpt:busstopPoleTimetable`?: URL[];
 }
 
@@ -500,7 +521,7 @@ model BusstopPoleTimetable {
   `@context`: URL;
 
   @doc("固有識別子(ucode)")
-  @example("urn:ucode:_00001C000000000000010000030FD7E5")
+  @example("urn:ucode:_00001C00000000000001000003A67D78")
   `@id`: URN;
 
   @doc("バス停(標柱)時刻表のクラス名、\"odpt:BusstopPoleTimetable\"が入る")
@@ -508,59 +529,60 @@ model BusstopPoleTimetable {
   `@type`: "odpt:BusstopPoleTimetable";
 
   @doc("バス停(標柱)時刻表の固有識別子")
-  @example("string")
+  @example("odpt.BusstopPoleTimetable:KeioBus.Sakura80.Sakura88Fu.Sakura84.Sakura88.Sakura83.Higashinakano.1157.1.Minamioosawaeki.Weekday")
   `owl:sameAs`: URL;
 
   @doc("データ生成時刻")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-09-30T10:42:46+09:00")
   `dc:date`: DateTime;
 
   @doc("ダイヤ改正日")
-  @example("2017-01-13")
+  @example("2024-09-30")
   `dct:issued`?: Date;
 
   @doc("データ保証期限。ISO8601形式。期限が存在する場合のみ格納する。")
-  @example("2017-01-13T15:10:00+09:00")
+  @example("2024-09-30T10:42:46+09:00")
   `dct:valid`?: DateTime;
 
   @doc("バス路線名称(系統名等)")
-  @example("string")
+  @example("桜８０、桜８８-ふ、桜８４、桜８８、桜８３:東中野:京王堀之内駅・相模原駅・南大沢駅・由木折返場行:平日")
   `dc:title`?: string;
 
   @doc("バス停(標柱)を表すID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:KeioBus.Higashinakano.1157.1")
   `odpt:busstopPole`: URL;
 
   @doc("方面を表すID。array となる場合もある。")
-  @example("string")
+  @example("odpt.BusDirection:KeioBus.Minamioosawaeki")
   `odpt:busDirection`: string | string[];
 
   @doc("路線を表すID。array となる場合もある。(複数路線を含む時刻表の場合等)")
-  @example("string")
+  @example(#[
+    "odpt.Busroute:KeioBus.Sakura80",
+    "odpt.Busroute:KeioBus.Sakura88Fu",
+    "odpt.Busroute:KeioBus.Sakura84",
+    "odpt.Busroute:KeioBus.Sakura88",
+    "odpt.Busroute:KeioBus.Sakura83"
+  ])
   `odpt:busroute`: string | string[];
 
   @doc("運行会社を表すID (odpt:Operatorのowl:sameAs)")
-  @example("string")
+  @example("odpt.Operator:KeioBus")
   `odpt:operator`: string | string[];
 
   @doc("運行する曜日・日付 (odpt:Calendarのowl:sameAs)")
-  @example("string")
+  @example("odpt.Calendar:Weekday")
   `odpt:calendar`: URL;
 
   @doc("バス停(標柱)時刻表の時分情報")
   @example(#[
     #{
-      `odpt:arrivalTime`: "10:00",
-      `odpt:departureTime`: "10:00",
-      `odpt:destinationBusstopPole`: "string",
-      `odpt:destinationSign`: "string",
-      `odpt:busroutePattern`: "string",
-      `odpt:busroutePatternOrder`: 0,
-      `odpt:isNonStepBus`: true,
+      `odpt:busroutePattern`: "odpt.BusroutePattern:KeioBus.Sakura80.699.1",
+      `odpt:departureTime`: "06:30",
+      `odpt:destinationBusstopPole`: "odpt.BusstopPole:KeioBus.Minamioosawaeki.1395.0",
+      `odpt:destinationSign`: "南大沢駅",
       `odpt:isMidnight`: true,
-      `odpt:canGetOn`: true,
-      `odpt:canGetOff`: true,
-      `odpt:note`: "string",
+      `odpt:note`: "南大沢駅行",
     }
   ])
   `odpt:busstopPoleTimetableObject`?: BusstopPoleTimetableObject[];
@@ -577,15 +599,15 @@ model BusstopPoleTimetableObject {
   `odpt:departureTime`: Time;
 
   @doc("行先バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusstopPole:KeioBus.Minamioosawaeki.1395.0")
   `odpt:destinationBusstopPole`?: URL;
 
   @doc("行先(方向幕)情報")
-  @example("string")
+  @example("南大沢駅")
   `odpt:destinationSign`?: string;
 
   @doc("バス路線のID (odpt:BusroutePatternのowl:sameAs)")
-  @example("string")
+  @example("odpt.BusroutePattern:KeioBus.Sakura80.699.1")
   `odpt:busroutePattern`?: URL;
 
   @doc("系統パターン内の停留所(標柱)通過順。odpt:busroutePattern の示す odpt:BusroutePattern の odpt:busstopPoleOrder の odpt:index と同じ値。")
@@ -609,7 +631,7 @@ model BusstopPoleTimetableObject {
   `odpt:canGetOff`?: boolean;
 
   @doc("注記")
-  @example("string")
+  @example("南大沢駅行")
   `odpt:note`?: string;
 }
 

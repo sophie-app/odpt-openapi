@@ -22,8 +22,10 @@ scalar Date extends string;
 @doc("多言語対応のタイトル")
 model MultilingualTitle {
   ja: string;
-  `ja-Hrkt`?: string;
   en: string;
+  ko?: string;
+  `ja-Hrkt`?: string;
+  `zh-Hans`?: string;
 }
 
 @doc("曜日・日付区分を扱うクラス")

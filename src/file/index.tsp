@@ -9,7 +9,7 @@ import "../common/error.tsp";
 @server("https://api.odpt.org/api/v4", "API サーバー")
 @doc("配布されるファイルを取得するためのAPI")
 @useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
-namespace BusAPI;
+namespace FileAPI;
 
 using TypeSpec.Http;
 using TypeSpec.Rest;

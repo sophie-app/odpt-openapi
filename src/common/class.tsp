@@ -1,9 +1,3 @@
-import "@typespec/http";
-
-import "./error.tsp";
-
-using TypeSpec.Http;
-
 @doc("アクセストークン")
 scalar ConsumerKey extends string;
 
@@ -80,26 +74,4 @@ model Operator {
 
   @doc("事業者名称（多言語対応）")
   `odpt:operatorTitle`?: MultilingualTitle;
-}
-
-@route("/api/v4/odpt/Calendar")
-interface CalendarOperations {
-  @doc("曜日・日付区分(odpt:Calendar)の内容を取得する")
-  @get
-  getCalendars(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
-  ): Calendar[] | Common.Error;
-}
-
-@route("/api/v4/odpt/Operator")
-interface OperatorOperations {
-  @doc("公共交通機関の事業者(odpt:Operator)の内容を取得する")
-  @get
-  getOperators(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
-  ): Operator[] | Common.Error;
 }

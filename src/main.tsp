@@ -1,12 +1,13 @@
 import "@typespec/http";
-import "@typespec/rest";
-import "@typespec/openapi3";
+import "./routes/index.tsp";
 
-import "./common/error.tsp";
-import "./common/class.tsp";
+using TypeSpec.Http;
 
-import "./search/index.tsp";
-import "./airplane/index.tsp";
-import "./train/index.tsp";
-import "./bus/index.tsp";
-import "./file/index.tsp";
+@service({
+  title: "ODPT API",
+})
+@server("https://api.odpt.org/api/v4", "公共交通のオープンデータ API")
+@server("https://api-challenge2024.odpt.org/api/v4", "公共交通のオープンデータ API")
+@server("https://api-public.odpt.org/api/v4", "公共交通のオープンデータ API")
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
+namespace OdptAPI;

@@ -44,10 +44,10 @@ model Calendar {
   @doc("固有識別子")
   `owl:sameAs`: url;
 
-  @doc("カレンダー名称（日本語）")
+  @doc("カレンダー名称(日本語)")
   `dc:title`?: string;
 
-  @doc("カレンダー名称（多言語対応）")
+  @doc("カレンダー名称(多言語対応)")
   `odpt:calendarTitle`?: MultilingualTitle;
 }
 
@@ -69,9 +69,9 @@ model Operator {
   @doc("固有識別子")
   `owl:sameAs`: url;
 
-  @doc("事業者名称（日本語）")
+  @doc("事業者名称(日本語)")
   `dc:title`?: string;
 
-  @doc("事業者名称（多言語対応）")
+  @doc("事業者名称(多言語対応)")
   `odpt:operatorTitle`?: MultilingualTitle;
 }

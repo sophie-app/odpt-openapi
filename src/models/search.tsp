@@ -85,7 +85,7 @@ model DumpResponse {
   @example("odpt:Station")
   `@type`: string;
 
-  @doc("駅名（日本語）")
+  @doc("駅名(日本語)")
   @example("東京")
   `dc:title`: string;
 
@@ -112,7 +112,7 @@ model RetrieveResponse {
   @example("2024-06-27T08:00:00+09:00")
   `dc:date`: DateTime;
 
-  @doc("駅名（日本語）")
+  @doc("駅名(日本語)")
   @example("上野")
   `dc:title`: string;
 
@@ -186,7 +186,7 @@ model PlaceSearchResponse {
   @example("2024-03-27T09:00:00+09:00")
   `dc:date`: DateTime;
 
-  @doc("駅名（日本語）")
+  @doc("駅名(日本語)")
   @example("日本橋")
   `dc:title`: string;
 

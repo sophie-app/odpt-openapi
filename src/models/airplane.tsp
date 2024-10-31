@@ -17,10 +17,10 @@ model Airport {
   @doc("固有識別子")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("空港名（日本語）")
+  @doc("空港名(日本語)")
   `dc:title`?: string;
 
-  @doc("空港名（多言語対応）")
+  @doc("空港名(多言語対応)")
   `odpt:airportTitle`?: MultilingualTitle;
 
   @doc("空港のターミナルを表す ID のリスト")
@@ -53,10 +53,10 @@ model AirportTerminal {
   @doc("固有識別子")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("空港ターミナル名（日本語）")
+  @doc("空港ターミナル名(日本語)")
   `dc:title`?: string;
 
-  @doc("空港ターミナル名（多言語対応）")
+  @doc("空港ターミナル名(多言語対応)")
   `odpt:airportTerminalTitle`?: MultilingualTitle;
 
   @doc("空港を示すID")
@@ -104,10 +104,10 @@ model FlightInformationArrival {
   @doc("フライト状況を表すID")
   `odpt:flightStatus`?: url;
 
-  @doc("運行情報の要約（多言語対応）")
+  @doc("運行情報の要約(多言語対応)")
   `odpt:flightInformationSummary`?: MultilingualTitle;
 
-  @doc("運行情報の詳細（多言語対応）")
+  @doc("運行情報の詳細(多言語対応)")
   `odpt:flightInformationText`?: MultilingualTitle;
 
   @doc("定刻の到着時刻")
@@ -173,10 +173,10 @@ model FlightInformationDeparture {
   @doc("フライト状況を表すID")
   `odpt:flightStatus`?: url;
 
-  @doc("運行情報の要約（多言語対応）")
+  @doc("運行情報の要約(多言語対応)")
   `odpt:flightInformationSummary`?: MultilingualTitle;
 
-  @doc("運行情報の詳細（多言語対応）")
+  @doc("運行情報の詳細(多言語対応)")
   `odpt:flightInformationText`?: MultilingualTitle;
 
   @doc("定刻の出発時刻")
@@ -242,7 +242,7 @@ model FlightScheduleObject {
   @doc("データ適用終了日時")
   `odpt:isValidTo`?: DateTime;
 
-  @doc("注釈情報（多言語対応）")
+  @doc("注釈情報(多言語対応)")
   `odpt:note`?: MultilingualTitle;
 }
 
@@ -296,9 +296,9 @@ model FlightStatus {
   @doc("固有識別子")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("フライト状況（日本語）")
+  @doc("フライト状況(日本語)")
   `dc:title`?: string;
 
-  @doc("フライト状況（多言語対応）")
+  @doc("フライト状況(多言語対応)")
   `odpt:flightStatusTitle`?: MultilingualTitle;
 }

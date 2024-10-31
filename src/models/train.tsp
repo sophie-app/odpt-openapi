@@ -76,16 +76,16 @@ model RailDirection {
   @example("odpt.RailDirection:Inbound")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("進行方向（日本語）")
+  @doc("進行方向(日本語)")
   @example("上り")
   `dc:title`?: string;
 
-  @doc("進行方向（多言語対応）")
+  @doc("進行方向(多言語対応)")
   @example(#{ ja: "上り", en: "Inbound" })
   `odpt:railDirectionTitle`?: MultilingualTitle;
 }
 
-@doc("鉄道路線（運行系統）の情報")
+@doc("鉄道路線(運行系統)の情報")
 model Railway {
   @doc("JSON-LD仕様に基づく @context のURL")
   @example("http://vocab.odpt.org/context_odpt.jsonld")
@@ -107,15 +107,15 @@ model Railway {
   @example("odpt.Railway:JR-East.Yamanote")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("路線名（日本語）")
+  @doc("路線名(日本語)")
   @example("山手線")
   `dc:title`: string;
 
-  @doc("路線名（多言語対応）")
+  @doc("路線名(多言語対応)")
   @example(#{ ja: "山手線", en: "Yamanote Line" })
   `odpt:railwayTitle`?: MultilingualTitle;
 
-  @doc("路線名のよみがな（ひらがな表記）")
+  @doc("路線名のよみがな(ひらがな表記)")
   @example("やまのてせん")
   `odpt:kana`?: string;
 
@@ -153,7 +153,7 @@ model StationOrder {
   @example("odpt.Station:TokyoMetro.Marunouchi.Tokyo")
   `odpt:station`: `odpt.url`;
 
-  @doc("駅名（多言語対応）")
+  @doc("駅名(多言語対応)")
   @example(#{ ja: "東京", en: "Tokyo" })
   `odpt:stationTitle`?: MultilingualTitle;
 
@@ -259,11 +259,11 @@ model Station {
   @example("odpt.Station:JR-East.Yamanote.Tokyo")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("駅名（日本語）")
+  @doc("駅名(日本語)")
   @example("東京")
   `dc:title`?: string;
 
-  @doc("駅名（多言語対応）")
+  @doc("駅名(多言語対応)")
   @example(#{ ja: "東京", en: "Tokyo" })
   `odpt:stationTitle`?: MultilingualTitle;
 
@@ -349,7 +349,7 @@ model StationTimetable {
   @example("odpt.Railway:JR-East.ChuoRapid")
   `odpt:railway`: `odpt.url`;
 
-  @doc("路線名（多言語対応）")
+  @doc("路線名(多言語対応)")
   @example(#{ ja: "中央線快速", en: "Chuo Rapid" })
   `odpt:railwayTitle`?: MultilingualTitle;
 
@@ -357,7 +357,7 @@ model StationTimetable {
   @example("odpt.Station:JR-East.ChuoRapid.Tokyo")
   `odpt:station`?: `odpt.url`;
 
-  @doc("駅名（多言語対応）")
+  @doc("駅名(多言語対応)")
   @example(#{ ja: "東京", en: "Tokyo" })
   `odpt:stationTitle`?: MultilingualTitle;
 
@@ -369,11 +369,11 @@ model StationTimetable {
   @example("odpt.Calendar:Weekday")
   `odpt:calendar`?: `odpt.url`;
 
-  @doc("出発時刻、終着（行先）駅等の組のリスト")
+  @doc("出発時刻、終着(行先)駅等の組のリスト")
   @example(#[#{ `odpt:departureTime`: "06:00" }, #{ `odpt:departureTime`: "07:00" }])
   `odpt:stationTimetableObject`: StationTimetableObject[];
 
-  @doc("注釈情報（多言語対応）")
+  @doc("注釈情報(多言語対応)")
   @example(#{ ja: "日本語での注釈情報", en: "Note in English" })
   `odpt:note`?: MultilingualTitle;
 }
@@ -530,7 +530,7 @@ model Train {
   @example(1)
   `odpt:index`?: integer;
 
-  @doc("遅延時間（秒）")
+  @doc("遅延時間(秒)")
   @example(60)
   `odpt:delay`?: integer;
 
@@ -792,11 +792,11 @@ model TrainType {
   @example("odpt.Operator:JR-East")
   `odpt:operator`: `odpt.url`;
 
-  @doc("列車種別（日本語）")
+  @doc("列車種別(日本語)")
   @example("普通")
   `dc:title`?: string;
 
-  @doc("列車種別（多言語対応）")
+  @doc("列車種別(多言語対応)")
   @example(#{ ja: "普通", en: "Local" })
   `odpt:trainTypeTitle`?: MultilingualTitle;
 }

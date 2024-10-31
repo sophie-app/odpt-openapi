@@ -911,6 +911,8 @@ components:
           type: string
         zh-Hans:
           type: string
+        zh-Hant:
+          type: string
       description: 多言語対応のタイトル
     Time:
       type: string

@@ -14,9 +14,6 @@ namespace TrainAPI;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-@doc("ISO8601 時刻形式")
-scalar Time extends string;
-
 @doc("駅の乗降人員数または乗車人員数")
 model PassengerSurvey {
   @doc("JSON-LD仕様に基づく @context のURL")

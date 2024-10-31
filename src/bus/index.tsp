@@ -14,9 +14,6 @@ namespace BusAPI;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-@doc("ISO8601 時刻形式")
-scalar Time extends string;
-
 enum BusDoorStatus {
   @doc("開いている")
   open,

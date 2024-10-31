@@ -19,6 +19,9 @@ scalar DateTime extends string;
 @doc("ISO8601 日付形式")
 scalar Date extends string;
 
+@doc("ISO8601 時刻形式")
+scalar Time extends string;
+
 @doc("多言語対応のタイトル")
 model MultilingualTitle {
   ja: string;

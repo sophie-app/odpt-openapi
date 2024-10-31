@@ -14,9 +14,6 @@ namespace AirplaneAPI;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-@doc("ISO8601 時刻形式")
-scalar Time extends string;
-
 @doc("空港の情報")
 model Airport {
   @doc("JSON-LD仕様に基づく @context のURL")

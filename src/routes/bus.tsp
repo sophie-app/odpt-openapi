@@ -15,7 +15,7 @@ interface BusOperation {
 
     @query
     @doc("データに付与された固有識別子")
-    `@id`?: URN,
+    `@id`?: `odpt.urn`,
 
     @query
     @doc("データに付与された固有識別子の別名")
@@ -50,7 +50,7 @@ interface BusTimetableOperations {
 
     @query
     @doc("データに付与された固有識別子")
-    `@id`?: URN,
+    `@id`?: `odpt.urn`,
 
     @query
     @doc("データに付与された固有識別子の別名")
@@ -85,7 +85,7 @@ interface BusroutePatternOperations {
 
     @query
     @doc("データに付与された固有識別子")
-    `@id`?: URN,
+    `@id`?: `odpt.urn`,
 
     @query
     @doc("データに付与された固有識別子の別名")
@@ -116,7 +116,7 @@ interface BusroutePatternFareOperations {
 
     @query
     @doc("データに付与された固有識別子")
-    `@id`?: URN,
+    `@id`?: `odpt.urn`,
 
     @query
     @doc("データに付与された固有識別子の別名")
@@ -163,7 +163,7 @@ interface BusstopPoleOperations {
 
     @query
     @doc("データに付与された固有識別子")
-    `@id`?: URN,
+    `@id`?: `odpt.urn`,
 
     @query
     @doc("データに付与された固有識別子の別名")
@@ -202,7 +202,7 @@ interface BusstopPoleTimetableOperations {
 
     @query
     @doc("データに付与された固有識別子")
-    `@id`?: URN,
+    `@id`?: `odpt.urn`,
 
     @query
     @doc("データに付与された固有識別子の別名")

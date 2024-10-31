@@ -8,7 +8,7 @@ model PassengerSurvey {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:PassengerSurvey")
@@ -62,7 +62,7 @@ model RailDirection {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:RailDirection")
@@ -93,7 +93,7 @@ model Railway {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Railway")
@@ -170,7 +170,7 @@ model RailwayFare {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:RailwayFare")
@@ -245,7 +245,7 @@ model Station {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Station")
@@ -319,7 +319,7 @@ model StationTimetable {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:StationTimetable")
@@ -456,7 +456,7 @@ model Train {
 
   @doc("固有識別子(ucode又はuuid)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Train")
@@ -551,7 +551,7 @@ model TrainInformation {
 
   @doc("固有識別子(ucode又はuuid)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:TrainInformation")
@@ -634,7 +634,7 @@ model TrainTimetable {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:TrainTimetable")
@@ -774,7 +774,7 @@ model TrainType {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD7E5")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:TrainType")

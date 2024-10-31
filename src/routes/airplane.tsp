@@ -10,7 +10,7 @@ interface AirportOperations {
   @get
   getAirports(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
   ): Airport[] | Common.Error;
 }
@@ -21,7 +21,7 @@ interface AirportTerminalOperations {
   @get
   getAirportTerminals(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("空港を示すID") `odpt:airport`?: url,
   ): AirportTerminal[] | Common.Error;
@@ -67,7 +67,7 @@ interface FlightScheduleOperations {
   @get
   getFlightSchedules(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: url,
     @query @doc("運行日を示すID") `odpt:calendar`?: url,
@@ -82,7 +82,7 @@ interface FlightStatusOperations {
   @get
   getFlightStatuses(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
   ): FlightStatus[] | Common.Error;
 }

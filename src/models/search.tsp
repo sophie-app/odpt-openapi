@@ -8,7 +8,7 @@ model DataSearchResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD5D6")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Train")
@@ -79,7 +79,7 @@ model DumpResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000031028E6")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Station")
@@ -102,7 +102,7 @@ model RetrieveResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030C46CA")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Station")
@@ -176,7 +176,7 @@ model PlaceSearchResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C00000000000001000003102C88")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Station")

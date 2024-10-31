@@ -34,7 +34,7 @@ interface DataRetrieveOperations {
   @summary("データ取得API")
   @get
   retrieve(
-    @path @doc("取得するデータのURI") DATA_URI: URN | `odpt.url`,
+    @path @doc("取得するデータのURI") DATA_URI: `odpt.urn` | `odpt.url`,
   ): RetrieveResponse[] | Common.Error;
 }
 

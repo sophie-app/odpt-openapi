@@ -48,7 +48,7 @@ model Bus {
 
   @doc("固有識別子")
   @example("urn:ucode:_00001C00000000000001000003533B23")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("バス運行情報のクラス名")
   @example("odpt:Bus")
@@ -143,7 +143,7 @@ model BusTimetable {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C00000000000001000003A69FCCz")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("バス時刻表のクラス名、\"odpt:BusTimetable\"が入る")
   @example("odpt:BusTimetable")
@@ -257,7 +257,7 @@ model BusroutePattern {
 
   @doc("固有識別子 (ucode)")
   @example("urn:ucode:_00001C0000000000000100000387F25A")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("バス路線情報のクラス名、\"odpt:BusroutePattern\"が入る")
   @example("odpt:BusroutePattern")
@@ -360,7 +360,7 @@ model BusroutePatternFare {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C00000000000001000003A7A364")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("バス運賃のクラス名、\"odpt:BusroutePatternFare\"が入る")
   @example("odpt:BusroutePatternFare")
@@ -435,7 +435,7 @@ model BusstopPole {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C0000000000000100000315AB88")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("バス停 (標柱) のクラス名、\"odpt:BusstopPole\"が入る")
   @example("odpt:BusstopPole")
@@ -507,7 +507,7 @@ model BusstopPoleTimetable {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C00000000000001000003A67D78")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("バス停(標柱)時刻表のクラス名、\"odpt:BusstopPoleTimetable\"が入る")
   @example("odpt:BusstopPoleTimetable")

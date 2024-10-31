@@ -10,7 +10,7 @@ interface PassengerSurveyOperations {
   @get
   getPassengerSurveys(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
     @query @doc("駅を表すID") `odpt:station`?: `odpt.url`,
@@ -24,7 +24,7 @@ interface RailDirectionOperations {
   @get
   getRailDirections(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
   ): RailDirection[] | Common.Error;
 }
@@ -35,7 +35,7 @@ interface RailwayOperations {
   @get
   getRailways(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("路線名") `dc:title`?: string,
     @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
@@ -49,7 +49,7 @@ interface RailwayFareOperations {
   @get
   getRailwayFares(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
     @query @doc("出発駅のID") `odpt:fromStation`?: `odpt.url`,
@@ -63,7 +63,7 @@ interface StationOperations {
   @get
   getStations(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("駅名") `dc:title`?: string,
     @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
@@ -78,7 +78,7 @@ interface StationTimetableOperations {
   @get
   getStationTimetables(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("駅を表すID") `odpt:station`?: `odpt.url`,
     @query @doc("路線を表すID") `odpt:railway`?: `odpt.url`,
@@ -119,7 +119,7 @@ interface TrainTimetableOperations {
   @get
   getTrainTimetables(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("固有識別子") `@id`?: URN,
+    @query @doc("固有識別子") `@id`?: `odpt.urn`,
     @query @doc("固有識別子別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("列車番号") `odpt:trainNumber`?: string,
     @query @doc("路線のID") `odpt:railway`?: `odpt.url`,
@@ -136,7 +136,7 @@ interface TrainTypeOperations {
   @get
   getTrainTypes(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
     @query @doc("事業者を表すID") `odpt:operator`?: `odpt.url`,
   ): TrainType[] | Common.Error;

@@ -2,7 +2,7 @@
 scalar ConsumerKey extends string;
 
 @doc("固有識別子")
-scalar URN extends string;
+scalar `odpt.urn` extends string;
 
 @doc("固有識別子の別名 多くが`odpt.hoge:fuga`形式")
 scalar `odpt.url` extends string;
@@ -33,7 +33,7 @@ model Calendar {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:Calendar";
@@ -58,7 +58,7 @@ model Operator {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:Operator";

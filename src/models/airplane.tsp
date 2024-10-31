@@ -6,7 +6,7 @@ model Airport {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   `@type`: "odpt:Airport";
@@ -42,7 +42,7 @@ model AirportTerminal {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   `@type`: "odpt:AirportTerminal";
@@ -78,7 +78,7 @@ model FlightInformationArrival {
   `@context`: url;
 
   @doc("固有識別子(ucode又はuuid)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:FlightInformationArrival";
@@ -147,7 +147,7 @@ model FlightInformationDeparture {
   `@context`: url;
 
   @doc("固有識別子(ucode又はuuid)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:FlightInformationDeparture";
@@ -252,7 +252,7 @@ model FlightSchedule {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:FlightSchedule";
@@ -285,7 +285,7 @@ model FlightStatus {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   `@type`: "odpt:FlightStatus";

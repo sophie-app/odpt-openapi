@@ -18,7 +18,7 @@ interface CalendarOperations {
   @get
   getCalendars(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
   ): Calendar[] | Common.Error;
 }
@@ -29,7 +29,7 @@ interface OperatorOperations {
   @get
   getOperators(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
+    @query @doc("データに付与された固有識別子") `@id`?: `odpt.urn`,
     @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
   ): Operator[] | Common.Error;
 }

@@ -22,7 +22,7 @@ model FileRedirect {
 @doc("各社提供ファイル取得用API")
 @route("/files/{filePath}")
 interface FilesOperations {
-  @doc("ファイルを取得する")
+  @summary("ファイルを取得する")
   @get
   getFiles(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,

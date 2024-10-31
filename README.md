@@ -1,4 +1,4 @@
-# OPDT OpenAPI
+# ODPT OpenAPI
 
 ## Development
 

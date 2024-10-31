@@ -99,7 +99,7 @@ model DumpResponse {
   @example("odpt:Station")
   `@type`: string;
 
-  @doc("駅名（��本語）")
+  @doc("駅名（日本語）")
   @example("東京")
   `dc:title`: string;
 

@@ -29,6 +29,7 @@ model MultilingualTitle {
   ko?: string;
   `ja-Hrkt`?: string;
   `zh-Hans`?: string;
+  `zh-Hant`?: string;
 }
 
 @doc("曜日・日付区分を扱うクラス")

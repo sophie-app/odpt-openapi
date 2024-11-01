@@ -25,8 +25,8 @@ jobs:
       - name: install dependencies
         run: pnpm install
       - name: check formatting
-        run: pnpm lint:prettier
+        run: pnpm check:format
       - name: build
         run: pnpm build:tsp
       - name: lint openapi
-        run: pnpm lint:redocly
+        run: pnpm check:lint

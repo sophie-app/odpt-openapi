@@ -1,14 +1,8 @@
-import "@typespec/http";
-
-import "./error.tsp";
-
-using TypeSpec.Http;
-
 @doc("アクセストークン")
 scalar ConsumerKey extends string;
 
 @doc("固有識別子")
-scalar URN extends string;
+scalar `odpt.urn` extends string;
 
 @doc("固有識別子の別名 多くが`odpt.hoge:fuga`形式")
 scalar `odpt.url` extends string;
@@ -39,7 +33,7 @@ model Calendar {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:Calendar";
@@ -50,10 +44,10 @@ model Calendar {
   @doc("固有識別子")
   `owl:sameAs`: url;
 
-  @doc("カレンダー名称（日本語）")
+  @doc("カレンダー名称(日本語)")
   `dc:title`?: string;
 
-  @doc("カレンダー名称（多言語対応）")
+  @doc("カレンダー名称(多言語対応)")
   `odpt:calendarTitle`?: MultilingualTitle;
 }
 
@@ -64,7 +58,7 @@ model Operator {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:Operator";
@@ -75,31 +69,9 @@ model Operator {
   @doc("固有識別子")
   `owl:sameAs`: url;
 
-  @doc("事業者名称（日本語）")
+  @doc("事業者名称(日本語)")
   `dc:title`?: string;
 
-  @doc("事業者名称（多言語対応）")
+  @doc("事業者名称(多言語対応)")
   `odpt:operatorTitle`?: MultilingualTitle;
-}
-
-@route("/api/v4/odpt/Calendar")
-interface CalendarOperations {
-  @doc("曜日・日付区分(odpt:Calendar)の内容を取得する")
-  @get
-  getCalendars(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
-  ): Calendar[] | Common.Error;
-}
-
-@route("/api/v4/odpt/Operator")
-interface OperatorOperations {
-  @doc("公共交通機関の事業者(odpt:Operator)の内容を取得する")
-  @get
-  getOperators(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: url,
-  ): Operator[] | Common.Error;
 }

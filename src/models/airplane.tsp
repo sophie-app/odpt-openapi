@@ -1,18 +1,4 @@
-import "@typespec/http";
-import "@typespec/rest";
 import "../common/class.tsp";
-import "../common/error.tsp";
-
-@service({
-  title: "ODPT Airplane API",
-})
-@server("https://api.odpt.org/api/v4", "API サーバー")
-@doc("航空機に関連するデータを提供するAPI")
-@useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
-namespace AirplaneAPI;
-
-using TypeSpec.Http;
-using TypeSpec.Rest;
 
 @doc("空港の情報")
 model Airport {
@@ -20,7 +6,7 @@ model Airport {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   `@type`: "odpt:Airport";
@@ -31,10 +17,10 @@ model Airport {
   @doc("固有識別子")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("空港名（日本語）")
+  @doc("空港名(日本語)")
   `dc:title`?: string;
 
-  @doc("空港名（多言語対応）")
+  @doc("空港名(多言語対応)")
   `odpt:airportTitle`?: MultilingualTitle;
 
   @doc("空港のターミナルを表す ID のリスト")
@@ -56,7 +42,7 @@ model AirportTerminal {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   `@type`: "odpt:AirportTerminal";
@@ -67,10 +53,10 @@ model AirportTerminal {
   @doc("固有識別子")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("空港ターミナル名（日本語）")
+  @doc("空港ターミナル名(日本語)")
   `dc:title`?: string;
 
-  @doc("空港ターミナル名（多言語対応）")
+  @doc("空港ターミナル名(多言語対応)")
   `odpt:airportTerminalTitle`?: MultilingualTitle;
 
   @doc("空港を示すID")
@@ -92,7 +78,7 @@ model FlightInformationArrival {
   `@context`: url;
 
   @doc("固有識別子(ucode又はuuid)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:FlightInformationArrival";
@@ -118,10 +104,10 @@ model FlightInformationArrival {
   @doc("フライト状況を表すID")
   `odpt:flightStatus`?: url;
 
-  @doc("運行情報の要約（多言語対応）")
+  @doc("運行情報の要約(多言語対応)")
   `odpt:flightInformationSummary`?: MultilingualTitle;
 
-  @doc("運行情報の詳細（多言語対応）")
+  @doc("運行情報の詳細(多言語対応)")
   `odpt:flightInformationText`?: MultilingualTitle;
 
   @doc("定刻の到着時刻")
@@ -161,7 +147,7 @@ model FlightInformationDeparture {
   `@context`: url;
 
   @doc("固有識別子(ucode又はuuid)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:FlightInformationDeparture";
@@ -187,10 +173,10 @@ model FlightInformationDeparture {
   @doc("フライト状況を表すID")
   `odpt:flightStatus`?: url;
 
-  @doc("運行情報の要約（多言語対応）")
+  @doc("運行情報の要約(多言語対応)")
   `odpt:flightInformationSummary`?: MultilingualTitle;
 
-  @doc("運行情報の詳細（多言語対応）")
+  @doc("運行情報の詳細(多言語対応)")
   `odpt:flightInformationText`?: MultilingualTitle;
 
   @doc("定刻の出発時刻")
@@ -256,7 +242,7 @@ model FlightScheduleObject {
   @doc("データ適用終了日時")
   `odpt:isValidTo`?: DateTime;
 
-  @doc("注釈情報（多言語対応）")
+  @doc("注釈情報(多言語対応)")
   `odpt:note`?: MultilingualTitle;
 }
 
@@ -266,7 +252,7 @@ model FlightSchedule {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス指定")
   `@type`: "odpt:FlightSchedule";
@@ -299,7 +285,7 @@ model FlightStatus {
   `@context`: url;
 
   @doc("固有識別子(ucode)")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   `@type`: "odpt:FlightStatus";
@@ -310,91 +296,9 @@ model FlightStatus {
   @doc("固有識別子")
   `owl:sameAs`: `odpt.url`;
 
-  @doc("フライト状況（日本語）")
+  @doc("フライト状況(日本語)")
   `dc:title`?: string;
 
-  @doc("フライト状況（多言語対応）")
+  @doc("フライト状況(多言語対応)")
   `odpt:flightStatusTitle`?: MultilingualTitle;
-}
-@route("/odpt:Airport")
-interface AirportOperations {
-  @summary("空港情報の取得")
-  @get
-  getAirports(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
-  ): Airport[] | Common.Error;
-}
-
-@route("/odpt:AirportTerminal")
-interface AirportTerminalOperations {
-  @summary("空港ターミナル情報の取得")
-  @get
-  getAirportTerminals(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
-    @query @doc("空港を示すID") `odpt:airport`?: url,
-  ): AirportTerminal[] | Common.Error;
-}
-
-@route("/odpt:FlightInformationArrival")
-interface FlightInformationArrivalOperations {
-  @summary("フライト到着情報の取得")
-  @get
-  getFlightInformationArrivals(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
-    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: url,
-    @query @doc("エアラインの運行会社を示すID") `odpt:airline`?: url,
-    @query @doc("フライト状況を示すID") `odpt:flightStatus`?: url,
-    @query @doc("到着空港を示すID") `odpt:arrivalAirport`?: url,
-    @query @doc("到着空港ターミナルを示すID") `odpt:arrivalAirportTerminal`?: url,
-    @query @doc("到着空港ゲート番号") `odpt:arrivalGate`?: string,
-    @query @doc("出発地の空港を示すID") `odpt:originAirport`?: url,
-  ): FlightInformationArrival[] | Common.Error;
-}
-
-@route("/odpt:FlightInformationDeparture")
-interface FlightInformationDepartureOperations {
-  @summary("フライト出発情報の取得")
-  @get
-  getFlightInformationDepartures(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
-    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: url,
-    @query @doc("エアラインの運行会社を示すID") `odpt:airline`?: url,
-    @query @doc("フライト状況を示すID") `odpt:flightStatus`?: url,
-    @query @doc("出発空港を示すID") `odpt:departureAirport`?: url,
-    @query @doc("出発空港ターミナルを示すID") `odpt:departureAirportTerminal`?: url,
-    @query @doc("出発空港ゲート番号") `odpt:departureGate`?: string,
-    @query @doc("目的地の空港を示すID") `odpt:destinationAirport`?: url,
-  ): FlightInformationDeparture[] | Common.Error;
-}
-
-@route("/odpt:FlightSchedule")
-interface FlightScheduleOperations {
-  @summary("フライト時刻表の取得")
-  @get
-  getFlightSchedules(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
-    @query @doc("空港事業者または航空事業者を示すID") `odpt:operator`?: url,
-    @query @doc("運行日を示すID") `odpt:calendar`?: url,
-    @query @doc("出発地の空港を示すID") `odpt:originAirport`?: url,
-    @query @doc("目的地の空港を示すID") `odpt:destinationAirport`?: url,
-  ): FlightSchedule[] | Common.Error;
-}
-
-@route("/odpt:FlightStatus")
-interface FlightStatusOperations {
-  @summary("フライト状況定義の取得")
-  @get
-  getFlightStatuses(
-    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
-    @query @doc("データに付与された固有識別子") `@id`?: URN,
-    @query @doc("データに付与された固有識別子の別名") `owl:sameAs`?: `odpt.url`,
-  ): FlightStatus[] | Common.Error;
 }

@@ -1,0 +1,6 @@
+extends:
+  - recommended
+
+apis:
+  odpt@v4:
+    root: ./dist/openapi/openapi.yaml

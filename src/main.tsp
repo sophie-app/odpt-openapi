@@ -1,12 +1,23 @@
 import "@typespec/http";
-import "@typespec/rest";
-import "@typespec/openapi3";
+import "@typespec/openapi";
+import "./routes/index.tsp";
 
-import "./common/error.tsp";
-import "./common/class.tsp";
+using TypeSpec.Http;
+using TypeSpec.OpenAPI;
 
-import "./search/index.tsp";
-import "./airplane/index.tsp";
-import "./train/index.tsp";
-import "./bus/index.tsp";
-import "./file/index.tsp";
+@service({
+  title: "ODPT API",
+})
+@server("https://api.odpt.org/api/v4", "公共交通のオープンデータ API")
+@server(
+  "https://api-challenge2024.odpt.org/api/v4",
+  "公共交通のオープンデータ API (チャレンジ2024専用)"
+)
+@info({
+  license: {
+    name: "公共交通オープンデータ基本ライセンス, 公共交通オープンデータチャレンジ限定ライセンス",
+    url: "https://developer.odpt.org/terms",
+  },
+})
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
+namespace OdptAPI;

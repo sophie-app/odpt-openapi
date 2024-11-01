@@ -1,18 +1,4 @@
-import "@typespec/http";
-import "@typespec/rest";
 import "../common/class.tsp";
-import "../common/error.tsp";
-
-@service({
-  title: "ODPT Search API",
-})
-@server("https://api.odpt.org/api/v4", "API サーバー")
-@doc("ODPTの各種データ検索のためのAPI")
-@useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
-namespace SearchAPI;
-
-using TypeSpec.Http;
-using TypeSpec.Rest;
 
 @doc("データ検索APIのレスポンス")
 model DataSearchResponse {
@@ -22,7 +8,7 @@ model DataSearchResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030FD5D6")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Train")
@@ -93,13 +79,13 @@ model DumpResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000031028E6")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Station")
   `@type`: string;
 
-  @doc("駅名（日本語）")
+  @doc("駅名(日本語)")
   @example("東京")
   `dc:title`: string;
 
@@ -116,7 +102,7 @@ model RetrieveResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C000000000000010000030C46CA")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Station")
@@ -126,7 +112,7 @@ model RetrieveResponse {
   @example("2024-06-27T08:00:00+09:00")
   `dc:date`: DateTime;
 
-  @doc("駅名（日本語）")
+  @doc("駅名(日本語)")
   @example("上野")
   `dc:title`: string;
 
@@ -190,7 +176,7 @@ model PlaceSearchResponse {
 
   @doc("固有識別子(ucode)")
   @example("urn:ucode:_00001C00000000000001000003102C88")
-  `@id`: URN;
+  `@id`: `odpt.urn`;
 
   @doc("クラス名")
   @example("odpt:Station")
@@ -200,7 +186,7 @@ model PlaceSearchResponse {
   @example("2024-03-27T09:00:00+09:00")
   `dc:date`: DateTime;
 
-  @doc("駅名（日本語）")
+  @doc("駅名(日本語)")
   @example("日本橋")
   `dc:title`: string;
 
@@ -322,53 +308,4 @@ enum PlaceRDFType {
 
   @doc("バス停標柱情報")
   `odpt:BusstopPole`,
-}
-
-@route("/{RDF_TYPE}")
-interface DataSearchOperations {
-  @summary("データ検索API")
-  @get
-  search(
-    @path
-    @doc("取得するデータの種別 odpt:クラス名")
-    RDF_TYPE: `odpt.url`,
-
-    @query
-    @doc("rdf:typeで指定したクラスの持つプロパティを指定して、フィルタリングを行う")
-    PREDICATE?: string,
-  ): DataSearchResponse[] | Common.Error;
-}
-
-@route("/{RDF_TYPE}.json")
-interface DataDumpOperations {
-  @summary("データダンプAPI")
-  @get
-  dump(
-    @path @doc("取得するデータの種別 odpt:クラス名") RDF_TYPE: DumpRDFType,
-  ): DumpResponse[] | Common.Error;
-}
-
-@route("/datapoints/{DATA_URI}")
-interface DataRetrieveOperations {
-  @summary("データ取得API")
-  @get
-  retrieve(
-    @path @doc("取得するデータのURI") DATA_URI: URN | `odpt.url`,
-  ): RetrieveResponse[] | Common.Error;
-}
-
-@route("/places/{RDF_TYPE}")
-interface PlaceSearchOperations {
-  @summary("地物情報検索API")
-  @get
-  search(
-    @path @doc("取得するデータの種別") RDF_TYPE: PlaceRDFType,
-    @query @doc("取得する範囲の中心緯度、10進数表記、測地系はWGS84") lat: float,
-    @query @doc("取得する範囲の中心経度、10進数表記、測地系はWGS84") lon: float,
-    @query @doc("取得する範囲の半径をメートルで指定、0-4000mの範囲") radius: integer,
-
-    @query
-    @doc("rdf:typeで指定したクラスの持つプロパティを指定して、フィルタリングを行う")
-    PREDICATE?: string,
-  ): PlaceSearchResponse[] | Common.Error;
 }

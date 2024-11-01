@@ -1,19 +1,20 @@
 {
   "name": "odpt-openapi",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
-    "dev": "pnpm dev:tsp & pnpm dev:docs",
-    "dev:tsp": "pnpm build:tsp --watch",
-    "dev:docs": "redocly preview-docs ./dist/@typespec/openapi3/openapi.$NAME.yaml",
-    "build": "pnpm build:tsp && pnpm build:docs",
-    "build:tsp": "tsp compile ./src --output-dir ./dist",
-    "build:docs": "redocly build-docs -o ./dist/doc/index.html",
-    "lint": "pnpm /^lint:.*/",
-    "lint:prettier": "pnpm run:prettier . --check",
-    "lint:redocly": "redocly lint ./dist/@typespec/openapi3/openapi.*.yaml",
-    "typecheck": "pnpm build:tsp --noEmit",
-    "run:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --cache"
+    "dev": "pnpm /^watch:.*/",
+    "watch:tsp": "tsp compile ./src/ --watch",
+    "watch:redocly": "redocly preview-docs",
+    "build": "pnpm build:tsp && pnpm build:redocly",
+    "build:tsp": "tsp compile ./src/",
+    "build:redocly": "redocly build-docs -o './dist/docs/index.html'",
+    "prebuild": "pnpx rimraf ./dist",
+    "check": "pnpm /^check:.*/",
+    "check:format": "prettier -c ./src/",
+    "check:lint": "redocly lint",
+    "fix": "pnpm /^fix:.*/",
+    "fix:format": "prettier -w ./src/"
   },
   "peerDependencies": {
     "@typespec/compiler": "0.61.0",
@@ -25,10 +26,10 @@
     "@redocly/cli": "^1.25.8",
     "@typespec/compiler": "0.61.0",
     "@typespec/http": "0.61.0",
+    "@typespec/openapi": "0.61.0",
     "@typespec/openapi3": "0.61.0",
     "@typespec/prettier-plugin-typespec": "^0.61.0",
     "@typespec/rest": "0.61.0",
     "prettier": "^3.3.3"
-  },
-  "private": true
+  }
 }

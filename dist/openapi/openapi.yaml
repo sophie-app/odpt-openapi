@@ -1,0 +1,4814 @@
+openapi: 3.0.0
+info:
+  title: ODPT API
+  license:
+    name: 公共交通オープンデータ基本ライセンス, 公共交通オープンデータチャレンジ限定ライセンス
+    url: https://developer.odpt.org/terms
+  version: 0.0.0
+tags: []
+paths:
+  /Operator:
+    get:
+      operationId: OperatorOperations_getOperators
+      summary: 公共交通機関の事業者(odpt:Operator)の内容を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            type: string
+            format: uri
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Operator'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /datapoints/{DATA_URI}:
+    get:
+      operationId: DataRetrieveOperations_retrieve
+      summary: データ取得API
+      parameters:
+        - name: DATA_URI
+          in: path
+          required: true
+          description: 取得するデータのURI
+          schema:
+            anyOf:
+              - $ref: '#/components/schemas/odpt.urn'
+              - $ref: '#/components/schemas/odpt.url'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RetrieveResponse'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /files/{filePath}:
+    get:
+      operationId: FilesOperations_getFiles
+      summary: ファイルを取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: filePath
+          in: path
+          required: true
+          description: ファイルパス
+          schema:
+            type: string
+      responses:
+        '302':
+          description: ファイルリンクへのリダイレクト
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt/Calendar:
+    get:
+      operationId: CalendarOperations_getCalendars
+      summary: 曜日・日付区分(odpt:Calendar)の内容を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            type: string
+            format: uri
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Calendar'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Airport:
+    get:
+      operationId: AirportOperations_getAirports
+      summary: 空港情報の取得
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airport'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:AirportTerminal:
+    get:
+      operationId: AirportTerminalOperations_getAirportTerminals
+      summary: 空港ターミナル情報の取得
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:airport
+          in: query
+          required: false
+          description: 空港を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AirportTerminal'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Bus:
+    get:
+      operationId: BusOperation_getBuses
+      summary: バス車両の運行情報
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:busroutePattern
+          in: query
+          required: false
+          description: バス車両の運行系統のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:fromBusstopPole
+          in: query
+          required: false
+          description: 直近に通過した、あるいは停車中のバス停のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:toBusstopPole
+          in: query
+          required: false
+          description: 次に到着するバス停のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bus'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:BusTimetable:
+    get:
+      operationId: BusTimetableOperations_getBusTimetables
+      summary: バスの便の時刻表
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: true
+          description: 事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:busroutePattern
+          in: query
+          required: false
+          description: 対応する系統のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: dc:title
+          in: query
+          required: false
+          description: バス路線名称
+          schema:
+            type: string
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: カレンダーのID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusTimetable'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:BusroutePattern:
+    get:
+      operationId: BusroutePatternOperations_getBusroutePatterns
+      summary: 運行系統情報
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: dc:title
+          in: query
+          required: false
+          description: 路線・系統名称
+          schema:
+            type: string
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:busroute
+          in: query
+          required: false
+          description: 路線のID
+          schema:
+            type: string
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusroutePattern'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:BusroutePatternFare:
+    get:
+      operationId: BusroutePatternFareOperations_getBusroutePatternFares
+      summary: 運賃情報
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:fromBusstopPole
+          in: query
+          required: false
+          description: 乗車バス停(標柱)のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:toBusstopPole
+          in: query
+          required: false
+          description: 降車バス停(標柱)のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:ticketFare
+          in: query
+          required: false
+          description: 切符利用時の運賃
+          schema:
+            type: integer
+          explode: false
+        - name: odpt:childTicketFare
+          in: query
+          required: false
+          description: 切符利用時の子供運賃
+          schema:
+            type: integer
+          explode: false
+        - name: odpt:icCardFare
+          in: query
+          required: false
+          description: ICカード利用時の運賃
+          schema:
+            type: integer
+          explode: false
+        - name: odpt:childIcCardFare
+          in: query
+          required: false
+          description: ICカード利用時の子供運賃
+          schema:
+            type: integer
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusroutePatternFare'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:BusstopPole:
+    get:
+      operationId: BusstopPoleOperations_getBusstopPoles
+      summary: バス停情報
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: dc:title
+          in: query
+          required: false
+          description: バス停名
+          schema:
+            type: string
+          explode: false
+        - name: odpt:busstopPoleNumber
+          in: query
+          required: false
+          description: 標柱番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:platformNumber
+          in: query
+          required: false
+          description: のりば番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:busroutePattern
+          in: query
+          required: false
+          description: 標柱で発着する系統のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusstopPole'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:BusstopPoleTimetable:
+    get:
+      operationId: BusstopPoleTimetableOperations_getBusstopPoleTimetables
+      summary: バス停(標柱)時刻表
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:busstopPole
+          in: query
+          required: false
+          description: バス停(標柱)のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:busDirection
+          in: query
+          required: false
+          description: 方面のID
+          schema:
+            type: string
+          explode: false
+        - name: odpt:busroute
+          in: query
+          required: false
+          description: 路線のID
+          schema:
+            type: string
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: カレンダーのID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: dc:date
+          in: query
+          required: false
+          description: データ生成日付
+          schema:
+            $ref: '#/components/schemas/DateTime'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusstopPoleTimetable'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:FlightInformationArrival:
+    get:
+      operationId: FlightInformationArrivalOperations_getFlightInformationArrivals
+      summary: フライト到着情報の取得
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 空港事業者または航空事業者を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:airline
+          in: query
+          required: false
+          description: エアラインの運行会社を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:flightStatus
+          in: query
+          required: false
+          description: フライト状況を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:arrivalAirport
+          in: query
+          required: false
+          description: 到着空港を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:arrivalAirportTerminal
+          in: query
+          required: false
+          description: 到着空港ターミナルを示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:arrivalGate
+          in: query
+          required: false
+          description: 到着空港ゲート番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:originAirport
+          in: query
+          required: false
+          description: 出発地の空港を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightInformationArrival'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:FlightInformationDeparture:
+    get:
+      operationId: FlightInformationDepartureOperations_getFlightInformationDepartures
+      summary: フライト出発情報の取得
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 空港事業者または航空事業者を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:airline
+          in: query
+          required: false
+          description: エアラインの運行会社を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:flightStatus
+          in: query
+          required: false
+          description: フライト状況を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:departureAirport
+          in: query
+          required: false
+          description: 出発空港を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:departureAirportTerminal
+          in: query
+          required: false
+          description: 出発空港ターミナルを示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:departureGate
+          in: query
+          required: false
+          description: 出発空港ゲート番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:destinationAirport
+          in: query
+          required: false
+          description: 目的地の空港を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightInformationDeparture'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:FlightSchedule:
+    get:
+      operationId: FlightScheduleOperations_getFlightSchedules
+      summary: フライト時刻表の取得
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 空港事業者または航空事業者を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: 運行日を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:originAirport
+          in: query
+          required: false
+          description: 出発地の空港を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+        - name: odpt:destinationAirport
+          in: query
+          required: false
+          description: 目的地の空港を示すID
+          schema:
+            type: string
+            format: uri
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightSchedule'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:FlightStatus:
+    get:
+      operationId: FlightStatusOperations_getFlightStatuses
+      summary: フライト状況定義の取得
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlightStatus'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:PassengerSurvey:
+    get:
+      operationId: PassengerSurveyOperations_getPassengerSurveys
+      summary: 駅の乗降人員数を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:station
+          in: query
+          required: false
+          description: 駅を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 路線を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PassengerSurvey'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:RailDirection:
+    get:
+      operationId: RailDirectionOperations_getRailDirections
+      summary: 進行方向の定義を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RailDirection'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Railway:
+    get:
+      operationId: RailwayOperations_getRailways
+      summary: 路線情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: dc:title
+          in: query
+          required: false
+          description: 路線名
+          schema:
+            type: string
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:lineCode
+          in: query
+          required: false
+          description: 路線コード、路線シンボル表記
+          schema:
+            type: string
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Railway'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:RailwayFare:
+    get:
+      operationId: RailwayFareOperations_getRailwayFares
+      summary: 2駅間の運賃を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:fromStation
+          in: query
+          required: false
+          description: 出発駅のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:toStation
+          in: query
+          required: false
+          description: 到着駅のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RailwayFare'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Station:
+    get:
+      operationId: StationOperations_getStations
+      summary: 駅情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: dc:title
+          in: query
+          required: false
+          description: 駅名
+          schema:
+            type: string
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 駅が存在する路線ID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:stationCode
+          in: query
+          required: false
+          description: 駅ナンバリング
+          schema:
+            type: string
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Station'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:StationTimetable:
+    get:
+      operationId: StationTimetableOperations_getStationTimetables
+      summary: 駅時刻表を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:station
+          in: query
+          required: false
+          description: 駅を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 路線を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:railDirection
+          in: query
+          required: false
+          description: 進行方向を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: 実施日を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: dc:date
+          in: query
+          required: false
+          description: 特定日付の時刻表を取得
+          schema:
+            $ref: '#/components/schemas/DateTime'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StationTimetable'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:Train:
+    get:
+      operationId: TrainOperations_getTrains
+      summary: 列車情報(列車の位置情報)を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 列車情報を配信する事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 当該列車が運行している路線のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Train'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:TrainInformation:
+    get:
+      operationId: TrainInformationOperations_getTrainInformation
+      summary: 列車運行情報を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 運行情報を配信する事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 運行情報が発生した路線のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainInformation'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:TrainTimetable:
+    get:
+      operationId: TrainTimetableOperations_getTrainTimetables
+      summary: 列車時刻表を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: 固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: 固有識別子別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:trainNumber
+          in: query
+          required: false
+          description: 列車番号
+          schema:
+            type: string
+          explode: false
+        - name: odpt:railway
+          in: query
+          required: false
+          description: 路線のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 運行事業者のID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:trainType
+          in: query
+          required: false
+          description: 列車種別ID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:train
+          in: query
+          required: false
+          description: 該当する列車ID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:calendar
+          in: query
+          required: false
+          description: 特定のカレンダー情報ID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainTimetable'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /odpt:TrainType:
+    get:
+      operationId: TrainTypeOperations_getTrainTypes
+      summary: 列車種別の定義を取得する
+      parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
+        - name: '@id'
+          in: query
+          required: false
+          description: データに付与された固有識別子
+          schema:
+            $ref: '#/components/schemas/odpt.urn'
+          explode: false
+        - name: owl:sameAs
+          in: query
+          required: false
+          description: データに付与された固有識別子の別名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+        - name: odpt:operator
+          in: query
+          required: false
+          description: 事業者を表すID
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainType'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /places/{RDF_TYPE}:
+    get:
+      operationId: PlaceSearchOperations_search
+      summary: 地物情報検索API
+      parameters:
+        - name: RDF_TYPE
+          in: path
+          required: true
+          description: 取得するデータの種別
+          schema:
+            $ref: '#/components/schemas/PlaceRDFType'
+        - name: lat
+          in: query
+          required: true
+          description: 取得する範囲の中心緯度、10進数表記、測地系はWGS84
+          schema:
+            type: number
+          explode: false
+        - name: lon
+          in: query
+          required: true
+          description: 取得する範囲の中心経度、10進数表記、測地系はWGS84
+          schema:
+            type: number
+          explode: false
+        - name: radius
+          in: query
+          required: true
+          description: 取得する範囲の半径をメートルで指定、0-4000mの範囲
+          schema:
+            type: integer
+          explode: false
+        - name: PREDICATE
+          in: query
+          required: false
+          description: rdf:typeで指定したクラスの持つプロパティを指定して、フィルタリングを行う
+          schema:
+            type: string
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlaceSearchResponse'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /{RDF_TYPE}:
+    get:
+      operationId: DataSearchOperations_search
+      summary: データ検索API
+      parameters:
+        - name: RDF_TYPE
+          in: path
+          required: true
+          description: 取得するデータの種別 odpt:クラス名
+          schema:
+            $ref: '#/components/schemas/odpt.url'
+        - name: PREDICATE
+          in: query
+          required: false
+          description: rdf:typeで指定したクラスの持つプロパティを指定して、フィルタリングを行う
+          schema:
+            type: string
+          explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSearchResponse'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+  /{RDF_TYPE}.json:
+    get:
+      operationId: DataDumpOperations_dump
+      summary: データダンプAPI
+      parameters:
+        - name: RDF_TYPE
+          in: path
+          required: true
+          description: 取得するデータの種別 odpt:クラス名
+          schema:
+            $ref: '#/components/schemas/DumpRDFType'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DumpResponse'
+        '400':
+          description: パラメータ不正
+        '401':
+          description: acl:consumerKeyが誤っている
+        '403':
+          description: 権限なし
+        '404':
+          description: 該当データ無し
+        '500':
+          description: サーバー内部エラー
+        '503':
+          description: サービス利用不可
+security:
+  - ApiKeyAuth: []
+components:
+  schemas:
+    Airport:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:Airport
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: 空港名(日本語)
+        odpt:airportTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 空港名(多言語対応)
+        odpt:airportTerminal:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: 空港のターミナルを表す ID のリスト
+        geo:long:
+          type: number
+          format: decimal
+          description: 代表点の経度
+        geo:lat:
+          type: number
+          format: decimal
+          description: 代表点の緯度
+        ug:region:
+          type: object
+          additionalProperties: {}
+          description: GeoJSON形式による地物情報
+      description: 空港の情報
+    AirportTerminal:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - odpt:airport
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:AirportTerminal
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: 空港ターミナル名(日本語)
+        odpt:airportTerminalTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 空港ターミナル名(多言語対応)
+        odpt:airport:
+          type: string
+          format: uri
+          description: 空港を示すID
+        geo:long:
+          type: number
+          format: decimal
+          description: 代表点の経度
+        geo:lat:
+          type: number
+          format: decimal
+          description: 代表点の緯度
+        ug:region:
+          type: object
+          additionalProperties: {}
+          description: GeoJSON形式による地物情報
+      description: 空港のターミナルの情報
+    Bus:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - odpt:busNumber
+        - dc:date
+        - dct:valid
+        - odpt:frequency
+        - odpt:busroutePattern
+        - odpt:operator
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt_Bus.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C00000000000001000003533B23
+          description: 固有識別子
+        '@type':
+          type: string
+          enum:
+            - odpt:Bus
+          example: odpt:Bus
+          description: バス運行情報のクラス名
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Bus:YokohamaMunicipal.02101.08_1.1889
+          description: バス運行情報の固有識別子
+        odpt:busNumber:
+          type: string
+          example: '1889'
+          description: バス車両番号
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-10-28T14:17:46+09:00
+          description: データ生成時刻
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-10-28T14:18:22+09:00
+          description: データ保証期限
+        odpt:frequency:
+          type: integer
+          example: 30
+          description: 更新頻度(秒)、指定された秒数以降にリクエストを行うことで、最新値が取得される。
+        odpt:busroutePattern:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusroutePattern:YokohamaMunicipal.02101.08_1
+          description: 運行中の系統のID (odpt:BusroutePatternのowl:sameAs)
+        odpt:busTimetable:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusTimetable:YokohamaMunicipal.02101.08_1.08202410011021A00208
+          description: 運行中の便の時刻表のID (odpt:BusTimetableのowl:sameAs)
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:YokohamaMunicipal
+          description: 運行会社のID (odpt:Operatorのowl:sameAs)
+        odpt:startingBusstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:YokohamaMunicipal.SakuragichoStation.2014.6
+          description: 運行中系統の始発バス停を表すID (odpt:BusstopPoleのowl:sameAs)
+        odpt:terminalBusstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:YokohamaMunicipal.ShidenHozonKanMae.2288.2
+          description: 運行中系統の終着バス停を表すID (odpt:BusstopPoleのowl:sameAs)
+        odpt:fromBusstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:YokohamaMunicipal.Higashicho.5218.2
+          description: 直近に通過した、あるいは停車中のバス停のID (odpt:BusstopPoleのowl:sameAs)
+        odpt:fromBusstopPoleTime:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-10-28T14:18:20+09:00
+          description: 直近に通過したバス停を発車した時刻。odpt:fromBusstopPoleがnullならばodpt:fromBusstopPoleTimeもnullとなる
+        odpt:toBusstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:YokohamaMunicipal.NegishiStation.4600.5
+          description: 次に到着するバス停のID (odpt:BusstopPoleのowl:sameAs)
+        odpt:progress:
+          type: number
+          example: 0
+          description: Fromを0, Toを1とした際の現在位置 (割合)
+        geo:long:
+          type: number
+          example: 139.63494873046875
+          description: 対象となるバスの経度 (10進表記、測地系はWGS84)
+        geo:lat:
+          type: number
+          example: 35.41614532470703
+          description: 対象となるバスの緯度 (10進表記、測地系はWGS84)
+        odpt:speed:
+          type: number
+          example: 0
+          description: 対象となるバスの速度 (km/h)
+        odpt:azimuth:
+          type: number
+          example: 249.9993896484375
+          description: 対象となるバスの進行方向方位角を示す。単位は度(°)。北が0度で、時計回り(東回り)に増加する。
+        odpt:doorStatus:
+          allOf:
+            - $ref: '#/components/schemas/BusDoorStatus'
+          example: open
+          description: 対象となるバスの扉の開閉状態
+        odpt:occupancyStatus:
+          allOf:
+            - $ref: '#/components/schemas/OccupancyStatus'
+          example: odpt.OccupancyStatus:ManySeatsAvailable
+          description: 車両の混雑度
+      description: |-
+        バスの運行情報
+        `odpt:busroutePattern` が運行中の系統を示し、 `odpt:fromBusstopPole`, `odpt:toBusstopPole` で現在位置を示す。
+        接近中の判別がつかない場合は、`odpt:fromBusstopPole` は null とはならない場合がある。
+        停車中の判別がつかない場合は、`odpt:toBusstopPole` は null とはならない場合がある。
+        odpt:occupancyStatus は車両の混雑度を示す。
+    BusDoorStatus:
+      type: string
+      enum:
+        - open
+        - close
+        - self
+    BusTimetable:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - odpt:operator
+        - odpt:busroutePattern
+        - odpt:calendar
+        - odpt:busTimetableObject
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt_BusTimetable.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C00000000000001000003A69FCCz
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:BusTimetable
+          example: odpt:BusTimetable
+          description: バス時刻表のクラス名、"odpt:BusTimetable"が入る
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusTimetable:OdakyuBus.Sakai91.40503.2.1400.700000677.Specific.OdakyuBus.Komae.Saturday21
+          description: バス時刻表の固有識別子
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-09-11T15:04:38+09:00
+          description: データ生成時刻
+        dct:issued:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+          example: 2024-09-11
+          description: ダイヤ改正日
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-09-11T15:04:38+09:00
+          description: データ保証期限
+        dc:title:
+          type: string
+          example: 境９１
+          description: バス路線名称(系統名等)
+        odpt:kana:
+          type: string
+          example: さかいきゅうじゅういち
+          description: バス路線名称のよみがな
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:OdakyuBus
+          description: 運行会社のID (odpt:Operatorのowl:sameAs)
+        odpt:busroutePattern:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusroutePattern:OdakyuBus.Sakai91.40503.2
+          description: 対応する運行系統のID (odpt:BusroutePatternのowl:sameAs)
+        odpt:calendar:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Calendar:Specific.OdakyuBus.Komae.Saturday21
+          description: カレンダーのID (odpt:Calendarのowl:sameAs)
+        odpt:busTimetableObject:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusTimetableObject'
+          example:
+            - odpt:note: 武蔵境駅南口:10140:3
+              odpt:index: 0
+              odpt:canGetOn: true
+              odpt:canGetOff: false
+              odpt:isMidnight: false
+              odpt:arrivalTime: 12:36
+              odpt:busstopPole: odpt.BusstopPole:OdakyuBus.Musashisakaiekiminamiguchi.10140.3
+              odpt:departureTime: 12:36
+          description: バス時刻表時分情報
+      description: バスの便の時刻表
+    BusTimetableObject:
+      type: object
+      required:
+        - odpt:index
+        - odpt:busstopPole
+      properties:
+        odpt:index:
+          type: integer
+          example: 0
+          description: 標柱通過順
+        odpt:busstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:OdakyuBus.Musashisakaiekiminamiguchi.10140.3
+          description: バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)
+        odpt:arrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 12:36
+          description: バス到着時刻
+        odpt:departureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 12:36
+          description: バス出発時刻
+        odpt:destinationSign:
+          type: string
+          example: ( 桜ケ丘 経由 ) 横浜駅西口 行
+          description: 行先(方向幕)情報
+        odpt:isNonStepBus:
+          type: boolean
+          example: true
+          description: ノンステップバスの場合 true
+        odpt:isMidnight:
+          type: boolean
+          example: true
+          description: 深夜バスの場合 true
+        odpt:canGetOn:
+          type: boolean
+          example: true
+          description: 乗車可能な場合 true
+        odpt:canGetOff:
+          type: boolean
+          example: true
+          description: 降車可能な場合 true
+        odpt:note:
+          type: string
+          example: 蔵境駅南口:10140:3
+          description: 注記
+      description: バス時刻表時分情報
+    BusroutePattern:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - dc:date
+        - dc:title
+        - odpt:operator
+        - odpt:busstopPoleOrder
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt_BusroutePattern.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C0000000000000100000387F25A
+          description: 固有識別子 (ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:BusroutePattern
+          example: odpt:BusroutePattern
+          description: バス路線情報のクラス名、"odpt:BusroutePattern"が入る
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusroutePattern:NishiTokyoBus.Chokutsuu.500102.2
+          description: バス路線情報の固有識別子
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成時刻
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2023-03-23T13:52:02+09:00
+          description: データの保証期限
+        dc:title:
+          type: string
+          example: 直通
+          description: バス路線名称(系統名・系統番号等)
+        odpt:kana:
+          type: string
+          example: ちょくつう
+          description: バス路線名称のよみがな
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:NishiTokyoBus
+          description: 運営会社を表すID (odpt:Operatorのowl:sameAs)
+        odpt:busroute:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Busroute:NishiTokyoBus.Chokutsuu
+          description: 系統を表すID
+        odpt:pattern:
+          type: string
+          example: '500102'
+          description: 系統パターン
+        odpt:direction:
+          type: string
+          example: '2'
+          description: 方向
+        ug:region:
+          type: object
+          additionalProperties: {}
+          example: {}
+          description: GeoJSON形式による地物情報
+        odpt:busstopPoleOrder:
+          type: array
+          items:
+            $ref: '#/components/schemas/BussstopPoleOrder'
+          example:
+            - odpt:busstopPole: odpt.BusstopPole:NishiTokyoBus.JRHachiojiStationNorthExit.390.15
+              odpt:index: 1
+              odpt:openingDoorsToGetOn:
+                - odpt:OpeningDoor:FrontSide
+              odpt:openingDoorsToGetOff:
+                - odpt:OpeningDoor:FrontSide
+          description: 停留所(標柱)の順序
+        odpt:note:
+          type: string
+          example: 036系統::03618.03_1
+          description: 注記
+        odpt:busLocationURL:
+          type: string
+          format: uri
+          description: バス位置情報を示すWebSiteのURL
+      description: |-
+        バス路線の系統情報
+        `odpt:busstopPoleOrder` が、運行するバスの停車する停留所 (標柱) の順序を表現している。
+        バス路線 ('王５７'等) は、通常、複数の系統情報から構成される。
+        (e.g. 往路、復路、異なる停留所通過順のバリエーション)
+    BusroutePatternFare:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - dc:date
+        - odpt:operator
+        - odpt:fromBusroutePattern
+        - odpt:fromBusstopPoleOrder
+        - odpt:fromBusstopPole
+        - odpt:toBusroutePattern
+        - odpt:toBusstopPoleOrder
+        - odpt:toBusstopPole
+        - odpt:ticketFare
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C00000000000001000003A7A364
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:BusroutePatternFare
+          example: odpt:BusroutePatternFare
+          description: バス運賃のクラス名、"odpt:BusroutePatternFare"が入る
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusroutePatternFare:YokohamaMunicipal.34100.09_3.25.SakuragichoStation.2014.12.YokohamaMunicipal.34100.09_3.27.YokohamaStation.7812.6
+          description: バス運賃の固有識別子
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-09-28T09:14:16+09:00
+          description: データ生成時刻
+        dct:issued:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+          example: 2024-09-28
+          description: 運賃改定日
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-09-28T09:14:16+09:00
+          description: データ保証期限
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:YokohamaMunicipal
+          description: 運行会社を表すID (odpt:Operatorのowl:sameAs)
+        odpt:fromBusroutePattern:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusroutePattern:YokohamaMunicipal.34100.09_3
+          description: 乗車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)
+        odpt:fromBusstopPoleOrder:
+          type: integer
+          example: 25
+          description: 乗車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:fromBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。
+        odpt:fromBusstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:YokohamaMunicipal.SakuragichoStation.2014.12
+          description: 乗車バス停を表すID。odpt:fromBusroutePattern, odpt:fromBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。
+        odpt:toBusroutePattern:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusroutePattern:YokohamaMunicipal.34100.09_3
+          description: 降車系統パターンを表すID (odpt:BusroutePatternのowl:sameAs)
+        odpt:toBusstopPoleOrder:
+          type: integer
+          example: 27
+          description: 降車停留所の系統パターン内の停留所 (標柱) 通過順。odpt:toBusroutePattern の示す odpt:BusroutePattern の、 odpt:busstopPoleOrder の odpt:index と同じ値。
+        odpt:toBusstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:YokohamaMunicipal.YokohamaStation.7812.6
+          description: 降車バス停を表すID (odpt:BusstopPoleのowl:sameAs)。 odpt:toBusroutePattern, odpt:toBusstopPoleOrder の示すバス停 (標柱) のIDと同じ。
+        odpt:ticketFare:
+          type: integer
+          example: 200
+          description: 切符利用時の運賃 (円)
+        odpt:childTicketFare:
+          type: integer
+          example: 100
+          description: 切符利用時の子供運賃 (円)
+        odpt:icCardFare:
+          type: integer
+          example: 200
+          description: ICカード利用時の運賃 (円)
+        odpt:childIcCardFare:
+          type: integer
+          example: 100
+          description: ICカード利用時の子供運賃 (円)
+      description: 乗車バス停(標柱)、降車バス停(標柱)についての運賃情報
+    BussstopPoleOrder:
+      type: object
+      required:
+        - odpt:busstopPole
+        - odpt:index
+      properties:
+        odpt:busstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:NishiTokyoBus.JRHachiojiStationNorthExit.390.15
+          description: 停留所のID (odpt:BusstopPoleのowl:sameAs)
+        odpt:index:
+          type: integer
+          example: 1
+          description: 停留所通過順。通過順の昇順の値となる
+        odpt:openingDoorsToGetOn:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpeningDoor'
+          example:
+            - odpt:OpeningDoor:FrontSide
+          description: 乗車時に利用可能なドア
+        odpt:openingDoorsToGetOff:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpeningDoor'
+          example:
+            - odpt:OpeningDoor:FrontSide
+          description: 降車時に利用可能なドア
+        odpt:note:
+          type: string
+          description: 注記
+      description: 停留所(標柱)の順序
+    BusstopPole:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - dc:date
+        - dc:title
+        - odpt:operator
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C0000000000000100000315AB88
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:BusstopPole
+          example: odpt:BusstopPole
+          description: バス停 (標柱) のクラス名、"odpt:BusstopPole"が入る
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:OdakyuBus.Nakazato.20305.2
+          description: バス停 (標柱) の固有識別子
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-08-06T14:09:17+09:00
+          description: データ生成時刻
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-08-06T14:09:17+09:00
+          description: データの保証期限
+        dc:title:
+          type: string
+          example: 中里
+          description: バス停名
+        odpt:kana:
+          type: string
+          example: ナカザト
+          description: バス停名のよみがな
+        title:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 中里
+            ja-Hrkt: とよすえきまえ
+            en: Nakazato
+            ko: 나카자토
+            zh-Hans: 中里
+          description: バス停名(多言語対応)
+        geo:long:
+          type: number
+          example: 139.1234
+          description: 標柱の経度(WGS84)
+        geo:lat:
+          type: number
+          example: 35.1234
+          description: 標柱の緯度(WGS84)
+        odpt:busroutePattern:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.BusroutePattern:OdakyuBus.Shimo61.20101.2
+          description: 入線する系統パターンのID (odpt:BusroutePatternのowl:sameAs) のリスト
+        odpt:operator:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Operator:OdakyuBus
+          description: 入線するバスの運営会社を表すID (odpt:Operatorのowl:sameAs) のリスト
+        odpt:busstopPoleNumber:
+          type: string
+          example: '2'
+          description: 標柱番号。同一停留所の別標柱を区別するものであり、のりば番号とは一致する保証はない
+        odpt:platformNumber:
+          type: string
+          example: '1'
+          description: のりば番号
+        odpt:busstopPoleTimetable:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          description: バス停(標柱)時刻表のID (odpt:BusstopPoleTimetableのowl:sameAs) のリスト
+      description: バス停情報 odpt:BusstopPoleは、バス停(標柱)の情報
+    BusstopPoleTimetable:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - dc:date
+        - odpt:busstopPole
+        - odpt:busDirection
+        - odpt:busroute
+        - odpt:operator
+        - odpt:calendar
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C00000000000001000003A67D78
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:BusstopPoleTimetable
+          example: odpt:BusstopPoleTimetable
+          description: バス停(標柱)時刻表のクラス名、"odpt:BusstopPoleTimetable"が入る
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPoleTimetable:KeioBus.Sakura80.Sakura88Fu.Sakura84.Sakura88.Sakura83.Higashinakano.1157.1.Minamioosawaeki.Weekday
+          description: バス停(標柱)時刻表の固有識別子
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-09-30T10:42:46+09:00
+          description: データ生成時刻
+        dct:issued:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+          example: 2024-09-30
+          description: ダイヤ改正日
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-09-30T10:42:46+09:00
+          description: データ保証期限。ISO8601形式。期限が存在する場合のみ格納する。
+        dc:title:
+          type: string
+          example: 桜８０、桜８８-ふ、桜８４、桜８８、桜８３:東中野:京王堀之内駅・相模原駅・南大沢駅・由木折返場行:平日
+          description: バス路線名称(系統名等)
+        odpt:busstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:KeioBus.Higashinakano.1157.1
+          description: バス停(標柱)を表すID (odpt:BusstopPoleのowl:sameAs)
+        odpt:busDirection:
+          anyOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          example: odpt.BusDirection:KeioBus.Minamioosawaeki
+          description: 方面を表すID。array となる場合もある。
+        odpt:busroute:
+          anyOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          example:
+            - odpt.Busroute:KeioBus.Sakura80
+            - odpt.Busroute:KeioBus.Sakura88Fu
+            - odpt.Busroute:KeioBus.Sakura84
+            - odpt.Busroute:KeioBus.Sakura88
+            - odpt.Busroute:KeioBus.Sakura83
+          description: 路線を表すID。array となる場合もある。(複数路線を含む時刻表の場合等)
+        odpt:operator:
+          anyOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          example: odpt.Operator:KeioBus
+          description: 運行会社を表すID (odpt:Operatorのowl:sameAs)
+        odpt:calendar:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Calendar:Weekday
+          description: 運行する曜日・日付 (odpt:Calendarのowl:sameAs)
+        odpt:busstopPoleTimetableObject:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusstopPoleTimetableObject'
+          example:
+            - odpt:busroutePattern: odpt.BusroutePattern:KeioBus.Sakura80.699.1
+              odpt:departureTime: 06:30
+              odpt:destinationBusstopPole: odpt.BusstopPole:KeioBus.Minamioosawaeki.1395.0
+              odpt:destinationSign: 南大沢駅
+              odpt:isMidnight: true
+              odpt:note: 南大沢駅行
+          description: バス停(標柱)時刻表の時分情報
+      description: バス停(標柱)時刻表 odpt:busstopPole で示されたバス停(標柱)の時刻表
+    BusstopPoleTimetableObject:
+      type: object
+      required:
+        - odpt:departureTime
+      properties:
+        odpt:arrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 10:00
+          description: バス到着時刻
+        odpt:departureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 10:00
+          description: バス出発時刻
+        odpt:destinationBusstopPole:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusstopPole:KeioBus.Minamioosawaeki.1395.0
+          description: 行先バス停(標柱)のID (odpt:BusstopPoleのowl:sameAs)
+        odpt:destinationSign:
+          type: string
+          example: 南大沢駅
+          description: 行先(方向幕)情報
+        odpt:busroutePattern:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.BusroutePattern:KeioBus.Sakura80.699.1
+          description: バス路線のID (odpt:BusroutePatternのowl:sameAs)
+        odpt:busroutePatternOrder:
+          type: integer
+          example: 0
+          description: 系統パターン内の停留所(標柱)通過順。odpt:busroutePattern の示す odpt:BusroutePattern の odpt:busstopPoleOrder の odpt:index と同じ値。
+        odpt:isNonStepBus:
+          type: boolean
+          example: true
+          description: ノンステップバスの場合 true
+        odpt:isMidnight:
+          type: boolean
+          example: true
+          description: 深夜バスの場合 true
+        odpt:canGetOn:
+          type: boolean
+          example: true
+          description: 乗車可能な場合 true
+        odpt:canGetOff:
+          type: boolean
+          example: true
+          description: 降車可能な場合 true
+        odpt:note:
+          type: string
+          example: 南大沢駅行
+          description: 注記
+      description: バス停(標柱)時刻表の時分情報
+    Calendar:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:Calendar
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          type: string
+          format: uri
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: カレンダー名称(日本語)
+        odpt:calendarTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: カレンダー名称(多言語対応)
+      description: 曜日・日付区分を扱うクラス
+    ConsumerKey:
+      type: string
+      description: アクセストークン
+    DataSearchResponse:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - dct:valid
+        - odpt:frequency
+        - odpt:railway
+        - owl:sameAs
+        - odpt:trainNumber
+        - odpt:trainType
+        - odpt:originStation
+        - odpt:destinationStation
+        - odpt:fromStation
+        - odpt:toStation
+        - odpt:railDirection
+        - odpt:operator
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt_Train.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD5D6
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          example: odpt:Train
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-11-28T11:02:15+09:00
+          description: データ生成日時
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-11-28T11:02:45+09:00
+          description: データの保証期限
+        odpt:frequency:
+          type: integer
+          example: 30
+          description: 更新頻度(秒)、指定された秒数以降にリクエストを行うことで、最新値が取得される。
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:TokyoMetro.Yurakucho
+          description: 路線を表すID
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Train:TokyoMetro.Yurakucho.B1045S
+          description: 固有識別子 odpt.Train:会社名.路線名.列車番号
+        odpt:trainNumber:
+          type: string
+          example: B1045S
+          description: 列車番号
+        odpt:trainType:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.TrainType:TokyoMetro.Local
+          description: 列車種別
+        odpt:delay:
+          type: integer
+          example: 0
+          description: 遅延時間(秒)
+        odpt:originStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Yurakucho.ShinKiba
+          description: 列車の始発駅のIDのリスト
+        odpt:destinationStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Yurakucho.Wakoshi
+          description: 列車の終着駅のIDのリスト
+        odpt:fromStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:TokyoMetro.Yurakucho.ChikatetsuNarimasu
+          description: 列車が直前に出た駅、あるいは停車中の駅を表すID
+        odpt:toStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:TokyoMetro.Yurakucho.Wakoshi
+          description: 列車が向かっている駅を表すID
+        odpt:railDirection:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:TokyoMetro.Wakoshi
+          description: 進行方向を表すID
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:TokyoMetro
+          description: 運行会社を表すID
+      description: データ検索APIのレスポンス
+    Date:
+      type: string
+      description: ISO8601 日付形式
+    DateTime:
+      type: string
+      description: ISO8601 日付時刻形式
+    DumpRDFType:
+      type: string
+      enum:
+        - odpt:Calendar
+        - odpt:Operator
+        - odpt:Station
+        - odpt:StationTimetable
+        - odpt:TrainTimetable
+        - odpt:TrainType
+        - odpt:RailDirection
+        - odpt:Railway
+        - odpt:RailwayFare
+        - odpt:PassengerSurvey
+        - odpt:BusTimetable
+        - odpt:BusroutePattern
+        - odpt:BusroutePatternFare
+        - odpt:BusstopPole
+        - odpt:BusstopPoleTimetable
+        - odpt:Airport
+        - odpt:AirportTerminal
+        - odpt:FlightSchedule
+        - odpt:FlightStatus
+      description: データタンプAPI対象のデータ種別
+    DumpResponse:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:title
+        - owl:sameAs
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000031028E6
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          example: odpt:Station
+          description: クラス名
+        dc:title:
+          type: string
+          example: 東京
+          description: 駅名(日本語)
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.Yamanote.Tokyo
+          description: 固有識別子 odpt.Station:会社名.路線名.駅名
+      description: データダンプAPIのレスポンス
+    FlightInformationArrival:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:flightNumber
+        - odpt:arrivalAirport
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode又はuuid)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightInformationArrival
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          description: 固有識別子
+        odpt:operator:
+          type: string
+          format: uri
+          description: フライト到着情報を提供する事業者を示すID
+        odpt:airline:
+          type: string
+          format: uri
+          description: エアラインの運行会社を表すID
+        odpt:flightNumber:
+          type: array
+          items:
+            type: string
+          description: フライト番号のリスト
+        odpt:flightStatus:
+          type: string
+          format: uri
+          description: フライト状況を表すID
+        odpt:flightInformationSummary:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の要約(多言語対応)
+        odpt:flightInformationText:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の詳細(多言語対応)
+        odpt:scheduledArrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 定刻の到着時刻
+        odpt:estimatedArrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 変更後到着時刻
+        odpt:actualArrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 実際の到着時刻
+        odpt:arrivalAirport:
+          type: string
+          format: uri
+          description: 到着空港を示すID
+        odpt:arrivalAirportTerminal:
+          type: string
+          format: uri
+          description: 到着空港のターミナルを表すID
+        odpt:arrivalGate:
+          type: string
+          description: 到着空港のゲート番号
+        odpt:baggageClaim:
+          type: string
+          description: 到着空港の預け手荷物受取所
+        odpt:originAirport:
+          type: string
+          format: uri
+          description: 出発地の空港を示すID
+        odpt:viaAirport:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: 経由地の空港を表すIDのリスト
+        odpt:aircraftType:
+          type: string
+          description: 航空機の機種
+      description: フライト到着情報
+    FlightInformationDeparture:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:flightNumber
+        - odpt:departureAirport
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode又はuuid)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightInformationDeparture
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          description: 固有識別子
+        odpt:operator:
+          type: string
+          format: uri
+          description: フライト出発情報を提供する事業者を示すID
+        odpt:airline:
+          type: string
+          format: uri
+          description: エアラインの運行会社を表すID
+        odpt:flightNumber:
+          type: array
+          items:
+            type: string
+          description: フライト番号のリスト
+        odpt:flightStatus:
+          type: string
+          format: uri
+          description: フライト状況を表すID
+        odpt:flightInformationSummary:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の要約(多言語対応)
+        odpt:flightInformationText:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 運行情報の詳細(多言語対応)
+        odpt:scheduledDepartureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 定刻の出発時刻
+        odpt:estimatedDepartureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 変更後出発時刻
+        odpt:actualDepartureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 実際の出発時刻
+        odpt:departureAirport:
+          type: string
+          format: uri
+          description: 出発空港を示すID
+        odpt:departureAirportTerminal:
+          type: string
+          format: uri
+          description: 出発空港のターミナルを示すID
+        odpt:departureGate:
+          type: string
+          description: 出発空港のゲート番号
+        odpt:checkInCounter:
+          type: array
+          items:
+            type: string
+          description: 出発空港のチェックインカウンターのリスト
+        odpt:destinationAirport:
+          type: string
+          format: uri
+          description: 目的地の空港を示すID
+        odpt:viaAirport:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: 経由地の空港を表すIDのリスト
+        odpt:aircraftType:
+          type: string
+          description: 航空機の機種
+      description: フライト出発情報
+    FlightSchedule:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - odpt:operator
+        - odpt:calendar
+        - odpt:originAirport
+        - odpt:destinationAirport
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightSchedule
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          description: 固有識別子
+        odpt:operator:
+          type: string
+          format: uri
+          description: フライト時刻表を提供する事業者を示すID
+        odpt:calendar:
+          type: string
+          format: uri
+          description: カレンダー情報を示すID
+        odpt:originAirport:
+          type: string
+          format: uri
+          description: 出発地の空港のID
+        odpt:destinationAirport:
+          type: string
+          format: uri
+          description: 目的地の空港のID
+        odpt:flightScheduleObject:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlightScheduleObject'
+          description: 時刻表オブジェクト
+      description: フライト時刻表
+    FlightScheduleObject:
+      type: object
+      required:
+        - odpt:airline
+        - odpt:flightNumber
+        - odpt:originTime
+        - odpt:destinationTime
+      properties:
+        odpt:airline:
+          type: string
+          format: uri
+          description: エアラインの運行会社のID
+        odpt:flightNumber:
+          type: array
+          items:
+            type: string
+          description: フライト番号のリスト
+        odpt:originTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 出発予定時刻
+        odpt:originDayDifference:
+          type: integer
+          format: int32
+          description: 出発日とカレンダー情報の日数差
+        odpt:destinationTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          description: 到着予定時刻
+        odpt:destinationDayDifference:
+          type: integer
+          format: int32
+          description: 到着日とカレンダー情報の日数差
+        odpt:viaAirport:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: 経由地の空港を表すIDのリスト
+        odpt:aircraftType:
+          type: string
+          description: 航空機の機種
+        odpt:isValidFrom:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ適用開始日時
+        odpt:isValidTo:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ適用終了日時
+        odpt:note:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 注釈情報(多言語対応)
+      description: フライトスケジュールオブジェクト
+    FlightStatus:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:FlightStatus
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: フライト状況(日本語)
+        odpt:flightStatusTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: フライト状況(多言語対応)
+      description: フライト状況
+    MultilingualTitle:
+      type: object
+      required:
+        - ja
+        - en
+      properties:
+        ja:
+          type: string
+        en:
+          type: string
+        ko:
+          type: string
+        ja-Hrkt:
+          type: string
+        zh-Hans:
+          type: string
+        zh-Hant:
+          type: string
+      description: 多言語対応のタイトル
+    OccupancyStatus:
+      type: string
+      enum:
+        - odpt.OccupancyStatus:Empty
+        - odpt.OccupancyStatus:ManySeatsAvailable
+        - odpt.OccupancyStatus:FewSeatsAvailable
+        - odpt.OccupancyStatus:StandingRoomOnly
+        - odpt.OccupancyStatus:CrushedStandingRoomOnly
+        - odpt.OccupancyStatus:FullRoomOnly
+        - odpt.OccupancyStatus:NotAcceptingPassengers
+    OpeningDoor:
+      type: string
+      enum:
+        - odpt:OpeningDoor:FrontSide
+        - odpt:OpeningDoor:RearSide
+    Operator:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+      properties:
+        '@context':
+          type: string
+          format: uri
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:Operator
+          description: クラス指定
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          description: データ生成日時
+        owl:sameAs:
+          type: string
+          format: uri
+          description: 固有識別子
+        dc:title:
+          type: string
+          description: 事業者名称(日本語)
+        odpt:operatorTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          description: 事業者名称(多言語対応)
+      description: 公共交通機関の事業者を扱うクラス
+    PassengerSurvey:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:station
+        - odpt:railway
+        - odpt:includeAlighting
+        - odpt:passengerSurveyObject
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:PassengerSurvey
+          example: odpt:PassengerSurvey
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.PassengerSurvey:JR-East.Tokyo
+          description: 固有識別子 odpt.PassengerSurvey:会社名.駅名 または odpt.PassengerSurvey:会社名.路線名.駅名
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        odpt:station:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.Yamanote.Tokyo
+            - odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 駅を表すIDのリスト
+        odpt:railway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:JR-East.Yamanote
+            - odpt.Railway:JR-East.ChuoRapid
+          description: 路線を表すIDのリスト
+        odpt:includeAlighting:
+          type: boolean
+          example: true
+          description: 乗降人員(降車を含む)の場合はtrue、乗車人員(降車を含まない)の場合はfalse
+        odpt:passengerSurveyObject:
+          type: array
+          items:
+            $ref: '#/components/schemas/PassengerSurveyObject'
+          example:
+            - odpt:surveyYear: 2017
+              odpt:passengerJourneys: 12345
+          description: 調査年度と平均乗降人員数(または乗車人員数)の組のリスト
+      description: 駅の乗降人員数または乗車人員数
+    PassengerSurveyObject:
+      type: object
+      required:
+        - odpt:surveyYear
+        - odpt:passengerJourneys
+      properties:
+        odpt:surveyYear:
+          type: integer
+          example: 2017
+          description: 調査年度
+        odpt:passengerJourneys:
+          type: integer
+          example: 12345
+          description: 駅の1日あたりの平均乗降人員数(または乗車人員数)
+      description: 調査年度と平均乗降人員数(または乗車人員数)の組
+    PlaceRDFType:
+      type: string
+      enum:
+        - odpt:Station
+        - odpt:BusstopPole
+      description: 地物情報検索対象のデータ種別
+    PlaceSearchResponse:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - dc:title
+        - geo:lat
+        - geo:long
+        - owl:sameAs
+        - odpt:railway
+        - odpt:operator
+        - odpt:stationCode
+        - odpt:stationTitle
+        - odpt:passengerSurvey
+        - odpt:stationTimetable
+        - odpt:connectingRailway
+        - odpt:connectingStation
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt_Station.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C00000000000001000003102C88
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          example: odpt:Station
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-03-27T09:00:00+09:00
+          description: データ生成日時
+        dc:title:
+          type: string
+          example: 日本橋
+          description: 駅名(日本語)
+        geo:lat:
+          type: number
+          example: 35.681796
+          description: 緯度
+        geo:long:
+          type: number
+          example: 139.775814
+          description: 経度
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:Toei.Asakusa.Nihombashi
+          description: 固有識別子 odpt.Station:会社名.路線名.駅名
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:Toei.Asakusa
+          description: 路線を表すID
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:Toei
+          description: 運行会社を表すID
+        odpt:stationCode:
+          type: string
+          example: A-13
+          description: 駅コード
+        odpt:stationTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            en: Nihombashi
+            ja: 日本橋
+          description: 駅名の多言語表記
+        odpt:passengerSurvey:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.PassengerSurvey:Toei.Nihombashi
+          description: 駅乗降人員数を表すIDのリスト
+        odpt:stationTimetable:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.StationTimetable:Toei.Asakusa.Nihombashi.Southbound.Weekday
+            - odpt.StationTimetable:Toei.Asakusa.Nihombashi.Southbound.SaturdayHoliday
+          description: 駅時刻表を表すIDのリスト
+        odpt:connectingRailway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:TokyoMetro.Ginza
+            - odpt.Railway:TokyoMetro.Tozai
+          description: 乗り換え可能路線のIDのリスト
+        odpt:connectingStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Ginza.Nihombashi
+            - odpt.Station:TokyoMetro.Tozai.Nihombashi
+          description: 乗り換え可能駅のIDのリスト
+      description: 地物情報検索APIのレスポンス
+    RailDirection:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:RailDirection
+          example: odpt:RailDirection
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: 進行方向情報の生成時刻
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:Inbound
+          description: '固有識別子 odpt.RailDirection:進行方向 または odpt.RailDirection:会社名.進行方向 '
+        dc:title:
+          type: string
+          example: 上り
+          description: 進行方向(日本語)
+        odpt:railDirectionTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 上り
+            en: Inbound
+          description: 進行方向(多言語対応)
+      description: 列車の進行方向
+    Railway:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - dc:title
+        - odpt:operator
+        - odpt:stationOrder
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:Railway
+          example: odpt:Railway
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:JR-East.Yamanote
+          description: 固有識別子 odpt.Railway:会社名.路線名
+        dc:title:
+          type: string
+          example: 山手線
+          description: 路線名(日本語)
+        odpt:railwayTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 山手線
+            en: Yamanote Line
+          description: 路線名(多言語対応)
+        odpt:kana:
+          type: string
+          example: やまのてせん
+          description: 路線名のよみがな(ひらがな表記)
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        odpt:lineCode:
+          type: string
+          example: M
+          description: 路線コード、路線シンボル表記 e.g. 丸ノ内線=>M
+        odpt:color:
+          type: string
+          example: '#80C241'
+          description: 路線のラインカラー
+        ug:region:
+          type: object
+          additionalProperties: {}
+          description: GeoJSON形式による地物情報
+        odpt:ascendingRailDirection:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:Outbound
+          description: 昇順の進行方向を表すID
+        odpt:descendingRailDirection:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:Inbound
+          description: 降順の進行方向を表すID
+        odpt:stationOrder:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationOrder'
+          example:
+            - odpt:station: odpt.Station:JR-East.Yamanote.Tokyo
+              odpt:index: 1
+          description: 駅の順序を表すリスト
+      description: 鉄道路線(運行系統)の情報
+    RailwayFare:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:fromStation
+        - odpt:toStation
+        - odpt:ticketFare
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:RailwayFare
+          example: odpt:RailwayFare
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        dct:issued:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+          example: 2017-01-13
+          description: 運賃改定日
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データの保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailwayFare:TokyoMetro.Marunouchi.Tokyo.TokyoMetro.Tozai.Nakano
+          description: 固有識別子 odpt.RailwayFare:出発駅の会社名.出発駅の路線名.出発駅名.到着駅の会社名.到着駅の路線名.到着駅名
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:TokyoMetro
+          description: 運行会社を表すID
+        odpt:fromStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:TokyoMetro.Marunouchi.Tokyo
+          description: 出発駅のID
+        odpt:toStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:TokyoMetro.Tozai.Nakano
+          description: 到着駅のID
+        odpt:ticketFare:
+          type: integer
+          example: 200
+          description: 切符利用時の運賃
+        odpt:icCardFare:
+          type: integer
+          example: 196
+          description: ICカード利用時の運賃
+        odpt:childTicketFare:
+          type: integer
+          example: 100
+          description: 切符利用時の子供運賃
+        odpt:childIcCardFare:
+          type: integer
+          example: 98
+          description: ICカード利用時の子供運賃
+        odpt:viaStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
+          description: 運賃計算上の経由駅を表すIDのリスト
+        odpt:viaRailway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:TokyoMetro.Tozai
+          description: 運賃計算上の経由路線を表すIDのリスト
+        odpt:ticketType:
+          type: string
+          example: string
+          description: チケット種別
+        odpt:paymentMethod:
+          type: array
+          items:
+            type: string
+          example:
+            - string
+          description: 支払い方法のリスト
+      description: 2駅間の運賃情報
+    RetrieveResponse:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - dc:title
+        - geo:lat
+        - geo:long
+        - owl:sameAs
+        - odpt:railway
+        - odpt:operator
+        - odpt:stationCode
+        - odpt:stationTitle
+        - odpt:passengerSurvey
+        - odpt:stationTimetable
+        - odpt:connectingRailway
+        - odpt:connectingStation
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt_Station.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030C46CA
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          example: odpt:Station
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2024-06-27T08:00:00+09:00
+          description: データ生成日時
+        dc:title:
+          type: string
+          example: 上野
+          description: 駅名(日本語)
+        geo:lat:
+          type: number
+          example: 35.711835
+          description: 緯度
+        geo:long:
+          type: number
+          example: 139.775625
+          description: 経度
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:TokyoMetro.Ginza.Ueno
+          description: 固有識別子 odpt.Station:会社名.路線名.駅名
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:TokyoMetro.Ginza
+          description: 路線を表すID
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:TokyoMetro
+          description: 運行会社を表すID
+        odpt:stationCode:
+          type: string
+          example: G16
+          description: 駅コード
+        odpt:stationTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            en: Ueno
+            ja: 上野
+            ko: 우에노
+            ja-Hrkt: うえの
+            zh-Hans: 上野
+            zh-Hant: 上野
+          description: 駅名の多言語表記
+        odpt:passengerSurvey:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.PassengerSurvey:TokyoMetro.Ueno
+          description: 駅乗降人員数を表すIDのリスト
+        odpt:stationTimetable:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.StationTimetable:TokyoMetro.Ginza.Ueno.TokyoMetro.Shibuya.Weekday
+          description: 駅時刻表を表すIDのリスト
+        odpt:connectingRailway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:TokyoMetro.Hibiya
+            - odpt.Railway:JR-East.AkitaShinkansen
+          description: 乗り換え可能路線のIDのリスト
+        odpt:connectingStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Hibiya.Ueno
+            - odpt.Station:JR-East.AkitaShinkansen.Ueno
+          description: 乗り換え可能駅のIDのリスト
+      description: データ取得APIのレスポンス
+    Station:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:railway
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:Station
+          example: odpt:Station
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.Yamanote.Tokyo
+          description: 固有識別子 odpt.Station:会社名.路線名.駅名
+        dc:title:
+          type: string
+          example: 東京
+          description: 駅名(日本語)
+        odpt:stationTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 東京
+            en: Tokyo
+          description: 駅名(多言語対応)
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:JR-East.Yamanote
+          description: 路線を表すID
+        odpt:stationCode:
+          type: string
+          example: JY01
+          description: 駅コード
+        geo:long:
+          type: number
+          example: 139.1234
+          description: 代表点の経度
+        geo:lat:
+          type: number
+          example: 35.1234
+          description: 代表点の緯度
+        ug:region:
+          type: object
+          additionalProperties: {}
+          description: GeoJSON形式による地物情報
+        odpt:exit:
+          type: array
+          items:
+            type: string
+          example:
+            - string
+          description: 駅出入口を表すIDのリスト IDにはug:Poiの@idの値を利用
+        odpt:connectingRailway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:JR-East.ChuoRapid
+            - odpt.Railway:TokyoMetro.Marunouchi
+          description: 乗り換え可能路線のIDのリスト
+        odpt:connectingStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.ChuoRapid.Tokyo
+            - odpt.Station:TokyoMetro.Marunouchi.Tokyo
+          description: 乗り換え可能駅のIDのリスト
+        odpt:stationTimetable:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.StationTimetable:JR-East.Yamanote.Tokyo.Outbound.Weekday
+          description: 駅時刻表を表すIDのリスト
+        odpt:passengerSurvey:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.PassengerSurvey:JR-East.Tokyo
+          description: 駅乗降人員数を表すIDのリスト
+      description: 駅情報
+    StationOrder:
+      type: object
+      required:
+        - odpt:station
+        - odpt:index
+      properties:
+        odpt:station:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:TokyoMetro.Marunouchi.Tokyo
+          description: 駅を表すID
+        odpt:stationTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 東京
+            en: Tokyo
+          description: 駅名(多言語対応)
+        odpt:index:
+          type: integer
+          example: 1
+          description: 駅の順序を示す整数値 原則として、列車は進行方向に応じて、この値の昇順または降順に停車する。環状線などの場合は、同一の駅が複数回記載される場合がある。
+      description: 駅の順序
+    StationTimetable:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:railway
+        - odpt:stationTimetableObject
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:StationTimetable
+          example: odpt:StationTimetable
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        dct:issued:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+          example: 2017-01-13
+          description: ダイヤ改正日
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データの保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.StationTimetable:JR-East.ChuoRapid.Tokyo.Outbound.Weekday
+          description: 固有識別子 odpt.StationTimetable:会社名.路線名.駅名.方面名.曜日種別
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:JR-East.ChuoRapid
+          description: 路線を表すID
+        odpt:railwayTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 中央線快速
+            en: Chuo Rapid
+          description: 路線名(多言語対応)
+        odpt:station:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 駅を表すID
+        odpt:stationTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 東京
+            en: Tokyo
+          description: 駅名(多言語対応)
+        odpt:railDirection:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:Outbound
+          description: 方面を表すID
+        odpt:calendar:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Calendar:Weekday
+          description: 運行を行う曜日・日付情報のID
+        odpt:stationTimetableObject:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationTimetableObject'
+          example:
+            - odpt:departureTime: 06:00
+            - odpt:departureTime: 07:00
+          description: 出発時刻、終着(行先)駅等の組のリスト
+        odpt:note:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語での注釈情報
+            en: Note in English
+          description: 注釈情報(多言語対応)
+      description: 駅時刻表情報
+    StationTimetableObject:
+      type: object
+      properties:
+        odpt:arrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 05:08
+          description: 到着時刻
+        odpt:departureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 05:09
+          description: 出発時刻
+        odpt:originStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 始発駅を表すIDのリスト
+        odpt:destinationStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.ChuoRapid.Takao
+          description: 終着駅を表すIDのリスト
+        odpt:viaStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
+          description: 経由駅を表すIDのリスト
+        odpt:viaRailway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:TokyoMetro.Tozai
+          description: 経由路線を表すIDのリスト
+        odpt:train:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Train:JR-East.Yamanote.123M
+          description: 到着または出発する列車ID
+        odpt:trainNumber:
+          type: string
+          example: 123M
+          description: 列車番号
+        odpt:trainType:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.TrainType:JR-East.Local
+          description: 列車種別のID
+        odpt:trainName:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            - ja: むさし
+              en: Musashi
+          description: 編成の名称・愛称のリスト
+        odpt:trainOwner:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 車両の所属会社を表すID
+        odpt:isLast:
+          type: boolean
+          example: true
+          description: 最終電車かどうか
+        odpt:isOrigin:
+          type: boolean
+          example: true
+          description: 始発駅かどうか
+        odpt:platformNumber:
+          type: string
+          example: '1'
+          description: プラットフォームの番号
+        odpt:platformName:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語名称
+            en: English Name
+          description: プラットフォームの名称
+        odpt:carComposition:
+          type: integer
+          example: 8
+          description: 車両数
+        odpt:note:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語での注釈情報
+            en: Note in English
+          description: 注釈情報
+      description: 駅時刻表オブジェクト
+    Time:
+      type: string
+      description: ISO8601 時刻形式
+    Train:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:railway
+        - odpt:trainNumber
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode又はuuid)
+        '@type':
+          type: string
+          enum:
+            - odpt:Train
+          example: odpt:Train
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:15:00+09:00
+          description: データ保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Train:JR-East.Yamanote.123M
+          description: 固有識別子 odpt.Train:会社名.路線名.列車番号
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:JR-East.Yamanote
+          description: 鉄道路線を表すID
+        odpt:railDirection:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:Outbound
+          description: 進行方向を表すID
+        odpt:trainNumber:
+          type: string
+          example: 123M
+          description: 列車番号
+        odpt:trainType:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.TrainType:JR-East.Local
+          description: 列車種別
+        odpt:trainName:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            - ja: むさし
+              en: Musashi
+          description: 編成の名称・愛称のリスト
+        odpt:fromStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 列車が直前に出た駅、あるいは停車中の駅を表すID
+        odpt:toStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 列車が向かっている駅を表すID
+        odpt:originStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 列車の始発駅を表すIDのリスト
+        odpt:destinationStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.ChuoRapid.Takao
+          description: 列車の終着駅を表すIDのリスト
+        odpt:viaStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
+          description: 列車の経由駅を表すIDのリスト
+        odpt:viaRailway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:TokyoMetro.Tozai
+          description: 列車の経由路線を表すIDのリスト
+        odpt:trainOwner:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 車両の所属会社を表すID
+        odpt:index:
+          type: integer
+          example: 1
+          description: 路線内の列車順序
+        odpt:delay:
+          type: integer
+          example: 60
+          description: 遅延時間(秒)
+        odpt:carComposition:
+          type: integer
+          example: 8
+          description: 車両数
+        odpt:note:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語での注釈情報
+            en: Note in English
+          description: 注釈情報
+      description: 列車情報
+    TrainInformation:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:timeOfOrigin
+        - odpt:operator
+        - odpt:trainInformationText
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode又はuuid)
+        '@type':
+          type: string
+          enum:
+            - odpt:TrainInformation
+          example: odpt:TrainInformation
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:15:00+09:00
+          description: データ保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.TrainInformation:JR-East.Yamanote
+          description: 固有識別子 odpt.TrainInformation:会社名.路線名 または odpt.TrainInformation:会社名
+        odpt:timeOfOrigin:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:15:00+09:00
+          description: 発生時刻
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:JR-East.Yamanote
+          description: 発生路線を表すID
+        odpt:trainInformationStatus:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語テキスト
+            en: Text in English
+          description: 運行情報ステータス
+        odpt:trainInformationText:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語テキスト
+            en: Text in English
+          description: 運行情報テキスト
+        odpt:railDirection:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:Outbound
+          description: 運行情報の適用される方向を表すID
+        odpt:trainInformationArea:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語テキスト
+            en: Text in English
+          description: 発生エリア
+        odpt:trainInformationKind:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語テキスト
+            en: Text in English
+          description: 鉄道種類
+        odpt:stationFrom:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.Yamanote.Tokyo
+          description: 発生場所起点
+        odpt:stationTo:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.Yamanote.Tokyo
+          description: 発生場所終点
+        odpt:trainInformationRange:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語テキスト
+            en: Text in English
+          description: 発生区間
+        odpt:trainInformationCause:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語テキスト
+            en: Text in English
+          description: 発生理由
+        odpt:transferRailways:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:JR-East.Yamanote
+          description: 振替路線一覧のリスト
+        odpt:resumeEstimate:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:15:00+09:00
+          description: 復旧見込み時刻
+      description: 列車運行情報
+    TrainTimetable:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - dc:date
+        - owl:sameAs
+        - odpt:operator
+        - odpt:railway
+        - odpt:trainNumber
+        - odpt:trainTimetableObject
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:TrainTimetable
+          example: odpt:TrainTimetable
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        dct:issued:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+          example: 2017-01-13
+          description: ダイヤ改正日
+        dct:valid:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データの保証期限
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday
+          description: 固有識別子 odpt.TrainTimetable:会社名.路線名.列車番号.曜日種別 である。前記の命名ルールで重複が生じる場合は、末尾に .1, .2, .3, … をつけて区別
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        odpt:railway:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Railway:JR-East.Yamanote
+          description: 路線のID
+        odpt:railDirection:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.RailDirection:Outbound
+          description: 進行方向を表すID
+        odpt:calendar:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Calendar:Weekday
+          description: 運行を行う曜日・日付情報のID
+        odpt:train:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Train:JR-East.Yamanote.123M
+          description: 列車のID
+        odpt:trainNumber:
+          type: string
+          example: 123M
+          description: 列車番号
+        odpt:trainType:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.TrainType:JR-East.Local
+          description: 列車種別のID
+        odpt:trainName:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            - ja: むさし
+              en: Musashi
+          description: 編成の名称・愛称のリスト
+        odpt:trainOwner:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 車両の所属会社を表すID
+        odpt:originStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 列車の始発駅を表すIDのリスト
+        odpt:destinationStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:JR-East.ChuoRapid.Takao
+          description: 列車の終着駅を表すIDのリスト
+        odpt:viaStation:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
+          description: 列車の経由駅を表すIDのリスト
+        odpt:viaRailway:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.Railway:TokyoMetro.Tozai
+          description: 列車の経由路線を表すIDのリスト
+        odpt:previousTrainTimetable:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday
+          description: 直前の列車時刻表を表すIDのリスト
+        odpt:nextTrainTimetable:
+          type: array
+          items:
+            $ref: '#/components/schemas/odpt.url'
+          example:
+            - odpt.TrainTimetable:JR-East.ChuoRapid.123M.Weekday
+          description: 直後の列車時刻表を表すIDのリスト
+        odpt:trainTimetableObject:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrainTimetableObject'
+          example:
+            - odpt:departureTime: 06:00
+              odpt:departureStation: odpt.Station:JR-East.ChuoRapid.Tokyo
+            - odpt:arrivalTime: 07:00
+              odpt:arrivalStation: odpt.Station:JR-East.ChuoRapid.Takao
+          description: 出発時刻と出発駅の組か、到着時刻と到着駅の組のリスト
+        odpt:needExtraFee:
+          type: boolean
+          example: true
+          description: 乗車券の他に別料金が必要か
+        odpt:note:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語での注釈情報
+            en: Note in English
+          description: 注釈情報
+      description: 列車時刻表
+    TrainTimetableObject:
+      type: object
+      properties:
+        odpt:arrivalTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 05:08
+          description: 到着時刻
+        odpt:arrivalStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 到着駅のID
+        odpt:departureTime:
+          allOf:
+            - $ref: '#/components/schemas/Time'
+          example: 05:09
+          description: 出発時刻
+        odpt:departureStation:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Station:JR-East.ChuoRapid.Tokyo
+          description: 出発駅のID
+        odpt:platformNumber:
+          type: string
+          example: '1'
+          description: プラットフォームの番号
+        odpt:platformName:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語名称
+            en: English Name
+          description: プラットフォームの名称
+        odpt:note:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 日本語での注釈情報
+            en: Note in English
+          description: 注釈情報
+      description: 列車時刻表オブジェクト
+    TrainType:
+      type: object
+      required:
+        - '@context'
+        - '@id'
+        - '@type'
+        - owl:sameAs
+        - odpt:operator
+      properties:
+        '@context':
+          type: string
+          format: uri
+          example: http://vocab.odpt.org/context_odpt.jsonld
+          description: JSON-LD仕様に基づく @context のURL
+        '@id':
+          allOf:
+            - $ref: '#/components/schemas/odpt.urn'
+          example: urn:ucode:_00001C000000000000010000030FD7E5
+          description: 固有識別子(ucode)
+        '@type':
+          type: string
+          enum:
+            - odpt:TrainType
+          example: odpt:TrainType
+          description: クラス名
+        dc:date:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+          example: 2017-01-13T15:10:00+09:00
+          description: データ生成日時
+        owl:sameAs:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt:JR-East.Local
+          description: 固有識別子 odpt.TrainType:会社名.列車種別
+        odpt:operator:
+          allOf:
+            - $ref: '#/components/schemas/odpt.url'
+          example: odpt.Operator:JR-East
+          description: 運行会社を表すID
+        dc:title:
+          type: string
+          example: 普通
+          description: 列車種別(日本語)
+        odpt:trainTypeTitle:
+          allOf:
+            - $ref: '#/components/schemas/MultilingualTitle'
+          example:
+            ja: 普通
+            en: Local
+          description: 列車種別(多言語対応)
+      description: 列車種別
+    odpt.url:
+      type: string
+      description: 固有識別子の別名 多くが`odpt.hoge:fuga`形式
+    odpt.urn:
+      type: string
+      description: 固有識別子
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: acl:consumerKey
+servers:
+  - url: https://api-challenge2024.odpt.org/api/v4
+    description: 公共交通のオープンデータ API (チャレンジ2024専用)
+    variables: {}
+  - url: https://api.odpt.org/api/v4
+    description: 公共交通のオープンデータ API
+    variables: {}

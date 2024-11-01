@@ -16,8 +16,8 @@ using TypeSpec.OpenAPI;
 @info({
   license: {
     name: "公共交通オープンデータ基本ライセンス, 公共交通オープンデータチャレンジ限定ライセンス",
-    url: "https://developer.odpt.org/terms"
-  }
+    url: "https://developer.odpt.org/terms",
+  },
 })
 @useAuth(ApiKeyAuth<ApiKeyLocation.query, "acl:consumerKey">)
 namespace OdptAPI;

@@ -14,7 +14,7 @@ namespace OdptAPI;
 
 @route("/odpt/Calendar")
 interface CalendarOperations {
-  @doc("曜日・日付区分(odpt:Calendar)の内容を取得する")
+  @summary("曜日・日付区分(odpt:Calendar)の内容を取得する")
   @get
   getCalendars(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
@@ -25,7 +25,7 @@ interface CalendarOperations {
 
 @route("/Operator")
 interface OperatorOperations {
-  @doc("公共交通機関の事業者(odpt:Operator)の内容を取得する")
+  @summary("公共交通機関の事業者(odpt:Operator)の内容を取得する")
   @get
   getOperators(
     @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,

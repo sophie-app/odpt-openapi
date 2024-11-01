@@ -9,6 +9,7 @@
     "build": "pnpm build:tsp && pnpm build:redocly",
     "build:tsp": "tsp compile ./src/",
     "build:redocly": "redocly build-docs -o './dist/docs/index.html'",
+    "prebuild": "pnpx rimraf ./dist",
     "check": "pnpm /^check:.*/",
     "check:format": "prettier -c ./src/",
     "check:lint": "redocly lint",

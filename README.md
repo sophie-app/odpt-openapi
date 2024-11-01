@@ -1,5 +1,12 @@
 # ODPT OpenAPI
 
+OpenAPI specification of ODPT API
+
+## About ODPT API
+
+- [Official Document](https://developer.odpt.org/documents)
+- [Datasets](https://ckan.odpt.org/dataset)
+
 ## Development
 
 ### Requirements
@@ -15,16 +22,23 @@
 pnpm i
 ```
 
-2. Start Typespec watcher and documentation server from openapi
-
-selectedAPIName is the name of `openapi.${selectedAPIName}.yaml`
+2. (Optional) Install VSCode Extension
 
 ```bash
-NAME=${selectedAPIName} pnpm dev
+pnpm tsp code install
 ```
+
+3. Start TypeSpec watcher and Document server
+
+```bash
+pnpm dev
+```
+
+Document page will be available at [`http://127.0.0.1:8080`](http://127.0.0.1:8080)
 
 ### Scripts
 
-- `pnpm dev` - 2. Start Typespec watcher and documentation server from openapi
-- `pnpm build` - Build the tsp files
-- `pnpm lint` - Lint the tsp files and openapi files
+- `pnpm dev`: Run TypeSpec watcher and Document Server
+- `pnpm build`: Compile TypeSpec and Build document page
+- `pnpm check`: Check TypeSpec format and OpenAPI lint
+- `pnpm fix`: Fix TypeSpec format

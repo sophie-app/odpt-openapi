@@ -60,6 +60,13 @@ paths:
       operationId: DataRetrieveOperations_retrieve
       summary: データ取得API
       parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
         - name: DATA_URI
           in: path
           required: true
@@ -1744,6 +1751,13 @@ paths:
       operationId: PlaceSearchOperations_search
       summary: 地物情報検索API
       parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
         - name: RDF_TYPE
           in: path
           required: true
@@ -1804,6 +1818,13 @@ paths:
       operationId: DataSearchOperations_search
       summary: データ検索API
       parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
         - name: RDF_TYPE
           in: path
           required: true
@@ -1843,6 +1864,13 @@ paths:
       operationId: DataDumpOperations_dump
       summary: データダンプAPI
       parameters:
+        - name: acl:consumerKey
+          in: query
+          required: true
+          description: 開発者サイトにて提供されるアクセストークン
+          schema:
+            $ref: '#/components/schemas/ConsumerKey'
+          explode: false
         - name: RDF_TYPE
           in: path
           required: true

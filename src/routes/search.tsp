@@ -10,6 +10,8 @@ interface DataSearchOperations {
   @summary("データ検索API")
   @get
   search(
+    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
+
     @path
     @doc("取得するデータの種別 odpt:クラス名")
     RDF_TYPE: `odpt.url`,
@@ -25,6 +27,7 @@ interface DataDumpOperations {
   @summary("データダンプAPI")
   @get
   dump(
+    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @path @doc("取得するデータの種別 odpt:クラス名") RDF_TYPE: DumpRDFType,
   ): DumpResponse[] | Common.Error;
 }
@@ -34,6 +37,7 @@ interface DataRetrieveOperations {
   @summary("データ取得API")
   @get
   retrieve(
+    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @path @doc("取得するデータのURI") DATA_URI: `odpt.urn` | `odpt.url`,
   ): RetrieveResponse[] | Common.Error;
 }
@@ -43,6 +47,7 @@ interface PlaceSearchOperations {
   @summary("地物情報検索API")
   @get
   search(
+    @query @doc("開発者サイトにて提供されるアクセストークン") `acl:consumerKey`: ConsumerKey,
     @path @doc("取得するデータの種別") RDF_TYPE: PlaceRDFType,
     @query @doc("取得する範囲の中心緯度、10進数表記、測地系はWGS84") lat: float,
     @query @doc("取得する範囲の中心経度、10進数表記、測地系はWGS84") lon: float,

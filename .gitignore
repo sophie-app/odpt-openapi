@@ -2,7 +2,7 @@
 .DS_Store
 
 # Doc output
-dist/doc
+dist/docs
 
 # Dependency directories
 node_modules/

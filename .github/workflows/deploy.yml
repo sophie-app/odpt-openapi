@@ -8,31 +8,43 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
   group: pages
-  cancel-in-progress: true
-
+  cancel-in-progress: false
 
 jobs:
-  deploy-docs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
       - name: setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - name: setup pages
+        uses: actions/configure-pages@v5
       - name: install dependencies
         run: pnpm install
       - name: build
         run: pnpm build:redocly
-      - name: deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/docs
+          path: ./dist/docs
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: deploy to gh-pages
+        id: deployment
+        uses: actions/deploy-pages@v4
